@@ -1,4 +1,4 @@
-import { useMindBodyLink } from "~/hooks/useMindbody"
+import { useMindBodyLink } from "~/hooks/useMindBody"
 
 export function BuyNowButton({ text, serviceId, linkClass, type }: MindbodyButtonProps) {
   useMindBodyLink()

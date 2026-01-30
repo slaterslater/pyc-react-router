@@ -1,4 +1,4 @@
-import { useMindBodyWidget } from "~/hooks/useMindbody"
+import { useMindBodyWidget } from "~/hooks/useMindBody"
 
 export function MindBodySchedule() {
   useMindBodyWidget()
