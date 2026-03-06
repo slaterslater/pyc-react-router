@@ -7,8 +7,8 @@ export function BuyNowButton({ text, serviceId, linkClass, type }: MindbodyButto
     <healcode-widget
       data-version="0.2"
       data-link-class={linkClass}
-      data-site-id="579"
-      data-mb-site-id="7861"
+      data-site-id="133467"
+      data-mb-site-id="-2147479207"
       data-service-id={serviceId}
       data-bw-identity-site="false"
       data-type={`${type}-link`}
@@ -19,6 +19,9 @@ export function BuyNowButton({ text, serviceId, linkClass, type }: MindbodyButto
     </healcode-widget>
   )
 }
+
+{/* <script src="https://widgets.mindbodyonline.com/javascripts/healcode.js" type="text/javascript"></script><healcode-widget data-version="0.2" data-link-class="healcode-gift-card-text-link" data-site-id="133467" data-mb-site-id="-2147479207" data-service-id="444" data-bw-identity-site="false" data-type="gift-card-link" data-inner-html="Buy Now" /> */ }
+
 
 type MindbodyButtonProps = {
   text: string

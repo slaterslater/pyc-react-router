@@ -1,5 +1,7 @@
-import { BuyNowButton } from "~/components/MindbodyButton";
-import { MindBodySchedule } from "~/components/MindBodySchedule";
+import { Link } from "react-router";
+import { Announcements } from "~/components/Announcements";
+import { Footer } from "~/components/Footer";
+import { Header } from "~/components/Header";
 
 export function meta() {
   return [
@@ -10,37 +12,23 @@ export function meta() {
 
 export default function Home() {
   return (
-    <section className="flex flex-col items-start justify-center bg-[#6F7C71] color-[#FAF9F7] px-5 sm:px-7 md:px-10">
-      <h1 className="sr-only">pyc development</h1>
-      <div className="w-full min-w-xs max-w-[980px] mx-auto pb-10">
-        <h2 className="text-lg font-bold mt-7 mb-3">example buttons</h2>
-        <div className="flex gap-2">
-          <BuyNowButton
-            text="Biweekly Membership $69"
-            serviceId="320"
-            // linkClass="healcode-contract-text-link"
-            // type="contract-link"
-            type="contract"
-          />
-          <BuyNowButton
-            text="10 class pass"
-            serviceId="1013"
-            // linkClass="healcode-pricing-option-text-link"
-            // type="pricing-link"
-            type="pricing"
-          />
+    <>
+      <Announcements />
+      <main className="flex flex-col items-start justify-center min-w-xs max-w-[1450px] mx-auto px-4">
+        <Header />
+        <h1 className="sr-only">power yoga canada</h1>
+        <div className="flex justify-center items-center uppercase font-bold text-lg text-background bg-light-gray rounded-md p-4 w-full h-[575px] md:h-[650px]">canada's home for hot power yoga</div>
+        <h2 className="mx-auto text-2xl tracking-wide uppercase py-6 font-light">sweat | discover | transform</h2>
+        <p className="mx-auto text-center text-light-gray max-w-3xl leading-relaxed">Power Yoga Canada is your home for hot power yoga.<br />Our locally operated studios deliver heated classes that build strength, flexibility, and resilience, while fostering connection, consistency, and community across every location.</p>
+      </main>
+      <div className="flex justify-between items-center bg-cream w-full h-[240px] px-8">
+        <h2 className="capitalize text-2xl font-medium">start your practice today</h2>
+        <div className="flex gap-4">
+          <Link to="/" className="btn-black">book a class</Link>
+          <Link to="/" className="btn-black">find your studio</Link>
         </div>
-        <h2 className="text-lg font-bold mt-7 mb-3">mindbody widget</h2>
-        <p>schedule widget has 3 options for colours</p>
-        <ul className="list-disc list-inside">
-          <li>primary: black/charcoal: #2B2B2B (book button)</li>
-          <li>secondary: red/terracotta #733520 (account button and selected day)</li>
-          <li>background: cream/white shade #FAF9F7</li>
-        </ul>
-        <p>doesn't seem like you can change the font of the widget...</p>
-        <p>i haven't modifed the cart style because it would affect the current live site</p>
-        <MindBodySchedule />
-      </div >
-    </section>
+      </div>
+      <Footer />
+    </>
   );
 }
