@@ -5,7 +5,7 @@
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
   --color-charcoal: #2B2B2B;
-  --color-background: #F5F5F5;
+  /* --color-background: #F5F5F5; */
   --color-light-gray: #828282;
   --color-cream: #F8F2EB;
   --color-red: #AC2435;
@@ -15,7 +15,7 @@
 html,
 body {
   /* @apply bg-light-gray dark:bg-gray-950; */
-  @apply bg-background;
+  @apply bg-white;
 
   /* @media (prefers-color-scheme: dark) {
     color-scheme: dark;
@@ -23,9 +23,9 @@ body {
 }
 
 .btn-red {
-  @apply bg-red text-white uppercase rounded-md px-3 py-2 font-sans text-xs;
+  @apply bg-red text-white uppercase rounded-md px-4 py-2 font-sans text-center;
 }
 
 .btn-black {
-  @apply bg-charcoal text-white uppercase rounded-md px-3 py-2 font-sans text-xs;
+  @apply bg-charcoal text-white uppercase rounded-md px-4 py-2 font-sans text-center;
 }
