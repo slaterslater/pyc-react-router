@@ -1,9 +1,10 @@
+import dayjs from "dayjs";
 import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
 import { Link } from "react-router";
 
 export function Footer() {
   return (
-    <footer className="w-full min-w-xs max-w-[1450px] mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+    <footer className="w-full min-w-xs max-w-[1450px] mx-auto px-4 pt-8 pb-2 grid grid-cols-1 md:grid-cols-2 gap-4">
       <div className="flex flex-col items-start justify-between min-h-[150px] px-8">
         <Link to="/">
           <img src="/canada-logo.svg" alt="power yoga canada logo" width={150} />
@@ -41,6 +42,7 @@ export function Footer() {
           </ul>
         </div>
       </nav>
+      <p className="w-full col-span-2 mt-4 text-center text-sm uppercase">{`© ${dayjs().year()} Power Yoga Canada`}</p>
     </footer>
   )
 }

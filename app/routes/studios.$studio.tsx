@@ -39,6 +39,13 @@ export default function StudioRoute() {
         <img src="/development/power-yoga.svg" alt="warm yoga" width={135} />
         <img src="/development/mat-rental.svg" alt="mat rental" width={135} />
       </div>
+      <div className="w-screen relative left-1/2 right-1/2 ml-[-50vw] mr-[-50vw] bg-charcoal">
+        <h2 className="text-white text-center uppercase text-xl font-medium py-6 m-0">
+          our community
+        </h2>
+      </div>
+      <p className="mx-auto text-center text-light-gray max-w-5xl leading-relaxed text-2xl font-medium px-4">Power Yoga Collective is your home for hot power yoga. Our locally operated studios deliver heated classes that build strength, flexibility, and resilience, while fostering connection, consistency, and community across every location.</p>
+      <Hero title="main banner or video" />
     </PageLayout>
   )
 }

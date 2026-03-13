@@ -18,16 +18,7 @@ export function Header() {
           <HeaderTitle />
         </div>
         {/* Buttons always right */}
-        <div className="flex-1 flex justify-end">
-          <div className="hidden lg:flex gap-4">
-            <Link to="/" className="btn-red">
-              book a class
-            </Link>
-            <Link to="/" className="btn-red">
-              find your studio
-            </Link>
-          </div>
-        </div>
+        <HeaderCTAs />
       </div>
     </header>
   )
@@ -50,5 +41,23 @@ function HeaderTitle() {
       <img src="/canada-logo.svg" alt="power yoga canada logo" width={225} />
       <h1 className="sr-only">power yoga canada</h1>
     </>
+  )
+}
+
+function HeaderCTAs() {
+  const { isStudioPage } = useStudio()
+  return (
+    <div className="flex-1 flex justify-end">
+      <div className="hidden lg:flex gap-4">
+        <Link to="/" className="btn-red">
+          book a class
+        </Link>
+        {!isStudioPage && (
+          <Link to="/" className="btn-red">
+            find your studio
+          </Link>
+        )}
+      </div>
+    </div>
   )
 }
