@@ -14,7 +14,7 @@ export function Header() {
           <RxHamburgerMenu size={48} />
         </div>
         {/* Title always center */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center">
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-3">
           <HeaderTitle />
         </div>
         {/* Buttons always right */}
@@ -36,7 +36,14 @@ export function Header() {
 function HeaderTitle() {
   const { isStudioPage, title } = useStudio()
 
-  if (isStudioPage) return <h1 className="text-2xl font-bold">{title}</h1>
+  if (isStudioPage) {
+    return (
+      <>
+        <img src="/pyc-icon.svg" alt="power yoga canada logo" width={24} />
+        <h1 className="text-2xl font-bold uppercase">{title}</h1>
+      </>
+    )
+  }
 
   return (
     <>
