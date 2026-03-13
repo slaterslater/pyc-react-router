@@ -1,10 +1,13 @@
 import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
+import { Link } from "react-router";
 
 export function Footer() {
   return (
     <footer className="w-full min-w-xs max-w-[1450px] mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-2 gap-4">
       <div className="flex flex-col items-start justify-between min-h-[150px] px-8">
-        <img src="/canada-logo.svg" alt="power yoga canada logo" width={150} />
+        <Link to="/">
+          <img src="/canada-logo.svg" alt="power yoga canada logo" width={150} />
+        </Link>
         <div className="flex items-center gap-6 text-light-gray">
           <FaFacebook size={25} />
           <FaLinkedin size={25} />

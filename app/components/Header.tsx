@@ -1,7 +1,7 @@
 import { RxHamburgerMenu } from "react-icons/rx";
-import { Link, useLoaderData } from "react-router";
+import { Link } from "react-router";
 import { Announcements } from "./Announcements";
-import type { loader } from "~/routes/studios.$studio";
+import { useStudio } from "~/hooks/useStudio";
 
 export function Header() {
 
@@ -34,9 +34,9 @@ export function Header() {
 }
 
 function HeaderTitle() {
-  const data = useLoaderData<typeof loader>()
+  const { isStudioPage, title } = useStudio()
 
-  if (data?.title) return <h1 className="text-2xl font-bold">{data.title}</h1>
+  if (isStudioPage) return <h1 className="text-2xl font-bold">{title}</h1>
 
   return (
     <>
