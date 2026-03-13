@@ -1,8 +1,10 @@
 import { RxHamburgerMenu } from "react-icons/rx";
-import { Link } from "react-router";
+import { Link, useLoaderData } from "react-router";
 import { Announcements } from "./Announcements";
+import type { loader } from "~/routes/studios.$studio";
 
 export function Header() {
+
   return (
     <header className="w-full">
       <Announcements />
@@ -11,9 +13,9 @@ export function Header() {
         <div className="flex-1 flex items-center">
           <RxHamburgerMenu size={48} />
         </div>
-        {/* Image always center (absolute positioning) */}
+        {/* Title always center */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center">
-          <img src="/canada-logo.svg" alt="power yoga canada logo" width={225} />
+          <HeaderTitle />
         </div>
         {/* Buttons always right */}
         <div className="flex-1 flex justify-end">
@@ -28,5 +30,18 @@ export function Header() {
         </div>
       </div>
     </header>
+  )
+}
+
+function HeaderTitle() {
+  const data = useLoaderData<typeof loader>()
+
+  if (data?.title) return <h1 className="text-2xl font-bold">{data.title}</h1>
+
+  return (
+    <>
+      <img src="/canada-logo.svg" alt="power yoga canada logo" width={225} />
+      <h1 className="sr-only">power yoga canada</h1>
+    </>
   )
 }
