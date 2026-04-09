@@ -30,7 +30,7 @@ function HeaderTitle() {
   if (isStudioPage) {
     return (
       <>
-        <img src="/pyc-icon.svg" alt="power yoga canada logo" width={24} />
+        <img src="/pyc-icon.png" alt="power yoga canada logo" width={24} />
         <h1 className="text-2xl font-bold uppercase">{title}</h1>
       </>
     )
