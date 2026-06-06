@@ -11,6 +11,7 @@ import {
 import "./app.css";
 import { ANNOUNCEMENTS_QUERY } from "./graphql/queries/announcementQuery";
 import { payloadClient } from "./lib/payloadClient.server";
+import { getSiteName } from "./lib/siteName.server";
 
 export const links = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -32,27 +33,8 @@ export const links = () => [
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const url = new URL(request.url);
-  const hostname = url.hostname;
-
-  let site = null
-  switch (hostname) {
-    case process.env.HOSTNAME_COLLECTIVE:
-      site = "collective";
-      break;
-    case process.env.HOSTNAME_CANADA:
-      site = "canada";
-      break;
-    case process.env.HOSTNAME_USA:
-      site = "usa";
-      break;
-  }
-
-  if (!site) {
-    throw new Error("Invalid hostname");
-  }
-
+  const site = getSiteName(url);
   const data = await payloadClient.request(ANNOUNCEMENTS_QUERY);
-
   return { site, data };
 }
 
