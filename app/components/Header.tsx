@@ -1,12 +1,17 @@
 import { RxHamburgerMenu } from "react-icons/rx";
-import { Link } from "react-router";
+import { Link, useRouteLoaderData } from "react-router";
 import { Announcements } from "./Announcements";
 import { useStudio } from "~/hooks/useStudio";
+import { useLoaderData } from "react-router";
+import type { loader } from "~/root";
 
 export function Header() {
+  const { site, data } = useRouteLoaderData('root')
+
+  console.log({ site, data });
 
   return (
-    <header className="w-full">
+    <header className="w-full bg-white">
       <Announcements />
       <div className="w-full py-8 flex items-center justify-between relative min-w-xs max-w-[1450px] mx-auto px-6">
         {/* Hamburger always left */}

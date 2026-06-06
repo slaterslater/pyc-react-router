@@ -39,7 +39,8 @@ export default function StudioRoute() {
         <img src="/development/power-yoga.svg" alt="warm yoga" width={135} />
         <img src="/development/mat-rental.svg" alt="mat rental" width={135} />
       </div>
-      <div className="w-screen relative left-1/2 right-1/2 ml-[-50vw] mr-[-50vw] bg-charcoal mt-7">
+      {/* <div className="w-screen relative left-1/2 right-1/2 ml-[-50vw] mr-[-50vw] bg-charcoal mt-7"> */}
+      <div className="bg-charcoal w-full mt-7">
         <h2 className="text-white text-center uppercase text-xl font-medium py-6 m-0">
           our community
         </h2>
