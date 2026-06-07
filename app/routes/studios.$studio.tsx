@@ -2,6 +2,8 @@ import { Link, useLoaderData, type LoaderFunctionArgs } from "react-router";
 import { Hero } from "~/components/Hero";
 import { MindBodySchedule } from "~/components/MindBodySchedule";
 import { PageLayout } from "~/components/PageLayout";
+import { STUDIO_QUERY } from "~/graphql/queries/studioQuery";
+import { payloadClient } from "~/lib/payloadClient.server";
 
 export function meta() {
   return [
@@ -10,15 +12,27 @@ export function meta() {
   ];
 }
 
-export function loader({ params }: LoaderFunctionArgs) {
+export async function loader({ params }: LoaderFunctionArgs) {
+  const { studio } = params
+
+  const payloadData = await payloadClient.request(STUDIO_QUERY, { studio })
+  const studioData = payloadData.Studios?.docs[0]
+
+  if (!studioData) {
+    throw new Error("Studio not found")
+  }
+
   return {
     title: params.studio,
     scheduleId: "254432542c3",
+    ...studioData
   }
 }
 
 export default function StudioRoute() {
-  const { scheduleId } = useLoaderData<typeof loader>()
+  const { scheduleId, banner } = useLoaderData<typeof loader>()
+
+  console.log({ banner })
 
   return (
     <PageLayout>
