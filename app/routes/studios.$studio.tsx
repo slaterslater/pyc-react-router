@@ -1,6 +1,5 @@
 import { Link, useLoaderData, type LoaderFunctionArgs } from "react-router";
 import { Hero } from "~/components/Hero";
-import { MindBodySchedule } from "~/components/MindBodySchedule";
 import { MindBodyWidget } from "~/components/MindbodyWidget";
 import { PageLayout } from "~/components/PageLayout";
 import { STUDIO_QUERY } from "~/graphql/queries/studioQuery";
