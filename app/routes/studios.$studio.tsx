@@ -1,6 +1,7 @@
 import { Link, useLoaderData, type LoaderFunctionArgs } from "react-router";
 import { Hero } from "~/components/Hero";
 import { MindBodySchedule } from "~/components/MindBodySchedule";
+import { MindBodyWidget } from "~/components/MindbodyWidget";
 import { PageLayout } from "~/components/PageLayout";
 import { STUDIO_QUERY } from "~/graphql/queries/studioQuery";
 import { payloadClient } from "~/lib/payloadClient.server";
@@ -30,9 +31,9 @@ export async function loader({ params }: LoaderFunctionArgs) {
 }
 
 export default function StudioRoute() {
-  const { scheduleId, banner } = useLoaderData<typeof loader>()
+  const { scheduleId, banner, schedule, studioNav } = useLoaderData<typeof loader>()
 
-  console.log({ banner })
+  console.log({ banner, schedule, studioNav })
 
   return (
     <PageLayout>
@@ -44,7 +45,9 @@ export default function StudioRoute() {
         <Link to="/" className="btn-black flex-1">about the studio</Link>
       </div>
       <p className="mx-auto text-center text-light-gray max-w-5xl leading-relaxed text-2xl font-medium px-4">Power Yoga Collective is your home for hot power yoga. Our locally operated studios deliver heated classes that build strength, flexibility, and resilience, while fostering connection, consistency, and community across every location.</p>
-      <MindBodySchedule scheduleId={scheduleId} />
+      {/* <MindBodySchedule scheduleId={scheduleId} /> */}
+      {/* <div>{schedule}</div> */}
+      <MindBodyWidget html={schedule} />
       <h2 className="uppercase text-4xl font-medium mx-auto px-4 py-8">studio amenities</h2>
       <div className="flex flex-wrap gap-8 px-8 py-4 w-full justify-center md:justify-around">
         <img src="/development/towels.svg" alt="towels" width={135} />
