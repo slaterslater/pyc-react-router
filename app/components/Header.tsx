@@ -9,10 +9,10 @@ export function Header() {
   return (
     <header className="w-full bg-white">
       <Announcements />
-      <div className="w-full py-8 flex items-center justify-between relative min-w-xs max-w-[1450px] mx-auto px-6">
+      <div className="w-full px-4 py-6 flex items-center justify-between relative min-w-xs max-w-[1450px] mx-auto">
         {/* Hamburger always left */}
         <div className="flex-1 flex items-center">
-          <RxHamburgerMenu size={48} />
+          <RxHamburgerMenu size={42} />
         </div>
         {/* Title always center */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-3">
@@ -50,11 +50,11 @@ function HeaderCTAs() {
   return (
     <div className="flex-1 flex justify-end">
       <div className="hidden lg:flex gap-4">
-        <Link to="/" className="btn-red">
+        <Link to="/" className="button btn-red uppercase">
           book a class
         </Link>
         {!isStudioPage && (
-          <Link to="/" className="btn-red">
+          <Link to="/" className="button btn-red uppercase">
             find your studio
           </Link>
         )}

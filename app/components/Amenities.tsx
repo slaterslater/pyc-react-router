@@ -2,7 +2,7 @@ export function Amenities({ amenities }: Amenities) {
 
   return (
     <>
-      <h2 className="heading px-4">studio amenities</h2>
+      <h2 className="heading px-4 text-center capitalize">studio amenities</h2>
       <div className="flex flex-wrap gap-8 px-8 py-4 w-full justify-center md:justify-around">
         {/* <img src="/development/towels.svg" alt="towels" width={135} />
         <img src="/development/hot-yoga.svg" alt="hot yoga" width={135} />

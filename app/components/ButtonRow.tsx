@@ -3,9 +3,11 @@ import { Link } from "react-router";
 export function ButtonRow({ buttons }: Buttons) {
 
   return (
-    <div className={`grid grid-cols-${buttons.length} gap-4 justify-around w-full px-6`}>
+    <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-2 w-full px-8">
       {buttons.map((button) => (
-        <Link to="/" className="button-blk" key={button.text}>{button.text}</Link>
+        <Link to="/" className="button btn-black min-w-[140px] sm:max-w-[220px] flex-1" key={button.text}>
+          {button.text}
+        </Link>
       ))}
     </div>
   )

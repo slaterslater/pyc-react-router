@@ -32,13 +32,13 @@ export async function loader({ params }: LoaderFunctionArgs) {
 export default function StudioRoute() {
   const { banner, description, schedule, amenities, studioNav } = useLoaderData<typeof loader>()
 
-  // console.log({ banner, description, schedule, studioNav })
+  console.log({ banner, description, schedule, studioNav })
 
   return (
     <PageLayout>
       <Hero hero={banner} />
       <ButtonRow buttons={studioNav} />
-      <p className="mx-auto text-center text-light-gray max-w-5xl leading-relaxed text-2xl font-medium px-4">{description}</p>
+      <p className="mx-auto text-center text-light-gray max-w-4xl leading-relaxed text-lg font-medium px-4">{description}</p>
       <MindBodyWidget html={schedule} />
       <Amenities amenities={amenities} />
       <div className="bg-charcoal w-full mt-7">
