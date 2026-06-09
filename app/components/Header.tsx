@@ -1,14 +1,10 @@
 import { RxHamburgerMenu } from "react-icons/rx";
-import { Link, useRouteLoaderData } from "react-router";
+import { Link } from "react-router";
 import { Announcements } from "./Announcements";
 import { useStudio } from "~/hooks/useStudio";
-import { useLoaderData } from "react-router";
-import type { loader } from "~/root";
 
 export function Header() {
-  const { site, data } = useRouteLoaderData('root')
 
-  console.log({ site, data });
 
   return (
     <header className="w-full bg-white">
@@ -30,13 +26,13 @@ export function Header() {
 }
 
 function HeaderTitle() {
-  const { isStudioPage, title } = useStudio()
+  const { isStudioPage, name } = useStudio()
 
   if (isStudioPage) {
     return (
       <>
         <img src="/pyc-icon.png" alt="power yoga canada logo" width={24} />
-        <h1 className="text-2xl font-bold uppercase">{title}</h1>
+        <h1 className="text-2xl font-bold uppercase">{name}</h1>
       </>
     )
   }
