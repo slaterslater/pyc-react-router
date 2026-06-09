@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
+import { useEventListener, useMediaQuery } from "usehooks-ts";
 
 type HeroProps = {
   hero: {
@@ -9,36 +10,29 @@ type HeroProps = {
 
 export function Hero({ hero }: HeroProps) {
   const { media } = hero;
-  const containerRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState(0);
+  const prefersReducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)")
 
-  useEffect(() => {
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
+  const onScroll = () => {
     if (prefersReducedMotion) return;
+    const hero = heroRef.current;
+    if (!hero) return;
 
-    const onScroll = () => {
-      const el = containerRef.current;
-      if (!el) return;
+    const rect = hero.getBoundingClientRect();
+    const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+    const clamped = Math.min(Math.max(progress, 0), 1);
 
-      const rect = el.getBoundingClientRect();
-      const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
-      const clamped = Math.min(Math.max(progress, 0), 1);
+    // Tune this multiplier for stronger/weaker parallax
+    setOffset((clamped - 0.5) * 250);
+  };
 
-      // Tune this multiplier for stronger/weaker parallax
-      setOffset((clamped - 0.5) * 250);
-    };
-
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  useEventListener('scroll', onScroll)
 
   return (
     <div className="w-full px-4">
       <div
-        ref={containerRef}
+        ref={heroRef}
         className="relative h-[390px] md:h-[500px] overflow-hidden rounded-md"
       >
         <img
