@@ -32,7 +32,7 @@ function HeaderTitle() {
     return (
       <>
         <img src="/pyc-icon.png" alt="power yoga canada logo" width={24} />
-        <h1 className="text-2xl font-bold uppercase">{name}</h1>
+        <h1 className="heading uppercase">{name}</h1>
       </>
     )
   }
