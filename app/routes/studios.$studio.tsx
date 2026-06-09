@@ -39,7 +39,6 @@ export default function StudioRoute() {
       <Hero hero={banner} />
       <ButtonRow buttons={studioNav} />
       <p className="mx-auto text-center text-light-gray max-w-5xl leading-relaxed text-2xl font-medium px-4">{description}</p>
-      <h2 className="heading px-4 translate-y-[120px]">Find a Class</h2>
       <MindBodyWidget html={schedule} />
       <Amenities amenities={amenities} />
       <div className="bg-charcoal w-full mt-7">
