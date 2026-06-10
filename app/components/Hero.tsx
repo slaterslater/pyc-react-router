@@ -5,7 +5,6 @@ type HeroProps = {
   hero: {
     title: string;
     media?: { sizes: { desktop: { url: string } } };
-    alt: string;
   };
 };
 
@@ -42,7 +41,7 @@ export function Hero({ hero }: HeroProps) {
           <img
             src={media.sizes.desktop.url}
             alt=""
-            className="absolute left-0 top-[-10%] w-full h-[120%] object-cover will-change-transform"
+            className="absolute bg-charcoal left-1/2 top-[-10%] h-[120%] w-[102%] max-w-none -translate-x-1/2 object-cover will-change-transform"
             style={{ transform: `translate3d(0, ${offset}px, 0)` }}
           />
         </div>
@@ -50,19 +49,3 @@ export function Hero({ hero }: HeroProps) {
     </div>
   );
 }
-
-
-// export function Hero({ hero, bgColor = "charcoal", textColor = "white" }: { title: string, bgColor?: "charcoal" | "cream", textColor?: "white" | "charcoal" }) {
-//   const { title, media } = hero
-//   return (
-//     <div className="w-full px-2 md:px-4">
-//       <img src={media.url} alt="" className="w-full h-[575px] md:h-[650px] object-cover rounded-md" />
-//       {/* <div
-//         className="w-full h-[575px] md:h-[650px] flex justify-center items-center uppercase font-bold text-lg rounded-md"
-//         style={{ backgroundColor: bgColor === "charcoal" ? "var(--color-charcoal)" : "var(--color-cream)", color: textColor === "white" ? "var(--color-white)" : "var(--color-charcoal)" }}
-//       >
-//         {title}
-//       </div> */}
-//     </div>
-//   )
-// }
