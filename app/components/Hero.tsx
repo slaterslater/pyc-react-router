@@ -4,12 +4,11 @@ import { useEventListener, useMediaQuery } from "usehooks-ts";
 type HeroProps = {
   hero: {
     title: string;
-    media: { url: string };
+    media?: { url: string };
   };
 };
 
 export function Hero({ hero }: HeroProps) {
-  const { media } = hero;
   const heroRef = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState(0);
   const prefersReducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)")
@@ -29,19 +28,23 @@ export function Hero({ hero }: HeroProps) {
 
   useEventListener('scroll', onScroll)
 
+  const media = hero?.media
+
   return (
     <div className="w-full px-4">
-      <div
-        ref={heroRef}
-        className="relative h-[390px] md:h-[500px] overflow-hidden rounded-md"
-      >
-        <img
-          src={media.url}
-          alt=""
-          className="absolute left-0 top-[-10%] w-full h-[120%] object-cover will-change-transform"
-          style={{ transform: `translate3d(0, ${offset}px, 0)` }}
-        />
-      </div>
+      {media && (
+        <div
+          ref={heroRef}
+          className="relative h-[390px] md:h-[500px] overflow-hidden rounded-md"
+        >
+          <img
+            src={media.url}
+            alt=""
+            className="absolute left-0 top-[-10%] w-full h-[120%] object-cover will-change-transform"
+            style={{ transform: `translate3d(0, ${offset}px, 0)` }}
+          />
+        </div>
+      )}
     </div>
   );
 }

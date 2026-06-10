@@ -2,18 +2,16 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { Link } from "react-router";
 import { Announcements } from "./Announcements";
 import { useStudio } from "~/hooks/useStudio";
+import { SiteNav } from "./SiteNav";
 
 export function Header() {
-
 
   return (
     <header className="w-full bg-white">
       <Announcements />
       <div className="w-full px-4 py-6 flex items-center justify-between relative min-w-xs max-w-[1450px] mx-auto">
         {/* Hamburger always left */}
-        <div className="flex-1 flex items-center">
-          <RxHamburgerMenu size={42} />
-        </div>
+        <SiteNav />
         {/* Title always center */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-3">
           <HeaderTitle />
