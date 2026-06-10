@@ -8,7 +8,18 @@ export const STUDIO_QUERY = gql`
         banner {
             title
             media {
-            url
+            alt
+            sizes {
+              thumbnail {
+                url
+              }
+              card {
+                url
+              }
+              desktop {
+                url
+              }
+            }
             }
           }
         description

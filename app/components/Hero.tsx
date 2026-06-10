@@ -4,11 +4,13 @@ import { useEventListener, useMediaQuery } from "usehooks-ts";
 type HeroProps = {
   hero: {
     title: string;
-    media?: { url: string };
+    media?: { sizes: { desktop: { url: string } } };
+    alt: string;
   };
 };
 
 export function Hero({ hero }: HeroProps) {
+
   const heroRef = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState(0);
   const prefersReducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)")
@@ -38,7 +40,7 @@ export function Hero({ hero }: HeroProps) {
           className="relative h-[390px] md:h-[500px] overflow-hidden rounded-md"
         >
           <img
-            src={media.url}
+            src={media.sizes.desktop.url}
             alt=""
             className="absolute left-0 top-[-10%] w-full h-[120%] object-cover will-change-transform"
             style={{ transform: `translate3d(0, ${offset}px, 0)` }}
