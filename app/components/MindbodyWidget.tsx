@@ -10,7 +10,7 @@ export function MindBodyWidget({ html = '' }: { html: string }) {
 
   return (
     <div
-      className="mindbody-widget w-full outline-none px-2"
+      className="mindbody-widget w-full outline-none px-2 -mt-4"
       data-widget-type={widgetType}
       data-widget-id={widgetId}
     />
