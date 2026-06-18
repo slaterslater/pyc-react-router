@@ -39,6 +39,11 @@ export function Hero({ hero }: HeroProps) {
           className="relative h-[390px] md:h-[500px] overflow-hidden rounded-md"
         >
           <img
+            src={media.sizes.card.url}
+            alt=""
+            className="md:hidden absolute inset-0 h-full w-full object-cover bg-charcoal"
+          />
+          <img
             src={media.sizes.desktop.url}
             alt=""
             className="absolute bg-charcoal left-1/2 top-[-10%] h-[120%] w-[102%] max-w-none -translate-x-1/2 object-cover will-change-transform"

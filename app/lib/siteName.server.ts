@@ -1,11 +1,6 @@
 export function getSiteName(url: URL) {
   const hostname = url.hostname;
 
-  console.log(hostname)
-  console.log(process.env.HOSTNAME_COLLECTIVE)
-  console.log(process.env.HOSTNAME_CANADA)
-  console.log(process.env.HOSTNAME_USA)
-
   let site = null
   switch (hostname) {
     case process.env.HOSTNAME_COLLECTIVE:

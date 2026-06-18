@@ -1,4 +1,3 @@
-import { RxHamburgerMenu } from "react-icons/rx";
 import { Link } from "react-router";
 import { Announcements } from "./Announcements";
 import { useStudio } from "~/hooks/useStudio";
@@ -9,15 +8,14 @@ export function Header() {
   return (
     <header className="w-full bg-white">
       <Announcements />
-      <div className="w-full px-4 py-6 flex items-center justify-between relative min-w-xs max-w-[1450px] mx-auto">
-        {/* Hamburger always left */}
-        <SiteNav />
-        {/* Title always center */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-3">
-          <HeaderTitle />
+      <div className="relative flex items-center justify-center w-full px-4 py-6 min-w-xs max-w-[1450px] mx-auto">
+        <div className="absolute left-4">
+          <SiteNav />
         </div>
-        {/* Buttons always right */}
-        <HeaderCTAs />
+        <HeaderTitle />
+        <div className="absolute right-4 hidden md:flex items-center gap-3">
+          <HeaderCTAs />
+        </div>
       </div>
     </header>
   )
@@ -29,8 +27,11 @@ function HeaderTitle() {
   if (isStudioPage) {
     return (
       <>
-        <img src="/pyc-icon.png" alt="power yoga canada logo" width={24} />
-        <h1 className="heading uppercase">{name}</h1>
+
+        <h1 className={`heading uppercase flex items-center gap-3 ${name.length > 15 ? 'text-xl' : 'text-2xl'}`}>
+          <img src="/pyc-icon.png" alt="power yoga canada logo" width={24} />
+          {name}
+        </h1>
       </>
     )
   }

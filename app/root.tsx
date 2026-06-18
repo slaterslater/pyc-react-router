@@ -39,8 +39,9 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   const url = new URL(request.url);
   const site = getSiteName(url);
   const data = await payloadClient.request(ANNOUNCEMENTS_QUERY);
+  const announcements = data.Announcement.items.filter(({ sites }: { sites: { name: string }[] }) => sites.some(({ name }) => name.toLowerCase() === site));
   // const data = await payload.request(SITE_QUERY, { site });
-  return { site, data };
+  return { site, data, announcements };
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {

@@ -32,7 +32,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
 export default function StudioRoute() {
   const { banner, description, schedule, amenities, studioNav } = useLoaderData<typeof loader>()
 
-  console.log({ banner, description, schedule, studioNav })
+  // console.log({ banner, description, schedule, studioNav })
 
   return (
     <PageLayout>
