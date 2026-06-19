@@ -1,8 +1,10 @@
 import dayjs from "dayjs";
 import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
-import { Link } from "react-router";
+import { Link, useRouteLoaderData } from "react-router";
 
 export function Footer() {
+  const { footer } = useRouteLoaderData('root')
+
   return (
     <footer className="w-full min-w-xs max-w-[1450px] mx-auto px-4 pt-8 pb-2 grid grid-cols-1 md:grid-cols-2 gap-4">
       <div className="flex flex-col items-start justify-between min-h-[150px] px-8">
@@ -17,30 +19,18 @@ export function Footer() {
         </div>
       </div>
       <nav className="grid grid-cols-1 sm:grid-cols-3 gap-8 w-full">
-        <div>
-          <h3 className="font-bold mb-3">Topic</h3>
-          <ul className="space-y-3">
-            <li><a href="#" className="hover:underline">Page</a></li>
-            <li><a href="#" className="hover:underline">Page</a></li>
-            <li><a href="#" className="hover:underline">Page</a></li>
-          </ul>
-        </div>
-        <div>
-          <h3 className="font-bold mb-3">Topic</h3>
-          <ul className="space-y-3">
-            <li><a href="#" className="hover:underline">Page</a></li>
-            <li><a href="#" className="hover:underline">Page</a></li>
-            <li><a href="#" className="hover:underline">Page</a></li>
-          </ul>
-        </div>
-        <div>
-          <h3 className="font-bold mb-3">Topic</h3>
-          <ul className="space-y-3">
-            <li><a href="#" className="hover:underline">Page</a></li>
-            <li><a href="#" className="hover:underline">Page</a></li>
-            <li><a href="#" className="hover:underline">Page</a></li>
-          </ul>
-        </div>
+        {footer.map(({ id, title, links }: { id: string, title: string, links: { text: string, url: string }[] }) => (
+          <div key={id}>
+            <h3 className="font-bold mb-3">{title}</h3>
+            <ul className="space-y-3">
+              {links.map(({ text }, index: number) => (
+                <li key={index}>
+                  {text}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </nav>
       <p className="w-full col-span-2 mt-4 text-center text-sm uppercase">{`© ${dayjs().year()} Power Yoga Canada`}</p>
     </footer>

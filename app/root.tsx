@@ -13,6 +13,7 @@ import { ANNOUNCEMENTS_QUERY } from "./graphql/queries/announcementQuery";
 import { payloadClient } from "./lib/payloadClient.server";
 import { SITE_QUERY } from "./graphql/queries/siteQuery";
 import { getSite } from "./lib/getSite.server";
+import { useScript } from "usehooks-ts";
 
 export const links = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -47,6 +48,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     announcements,
     site: siteData.Sites.docs[0],
     studios: siteData.Studios.docs,
+    footer: siteData.Sites.docs[0].footer,
     sites: {
       collective: process.env.HOSTNAME_COLLECTIVE!,
       canada: process.env.HOSTNAME_CANADA!,
@@ -57,7 +59,6 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
-
   return (
     <html lang="en">
       <head>

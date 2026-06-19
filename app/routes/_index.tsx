@@ -21,11 +21,17 @@ export default function Home() {
       <p className="mx-auto text-center text-light-gray max-w-6xl leading-relaxed text-2xl font-medium px-4 py-8">Power Yoga Canada is your home for hot power yoga.<br />Our locally operated studios deliver heated classes that build strength, flexibility, and resilience, while fostering connection, consistency, and community across every location.</p>
       {/* <Hero title="find hot power yoga studios across canada" bgColor="cream" textColor="charcoal" /> */}
       <p className="mx-auto text-center text-light-gray leading-relaxed text-2xl font-medium px-4 py-8">Power Yoga Canada operates locally owned hot power yoga studios across Canada, offering consistent heated classes in communities including Toronto, Oakville, Sudbury, Barrie, and beyond.</p>
-      <div className="flex gap-6 justify-around w-full p-8">
+      {/* <div className="flex gap-6 justify-around w-full p-8">
         <Link to="/" className="btn-black flex-1">book a class</Link>
         <Link to="/" className="btn-black flex-1">find your studio</Link>
         <Link to="/" className="btn-black flex-1">book a class</Link>
         <Link to="/" className="btn-black flex-1">find your studio</Link>
+      </div> */}
+      <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-2 w-full px-8">
+        <Link to="/" className="button btn-black min-w-[140px] sm:max-w-[220px] flex-1">book a class</Link>
+        <Link to="/" className="button btn-black min-w-[140px] sm:max-w-[220px] flex-1">find your studio</Link>
+        <Link to="/" className="button btn-black min-w-[140px] sm:max-w-[220px] flex-1">book a class</Link>
+        <Link to="/" className="button btn-black min-w-[140px] sm:max-w-[220px] flex-1">find your studio</Link>
       </div>
       <h2 className="uppercase text-4xl font-medium mx-auto px-4 py-8">see what our memebers say</h2>
       <p className="mx-auto text-center text-light-gray max-w-5xl leading-relaxed text-2xl font-medium px-4">From first-time students to long-time members, Power Yoga Canada

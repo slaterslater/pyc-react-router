@@ -37,7 +37,7 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 }
 
 export default function StudioRoute() {
-  const { banner, description, schedule, amenities, studioNav } = useLoaderData<typeof loader>()
+  const { id, banner, description, schedule, amenities, studioNav } = useLoaderData<typeof loader>()
 
   // console.log({ banner, description, schedule, studioNav })
 
@@ -46,13 +46,14 @@ export default function StudioRoute() {
       <Hero hero={banner} />
       <ButtonRow buttons={studioNav} />
       <p className="mx-auto text-center text-light-gray max-w-4xl leading-relaxed text-lg font-medium px-4">{description}</p>
-      <MindBodyWidget html={schedule} />
+      <MindBodyWidget html={schedule} key={id} />
       <Amenities amenities={amenities} />
       <div className="bg-charcoal w-full mt-7">
         <h2 className="text-white text-center uppercase text-xl font-medium py-6 m-0">
           our community
         </h2>
       </div>
+      <div>reviews here</div>
       {/* <p className="mx-auto text-center text-light-gray max-w-5xl leading-relaxed text-2xl font-medium px-4 py-7">Power Yoga Collective is your home for hot power yoga. Our locally operated studios deliver heated classes that build strength, flexibility, and resilience, while fostering connection, consistency, and community across every location.</p> */}
     </PageLayout>
   )

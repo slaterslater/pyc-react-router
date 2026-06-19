@@ -6,6 +6,14 @@ export const SITE_QUERY = gql`
       docs {
         id
         name
+        footer {
+          id
+          title
+          links {
+            text
+            url
+          }
+        }
       }
     }
     Studios(where: { site: { equals: $id } }) {

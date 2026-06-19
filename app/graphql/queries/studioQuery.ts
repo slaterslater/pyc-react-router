@@ -4,6 +4,7 @@ export const STUDIO_QUERY = gql`
   query ($studio: String) {
     Studios(where: { slug: { equals: $studio } }) {
       docs {
+      id
         name
         banner {
             title
