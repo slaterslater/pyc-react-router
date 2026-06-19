@@ -11,7 +11,8 @@ import {
 import "./app.css";
 import { ANNOUNCEMENTS_QUERY } from "./graphql/queries/announcementQuery";
 import { payloadClient } from "./lib/payloadClient.server";
-import { getSiteName } from "./lib/siteName.server";
+import { SITE_QUERY } from "./graphql/queries/siteQuery";
+import { getSite } from "./lib/getSite.server";
 
 export const links = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -37,11 +38,16 @@ export const links = () => [
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const url = new URL(request.url);
-  const site = getSiteName(url);
+  const site = getSite(url);
   const data = await payloadClient.request(ANNOUNCEMENTS_QUERY);
-  const announcements = data.Announcement.items.filter(({ sites }: { sites: { name: string }[] }) => sites.some(({ name }) => name.toLowerCase() === site));
-  // const data = await payload.request(SITE_QUERY, { site });
-  return { site, data, announcements };
+  const announcements = data.Announcement.items.filter(({ sites }: { sites: { name: string }[] }) => sites.some(({ name }) => name.toLowerCase() === site.name.toLowerCase()));
+  const siteData = await payloadClient.request(SITE_QUERY, { name: site.name, id: site.id });
+  return {
+    data,
+    announcements,
+    site: siteData.Sites.docs[0],
+    studios: siteData.Studios.docs
+  };
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {

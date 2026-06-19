@@ -23,6 +23,10 @@ export const STUDIO_QUERY = gql`
             }
           }
         description
+        site {
+          id
+          name
+        }
         schedule
         amenities {
           name

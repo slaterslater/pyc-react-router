@@ -5,6 +5,7 @@ import { Hero } from "~/components/Hero";
 import { MindBodyWidget } from "~/components/MindbodyWidget";
 import { PageLayout } from "~/components/PageLayout";
 import { STUDIO_QUERY } from "~/graphql/queries/studioQuery";
+import { getSite } from "~/lib/getSite.server";
 import { payloadClient } from "~/lib/payloadClient.server";
 
 export function meta() {
@@ -14,13 +15,19 @@ export function meta() {
   ];
 }
 
-export async function loader({ params }: LoaderFunctionArgs) {
+export async function loader({ request, params }: LoaderFunctionArgs) {
+
+
   const { studio } = params
 
   const payloadData = await payloadClient.request(STUDIO_QUERY, { studio })
   const studioData = payloadData.Studios?.docs[0]
 
-  if (!studioData) {
+  const url = new URL(request.url);
+  const site = getSite(url);
+  const isSiteStudio = studioData?.site?.name === site.name;
+
+  if (!studioData || !isSiteStudio) {
     throw new Error("Studio not found")
   }
 
