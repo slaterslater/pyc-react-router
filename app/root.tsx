@@ -46,7 +46,13 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     data,
     announcements,
     site: siteData.Sites.docs[0],
-    studios: siteData.Studios.docs
+    studios: siteData.Studios.docs,
+    sites: {
+      collective: process.env.HOSTNAME_COLLECTIVE!,
+      canada: process.env.HOSTNAME_CANADA!,
+      usa: process.env.HOSTNAME_USA!,
+    },
+    port: url.port
   };
 }
 
