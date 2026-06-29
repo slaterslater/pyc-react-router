@@ -6,8 +6,9 @@ export function Footer() {
   const { footer } = useRouteLoaderData('root')
 
   return (
-    <footer className="w-full min-w-xs max-w-[1450px] mx-auto px-4 pt-8 pb-2 grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div className="flex flex-col items-start justify-between min-h-[150px] px-8">
+    <footer className="w-full min-w-xs max-w-[1450px] mx-auto px-4 flex flex-col sm:flex-row flex-wrap py-8 gap-8">
+      <div className="flex flex-col gap-5 items-center justify-between w-fit mx-auto px-8 order-1">
+        {/* <div className="flex flex-col items-center justify-between min-h-[150px] px-8 order-1"> */}
         <Link to="/">
           <img src="/canada-logo.svg" alt="power yoga canada logo" width={150} />
         </Link>
@@ -18,7 +19,7 @@ export function Footer() {
           <FaInstagram size={25} />
         </div>
       </div>
-      <nav className="grid grid-cols-1 sm:grid-cols-3 gap-8 w-full">
+      <nav className="grid grid-cols-1 sm:grid-cols-3 gap-8 order-0 sm:order-2 max-w-[700px] mx-auto flex-1">
         {footer.map(({ id, title, links }: { id: string, title: string, links: { text: string, url: string }[] }) => (
           <div key={id}>
             <h3 className="font-bold mb-3">{title}</h3>
@@ -32,7 +33,7 @@ export function Footer() {
           </div>
         ))}
       </nav>
-      <p className="w-full col-span-2 mt-4 text-center text-sm uppercase">{`© ${dayjs().year()} Power Yoga Canada`}</p>
+      <p className="w-full basis-full mt-4 text-center text-sm uppercase order-3">{`© ${dayjs().year()} Power Yoga Canada`}</p>
     </footer>
   )
 }

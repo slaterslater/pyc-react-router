@@ -5,13 +5,13 @@ import { Link, useRouteLoaderData } from 'react-router';
 import { useSite } from '~/hooks/useSite';
 
 export function SiteNav() {
-  const { studios, sites, port } = useRouteLoaderData('root')
+  const { studios, sites, port, menu } = useRouteLoaderData('root')
   const [isOpen, toggleMenu] = useToggle(false);
   const { hasStudios } = useSite()
   const portString = port ? `:${port}` : '';
 
   // console.log({ studios })
-
+  console.log({ menu })
   return (
     <>
       <button onClick={toggleMenu}>

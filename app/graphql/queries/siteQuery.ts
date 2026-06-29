@@ -6,6 +6,17 @@ export const SITE_QUERY = gql`
       docs {
         id
         name
+        menuItems {
+          id
+          text
+          link {
+            type
+          }
+          links {
+            text
+            type
+          }
+        }
         footer {
           id
           title
