@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import { Announcements } from "./Announcements";
 import { useStudio } from "~/hooks/useStudio";
-import { SiteNav } from "./SiteNav";
+import { NavAside } from "./navigation/NavAside";
 
 export function Header() {
 
@@ -10,7 +10,7 @@ export function Header() {
       <Announcements />
       <div className="relative flex items-center justify-center w-full px-4 py-6 min-w-xs max-w-[1450px] mx-auto">
         <div className="absolute left-4">
-          <SiteNav />
+          <NavAside />
         </div>
         <HeaderTitle />
         <div className="absolute right-4 hidden md:flex items-center gap-3">

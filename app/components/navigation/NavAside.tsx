@@ -1,16 +1,38 @@
-export function Aside({ children, isOpen, close }: AsideProps) {
+import { NavProvider, useNavContext } from './NavProvider';
+import { StudioList } from './StudioList';
+import { SiteList } from './SiteList';
+import { MenuList } from './MenuList';
+import { HambugerButton } from './HambugerButton';
+
+export function NavAside() {
+  return (
+    <NavProvider>
+      <HambugerButton />
+      <Aside>
+        <nav className="flex flex-col gap-4 px-4 py-6 h-full">
+          <StudioList />
+          <MenuList />
+          <SiteList />
+        </nav>
+      </Aside>
+    </NavProvider>
+  );
+}
+
+function Aside({ children }: { children: React.ReactNode }) {
+  const { isNavOpen, toggleNav } = useNavContext()
   return (
     <>
       {/* Overlay outside the clipped container */}
-      {isOpen && (
+      {isNavOpen && (
         <div
           className="fixed inset-0 bg-black/50 z-40"
-          onClick={close}
+          onClick={toggleNav}
         />
       )}
 
       {/* White block covering left gutter */}
-      {isOpen && (
+      {isNavOpen && (
         <div
           className="fixed top-0 left-0 h-full bg-white z-50"
           style={{
@@ -31,7 +53,7 @@ export function Aside({ children, isOpen, close }: AsideProps) {
           pointer-events-auto
           absolute top-0 left-0 h-full w-64 bg-white
           transform transition-transform duration-300 ease-in-out
-          ${isOpen ? 'translate-x-0' : '-translate-x-full'}
+          ${isNavOpen ? 'translate-x-0' : '-translate-x-full'}
         `}>
           {children}
         </aside>

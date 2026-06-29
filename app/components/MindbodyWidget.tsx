@@ -11,6 +11,7 @@ export function MindBodyWidget({ html = '' }: { html: string }) {
     delete (window as any)['bw-widget-unique-identifier']
   }, [widgetId])
 
+  // can't load globally because it will not reload widgets on route change
   useScript(`https://brandedweb.mindbodyonline.com/embed/widget.js`, {
     removeOnUnmount: true,
     id: `mb-widget`,
