@@ -19,12 +19,8 @@ export function SiteNav() {
       </button>
 
       <Aside isOpen={isOpen} close={toggleMenu}>
-        <nav className="space-y-4 px-4 py-6">
-          <ul className="flex items-center gap-4">
-            <li><a href={`//${sites.collective}${portString}`}><img src="/pyc-icon.png" alt="power yoga Collective" width={40} /></a></li>
-            <li><a href={`//${sites.canada}${portString}`}><img src="/flags/CA.svg" alt="power yoga Canada" width={50} /></a></li>
-            <li><a href={`//${sites.usa}${portString}`}><img src="/flags/US.svg" alt="power yoga USA" width={50} /></a></li>
-          </ul>
+        <nav className="flex flex-col gap-4 px-4 py-6 h-full">
+
           <ul>
             {hasStudios && <li><span className="text-md font-semibold">Studios</span>
               <ul>
@@ -35,6 +31,11 @@ export function SiteNav() {
                 ))}
               </ul>
             </li>}
+          </ul>
+          <ul className="flex items-center gap-6 mt-auto">
+            <li><a href={`//${sites.collective}${portString}`}><img src="/pyc-icon.png" alt="power yoga Collective" width={24} /></a></li>
+            <li><a href={`//${sites.canada}${portString}`}><img src="/flags/CA.svg" alt="power yoga Canada" width={32} /></a></li>
+            <li><a href={`//${sites.usa}${portString}`}><img src="/flags/US.svg" alt="power yoga USA" width={32} /></a></li>
           </ul>
         </nav>
       </Aside>
