@@ -46,6 +46,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     data,
     announcements,
     // site: siteData.Sites.docs[0],
+    site,
     menu: siteData.Sites.docs[0].menuItems,
     studios: siteData.Studios.docs,
     footer: siteData.Sites.docs[0].footer,

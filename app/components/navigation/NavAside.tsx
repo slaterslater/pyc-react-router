@@ -3,13 +3,15 @@ import { StudioList } from './StudioList';
 import { SiteList } from './SiteList';
 import { MenuList } from './MenuList';
 import { HambugerButton } from './HambugerButton';
+import { IoCloseOutline } from 'react-icons/io5';
 
 export function NavAside() {
   return (
     <NavProvider>
       <HambugerButton />
       <Aside>
-        <nav className="flex flex-col gap-4 px-4 py-6 h-full bg-black/93 pt-16">
+        <nav className="flex flex-col gap-4 px-4 py-6 h-full bg-black/93">
+          <CloseButton />
           <StudioList />
           <MenuList />
           <SiteList />
@@ -17,6 +19,19 @@ export function NavAside() {
       </Aside>
     </NavProvider>
   );
+}
+
+function CloseButton() {
+  const { toggleNav } = useNavContext()
+  return (
+    <button
+      className="bg-black/93 text-cream flex justify-end mt-2 cursor-pointer"
+      onClick={toggleNav}
+      aria-label="Close navigation"
+    >
+      <IoCloseOutline size={24} />
+    </button>
+  )
 }
 
 function Aside({ children }: { children: React.ReactNode }) {

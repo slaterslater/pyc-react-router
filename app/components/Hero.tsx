@@ -4,7 +4,13 @@ import { useEventListener, useMediaQuery } from "usehooks-ts";
 type HeroProps = {
   hero: {
     title: string;
-    media?: { sizes: { desktop: { url: string } } };
+    media?: {
+      sizes:
+      {
+        desktop: { url: string },
+        thumbnail: { url: string }
+      }
+    };
   };
 };
 
@@ -38,15 +44,15 @@ export function Hero({ hero }: HeroProps) {
           ref={heroRef}
           className="relative h-[390px] md:h-[500px] overflow-hidden rounded-md"
         >
-          {/* <img
-            src={media.sizes.tablet.url}
+          <img
+            src={media.sizes.thumbnail.url}
             alt=""
             className="md:hidden absolute inset-0 h-full w-full object-cover bg-charcoal"
-          /> */}
+          />
           <img
             src={media.sizes.desktop.url}
             alt=""
-            className="absolute bg-charcoal left-1/2 top-[-10%] h-[120%] w-[102%] max-w-none -translate-x-1/2 object-cover will-change-transform"
+            className="hidden md:block absolute bg-charcoal left-1/2 top-[-10%] h-[120%] w-[102%] max-w-none -translate-x-1/2 object-cover will-change-transform"
             style={{ transform: `translate3d(0, ${offset}px, 0)` }}
           />
         </div>
