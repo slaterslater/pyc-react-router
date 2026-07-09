@@ -1,4 +1,5 @@
 export function Amenities({ amenities }: Amenities) {
+  if (amenities.length === 0) return null;
 
   return (
     <>

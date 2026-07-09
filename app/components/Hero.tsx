@@ -38,11 +38,11 @@ export function Hero({ hero }: HeroProps) {
           ref={heroRef}
           className="relative h-[390px] md:h-[500px] overflow-hidden rounded-md"
         >
-          <img
-            src={media.sizes.card.url}
+          {/* <img
+            src={media.sizes.tablet.url}
             alt=""
             className="md:hidden absolute inset-0 h-full w-full object-cover bg-charcoal"
-          />
+          /> */}
           <img
             src={media.sizes.desktop.url}
             alt=""

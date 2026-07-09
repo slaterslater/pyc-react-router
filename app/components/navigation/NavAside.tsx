@@ -9,7 +9,7 @@ export function NavAside() {
     <NavProvider>
       <HambugerButton />
       <Aside>
-        <nav className="flex flex-col gap-4 px-4 py-6 h-full">
+        <nav className="flex flex-col gap-4 px-4 py-6 h-full bg-black/93 pt-16">
           <StudioList />
           <MenuList />
           <SiteList />
@@ -32,14 +32,14 @@ function Aside({ children }: { children: React.ReactNode }) {
       )}
 
       {/* White block covering left gutter */}
-      {isNavOpen && (
+      {/* {isNavOpen && (
         <div
           className="fixed top-0 left-0 h-full bg-white z-50"
           style={{
             width: 'max(0px, calc((100vw - 1450px) / 2))',
           }}
         />
-      )}
+      )} */}
 
       {/* Clipped container constrained to body width */}
       <div

@@ -13,7 +13,6 @@ import { ANNOUNCEMENTS_QUERY } from "./graphql/queries/announcementQuery";
 import { payloadClient } from "./lib/payloadClient.server";
 import { SITE_QUERY } from "./graphql/queries/siteQuery";
 import { getSite } from "./lib/getSite.server";
-import { useScript } from "usehooks-ts";
 
 export const links = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },

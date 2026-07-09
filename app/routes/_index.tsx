@@ -2,7 +2,7 @@ import { Link, useRouteLoaderData } from "react-router";
 import { Card } from "~/components/Card";
 import { Hero } from "~/components/Hero";
 import { PageLayout } from "~/components/PageLayout";
-import { Review } from "~/components/Review";
+import { Review } from "~/components/Reviews";
 
 export function meta() {
   return [

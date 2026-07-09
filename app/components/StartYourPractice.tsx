@@ -5,7 +5,7 @@ export function StartYourPracticeSection() {
   const { isStudioPage } = useStudio()
 
   return (
-    <section className="bg-charcoal w-full h-[200px]">
+    <section className="bg-charcoal w-full h-[200px] mt-5">
       <div className="h-full flex flex-col sm:flex-row justify-center gap-4 sm:justify-between items-left sm:items-center min-w-xs max-w-[1450px] mx-auto px-8">
         <h2 className="capitalize heading text-white font-medium">start your practice today</h2>
         <div className="flex gap-4 mr-8 w-fit">

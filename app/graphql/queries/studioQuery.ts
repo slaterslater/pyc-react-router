@@ -14,7 +14,7 @@ export const STUDIO_QUERY = gql`
               thumbnail {
                 url
               }
-              card {
+              tablet {
                 url
               }
               desktop {
@@ -38,6 +38,12 @@ export const STUDIO_QUERY = gql`
         studioNav {
           text
         }
+          reviews {
+            id
+            text
+            name
+            description
+          }
       }
     }
 }`

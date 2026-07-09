@@ -4,6 +4,7 @@ import { ButtonRow } from "~/components/ButtonRow";
 import { Hero } from "~/components/Hero";
 import { MindBodyWidget } from "~/components/MindbodyWidget";
 import { PageLayout } from "~/components/PageLayout";
+import { Reviews } from "~/components/Reviews";
 import { STUDIO_QUERY } from "~/graphql/queries/studioQuery";
 import { getSite } from "~/lib/getSite.server";
 import { payloadClient } from "~/lib/payloadClient.server";
@@ -48,12 +49,7 @@ export default function StudioRoute() {
       <p className="mx-auto text-center text-light-gray max-w-4xl leading-relaxed text-lg font-medium px-4">{description}</p>
       <MindBodyWidget html={schedule} key={id} />
       <Amenities amenities={amenities} />
-      <div className="bg-charcoal w-full mt-7">
-        <h2 className="text-white text-center uppercase text-xl font-medium py-6 m-0">
-          our community
-        </h2>
-      </div>
-      <div>reviews here</div>
+      <Reviews />
       {/* <p className="mx-auto text-center text-light-gray max-w-5xl leading-relaxed text-2xl font-medium px-4 py-7">Power Yoga Collective is your home for hot power yoga. Our locally operated studios deliver heated classes that build strength, flexibility, and resilience, while fostering connection, consistency, and community across every location.</p> */}
     </PageLayout>
   )

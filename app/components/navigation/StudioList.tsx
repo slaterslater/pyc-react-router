@@ -10,8 +10,8 @@ export function StudioList() {
   if (!hasStudios) return null;
   return (
     <>
-      <div className="text-md font-semibold">Studios</div>
-      <ul>
+      <div className="text-md font-semibold text-cream">Studios</div>
+      <ul className="text-cream">
         {studios.map((studio: StudioLink) => (
           <li key={studio.id} onClick={toggleNav}>
             <Link to={`/studios/${studio.slug}`}>{studio.name}</Link>
