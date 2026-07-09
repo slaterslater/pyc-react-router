@@ -27,7 +27,6 @@ function HeaderTitle() {
   if (isStudioPage) {
     return (
       <>
-
         <h1 className={`heading uppercase flex items-center gap-3 ${name.length > 15 ? 'text-xl' : 'text-2xl'}`}>
           <img src="/pyc-icon.png" alt="power yoga canada logo" width={24} />
           {name}
@@ -49,9 +48,10 @@ function HeaderCTAs() {
   return (
     <div className="flex-1 flex justify-end">
       <div className="hidden lg:flex gap-4">
-        <Link to="/" className="button btn-red uppercase">
+        {/* <Link to="/" className="button btn-red uppercase">
           book a class
-        </Link>
+        </Link> */}
+        <LoginLink />
         {!isStudioPage && (
           <Link to="/" className="button btn-red uppercase">
             find your studio
@@ -59,5 +59,15 @@ function HeaderCTAs() {
         )}
       </div>
     </div>
+  )
+}
+
+function LoginLink() {
+  const { loginLink } = useStudio()
+  return (
+    // <Link to={loginLink} className="button btn-red uppercase">
+    <Link to="/" className="button btn-red uppercase">
+      book a class
+    </Link>
   )
 }

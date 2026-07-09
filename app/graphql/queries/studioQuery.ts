@@ -6,6 +6,7 @@ export const STUDIO_QUERY = gql`
       docs {
       id
         name
+        loginLink
         banner {
             title
             media {
