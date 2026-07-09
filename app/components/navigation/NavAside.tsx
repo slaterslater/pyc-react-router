@@ -10,7 +10,7 @@ export function NavAside() {
     <NavProvider>
       <HambugerButton />
       <Aside>
-        <nav className="flex flex-col gap-4 px-4 py-6 h-full bg-black/93">
+        <nav className="flex flex-col gap-4 p-6 h-full bg-black/93">
           <CloseButton />
           <StudioList />
           <MenuList />
@@ -25,7 +25,7 @@ function CloseButton() {
   const { toggleNav } = useNavContext()
   return (
     <button
-      className="bg-black/93 text-cream flex justify-end mt-2 cursor-pointer"
+      className="text-cream flex justify-end mt-2 cursor-pointer"
       onClick={toggleNav}
       aria-label="Close navigation"
     >
