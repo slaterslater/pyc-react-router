@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import { Announcements } from "./Announcements";
 import { useStudio } from "~/hooks/useStudio";
 import { NavAside } from "./navigation/NavAside";
+import { MindbodyLink } from "./MindbodyLink";
 
 export function Header() {
 
@@ -64,10 +65,11 @@ function HeaderCTAs() {
 
 function LoginLink() {
   const { loginLink } = useStudio()
+  if (!loginLink) return null
+
   return (
-    // <Link to={loginLink} className="button btn-red uppercase">
-    <Link to="/" className="button btn-red uppercase">
+    <MindbodyLink html={loginLink} className="button btn-red uppercase h-[42px]">
       book a class
-    </Link>
+    </MindbodyLink>
   )
 }

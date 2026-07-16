@@ -13,6 +13,7 @@ import { ANNOUNCEMENTS_QUERY } from "./graphql/queries/announcementQuery";
 import { payloadClient } from "./lib/payloadClient.server";
 import { SITE_QUERY } from "./graphql/queries/siteQuery";
 import { getSite } from "./lib/getSite.server";
+import { useSuppressMindbodyCartModal } from "./hooks/useSuppressMindbodyCartModal";
 
 export const links = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -60,6 +61,8 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  useSuppressMindbodyCartModal() // suppresses the mindbody cart modal from auto-opening when returning to the site with an active MB cart session
+
   return (
     <html lang="en">
       <head>
