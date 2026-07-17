@@ -42,7 +42,7 @@ function Aside({ children }: { children: React.ReactNode }) {
       {/* Overlay outside the clipped container */}
       {isNavOpen && (
         <div
-          className="fixed inset-0 bg-black/50 z-40"
+          className="fixed inset-0 bg-black/30 z-40"
           onClick={toggleNav}
         />
       )}
@@ -69,7 +69,7 @@ function Aside({ children }: { children: React.ReactNode }) {
           pointer-events-auto p-6
           absolute top-0 left-0 h-full w-64
           transform transition-transform duration-300 ease-in-out
-          ${isNavOpen ? 'translate-x-0 bg-black/93' : '-translate-x-full bg-white'}
+          ${isNavOpen ? 'translate-x-0 bg-[#1E1E1E]' : '-translate-x-full bg-white'}
         `}>
           {children}
         </aside>

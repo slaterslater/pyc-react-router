@@ -9,8 +9,15 @@ export const SITE_QUERY = gql`
         menuItems {
           id
           text
+          type
           link {
             type
+            url
+            mboLink
+            page {
+              slug
+              title
+            }
           }
           links {
             text

@@ -11,13 +11,13 @@ export function StudioList() {
   return (
     <>
       <div className="text-md font-semibold text-cream">Studios</div>
-      <ul className="text-cream">
+      {/* <ul className="text-cream">
         {studios.map((studio: StudioLink) => (
           <li key={studio.id} onClick={toggleNav}>
             <Link to={`/studios/${studio.slug}`}>{studio.name}</Link>
           </li>
         ))}
-      </ul>
+      </ul> */}
     </>
   )
 }
