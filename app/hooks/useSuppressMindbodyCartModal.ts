@@ -2,9 +2,15 @@
 import { useEffect } from 'react'
 
 const MODAL_ID = 'mindbody_branded_web_cart_modal'
+const OVERLAY_CLASS = 'has-overlay'
 
-function closeCartModal(root: ParentNode = document): boolean {
-  const iframe = root.querySelector(`#${MODAL_ID}`)
+function isModalOpen(): boolean {
+  const iframe = document.querySelector(`#${MODAL_ID}`)
+  return !!iframe?.closest('section.is-active')
+}
+
+function closeCartModal(): boolean {
+  const iframe = document.querySelector(`#${MODAL_ID}`)
   const section = iframe?.closest('section.is-active')
   if (!section) return false
   section.classList.remove('is-active')
@@ -12,31 +18,44 @@ function closeCartModal(root: ParentNode = document): boolean {
   return true
 }
 
-/**
- * Prevents Mindbody's cart modal from auto-opening when returning
- * to the site with an active MB cart session. Only suppresses the
- * automatic open shortly after mount — user-initiated opens later
- * (clicking a cart/link widget) are left alone.
- */
+function removeOverlayLock() {
+  document.documentElement.classList.remove(OVERLAY_CLASS)
+}
+
+/** Close the modal if open, and clear the scroll-lock if the modal
+ *  isn't (or is no longer) open. Returns true if anything was fixed. */
+function suppress(): boolean {
+  const closed = closeCartModal()
+  // Only strip has-overlay when no modal is legitimately open —
+  // if the user opened it themselves later, leave the lock alone.
+  if (!isModalOpen()) {
+    if (document.documentElement.classList.contains(OVERLAY_CLASS)) {
+      removeOverlayLock()
+      return true
+    }
+  }
+  return closed
+}
+
 export function useSuppressMindbodyCartModal(windowMs = 4000) {
   useEffect(() => {
-    // Catch it if it's already in the DOM (bfcache restore)
-    closeCartModal()
+    suppress()
 
-    // Otherwise wait for healcode to inject it
+    // Watch body for the modal injection AND <html> for the class —
+    // healcode can apply has-overlay in a separate tick from the modal.
     const observer = new MutationObserver(() => {
-      if (closeCartModal()) observer.disconnect()
+      suppress()
     })
     observer.observe(document.body, { childList: true, subtree: true })
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    })
 
-    // Stop watching after a grace period so we never eat a modal the
-    // user deliberately opened later in the session
     const timeout = setTimeout(() => observer.disconnect(), windowMs)
 
-    // bfcache restores skip effects re-running in some setups —
-    // pageshow covers coming "back" from mindbody explicitly
     const onPageShow = (e: PageTransitionEvent) => {
-      if (e.persisted) closeCartModal()
+      if (e.persisted) suppress()
     }
     window.addEventListener('pageshow', onPageShow)
 
