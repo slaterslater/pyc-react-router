@@ -17,6 +17,7 @@ body {
   /* @apply bg-light-gray dark:bg-gray-950; */
   /* @apply bg-white; */
   @apply bg-[#F5F5F5] min-w-xs max-w-[1450px] mx-auto;
+  /* @apply bg-charcoal min-w-xs max-w-[1450px] mx-auto; */
 
   /* @media (prefers-color-scheme: dark) {
     color-scheme: dark;

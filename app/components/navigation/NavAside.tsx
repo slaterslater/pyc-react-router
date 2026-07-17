@@ -10,7 +10,8 @@ export function NavAside() {
     <NavProvider>
       <HambugerButton />
       <Aside>
-        <nav className="flex flex-col gap-4 p-6 h-full bg-black/93">
+        {/* <nav className="flex flex-col gap-4 p-6 h-full bg-black/93"> */}
+        <nav className="flex flex-col gap-4 h-full">
           <CloseButton />
           <StudioList />
           <MenuList />
@@ -65,10 +66,10 @@ function Aside({ children }: { children: React.ReactNode }) {
         }}
       >
         <aside className={`
-          pointer-events-auto
-          absolute top-0 left-0 h-full w-64 bg-white
+          pointer-events-auto p-6
+          absolute top-0 left-0 h-full w-64
           transform transition-transform duration-300 ease-in-out
-          ${isNavOpen ? 'translate-x-0' : '-translate-x-full'}
+          ${isNavOpen ? 'translate-x-0 bg-black/93' : '-translate-x-full bg-white'}
         `}>
           {children}
         </aside>
