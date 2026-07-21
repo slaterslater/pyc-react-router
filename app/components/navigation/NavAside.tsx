@@ -1,24 +1,24 @@
-import { NavProvider, useNavContext } from './NavProvider';
-import { StudioList } from './StudioList';
-import { SiteList } from './SiteList';
-import { MenuList } from './MenuList';
-import { HambugerButton } from './HambugerButton';
+import { useNavContext } from './NavProvider';
 import { IoCloseOutline } from 'react-icons/io5';
+import { GroupTitle, NavGroups } from './NavGroups';
+import { useEscapeToClose } from '~/hooks/useEscapeToClose';
+import { useScrollLock } from 'usehooks-ts';
+import { useEffect } from 'react';
+import { useSite } from '~/hooks/useSite';
+import { SiteList } from './SiteList';
 
 export function NavAside() {
   return (
-    <NavProvider>
-      <HambugerButton />
-      <Aside>
-        {/* <nav className="flex flex-col gap-4 p-6 h-full bg-black/93"> */}
-        <nav className="flex flex-col gap-4 h-full">
+    <Aside>
+      <nav className="flex flex-col gap-4 h-full">
+        <div className="flex justify-between items-cente py-3">
+          <GroupTitle />
           <CloseButton />
-          <StudioList />
-          <MenuList />
-          <SiteList />
-        </nav>
-      </Aside>
-    </NavProvider>
+        </div>
+        <NavGroups />
+        <SiteList />
+      </nav>
+    </Aside>
   );
 }
 
@@ -26,7 +26,7 @@ function CloseButton() {
   const { toggleNav } = useNavContext()
   return (
     <button
-      className="text-cream flex justify-end mt-2 cursor-pointer"
+      className="text-cream flex justify-end cursor-pointer"
       onClick={toggleNav}
       aria-label="Close navigation"
     >
@@ -37,6 +37,15 @@ function CloseButton() {
 
 function Aside({ children }: { children: React.ReactNode }) {
   const { isNavOpen, toggleNav } = useNavContext()
+  useEscapeToClose(isNavOpen, toggleNav);
+
+  const { lock, unlock } = useScrollLock({ autoLock: false, lockTarget: "html" })
+
+  useEffect(() => {
+    if (!isNavOpen) unlock()
+    if (isNavOpen) lock()
+  }, [isNavOpen])
+
   return (
     <>
       {/* Overlay outside the clipped container */}
@@ -67,9 +76,9 @@ function Aside({ children }: { children: React.ReactNode }) {
       >
         <aside className={`
           pointer-events-auto p-6
-          absolute top-0 left-0 h-full w-64
-          transform transition-transform duration-300 ease-in-out
-          ${isNavOpen ? 'translate-x-0 bg-[#1E1E1E]' : '-translate-x-full bg-white'}
+          absolute top-0 left-0 h-full w-full md:w-sm
+          transform transition-transform duration-300 ease-in-out bg-[#1E1E1E] text-cream
+          ${isNavOpen ? 'translate-x-0' : '-translate-x-[calc(100%+2px)]'}
         `}>
           {children}
         </aside>

@@ -6,7 +6,7 @@ export function PageLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Header />
-      <main className="flex flex-col gap-5 justify-center bg-white pb-5">
+      <main className="flex flex-col gap-5 justify-center bg-white pb-5 flex-1">
         {children}
       </main>
       <StartYourPracticeSection />

@@ -3,6 +3,8 @@ import { Announcements } from "./Announcements";
 import { useStudio } from "~/hooks/useStudio";
 import { NavAside } from "./navigation/NavAside";
 import { MindbodyLink } from "./MindbodyLink";
+import { NavProvider } from "./navigation/NavProvider";
+import { HambugerButton } from "./navigation/HambugerButton";
 
 export function Header() {
 
@@ -11,7 +13,10 @@ export function Header() {
       <Announcements />
       <div className="relative flex items-center justify-center w-full px-4 py-6 min-w-xs max-w-[1450px] mx-auto">
         <div className="absolute left-4">
-          <NavAside />
+          <NavProvider>
+            <HambugerButton />
+            <NavAside />
+          </NavProvider>
         </div>
         <HeaderTitle />
         <div className="absolute right-4 hidden md:flex items-center gap-3">

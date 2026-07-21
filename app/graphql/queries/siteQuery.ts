@@ -20,8 +20,15 @@ export const SITE_QUERY = gql`
             }
           }
           links {
+            id
             text
             type
+            url
+            mboLink
+            page {
+              slug
+              title
+            }
           }
         }
         footer {
@@ -34,7 +41,11 @@ export const SITE_QUERY = gql`
         }
       }
     }
-    Studios(where: { site: { equals: $id } }) {
+    Studios(
+      where: { site: { equals: $id } }
+      limit: 0
+      sort: "name"
+    ) {
       docs {
         id
         name

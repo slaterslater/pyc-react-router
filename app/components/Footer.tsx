@@ -6,7 +6,7 @@ export function Footer() {
   const { footer } = useRouteLoaderData('root')
 
   return (
-    <footer className="w-full min-w-xs max-w-[1450px] mx-auto px-4 flex flex-col sm:flex-row flex-wrap py-8 gap-8">
+    <footer className="w-full min-w-xs max-w-[1450px] mx-auto px-4 flex flex-col sm:flex-row flex-wrap py-8 gap-8 bg-white">
       <div className="flex flex-col gap-5 items-center justify-between w-fit mx-auto px-8 order-1">
         {/* <div className="flex flex-col items-center justify-between min-h-[150px] px-8 order-1"> */}
         <Link to="/">
