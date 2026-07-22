@@ -1,12 +1,11 @@
-import { Link, useRouteLoaderData } from "react-router";
-import { useNavContext } from "./NavProvider";
-import { useSite } from "~/hooks/useSite";
+import { useRouteLoaderData } from "react-router";
+import { useNavContext, type MenuGroup } from "./NavProvider";
 import { IoChevronForwardOutline } from "react-icons/io5";
 import { useMemo } from "react";
 
 export function StudioList() {
   const { studios } = useRouteLoaderData('root')
-  const { toggleNav, openGroup } = useNavContext()
+  const { openGroup } = useNavContext()
 
   const studioLinks = useMemo(() => {
     return studios.map((studio: StudioLink) => ({
@@ -21,24 +20,26 @@ export function StudioList() {
   }, [studios])
 
   if (!studioLinks.length) return null;
+
+  const handleClick = () => {
+    const studioGroup: MenuGroup = {
+      id: 'studios',
+      type: 'group',
+      text: 'Studios',
+      links: studioLinks,
+    }
+    openGroup(studioGroup)
+  }
+
   return (
-    <>
-      <button
-        className="text-md font-semibold text-cream flex justify-between items-center cursor-pointer"
-        onClick={() => openGroup({ text: 'Studios', links: studioLinks })}
-        aria-label="See all studios"
-      >
-        Studios
-        <IoChevronForwardOutline size={20} />
-      </button>
-      {/* <ul className="text-cream">
-        {studios.map((studio: StudioLink) => (
-          <li key={studio.id} onClick={toggleNav}>
-            <Link to={`/studios/${studio.slug}`}>{studio.name}</Link>
-          </li>
-        ))}
-      </ul> */}
-    </>
+    <button
+      className="text-md font-semibold text-cream flex justify-between items-center cursor-pointer"
+      onClick={handleClick}
+      aria-label="See all studios"
+    >
+      Studios
+      <IoChevronForwardOutline size={20} />
+    </button>
   )
 }
 

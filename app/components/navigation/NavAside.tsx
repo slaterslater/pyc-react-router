@@ -1,43 +1,45 @@
 import { useNavContext } from './NavProvider';
-import { IoCloseOutline } from 'react-icons/io5';
-import { GroupTitle, NavGroups } from './NavGroups';
 import { useEscapeToClose } from '~/hooks/useEscapeToClose';
 import { useScrollLock } from 'usehooks-ts';
 import { useEffect } from 'react';
-import { useSite } from '~/hooks/useSite';
 import { SiteList } from './SiteList';
+import { AnimatePresence, motion } from 'framer-motion';
+import { RootMenu } from './RootMenu';
+import { NavHeader } from './NavHeader';
+import { NavLink } from './NavLink';
+
+const OFFSET = 20;
 
 export function NavAside() {
+  const { group } = useNavContext();
   return (
     <Aside>
-      <nav className="flex flex-col gap-4 h-full">
-        <div className="flex justify-between items-cente py-3">
-          <GroupTitle />
-          <CloseButton />
+      <nav className="relative overflow-hidden flex flex-col gap-4 h-full">
+        <NavHeader />
+        <div className="relative overflow-hidden">
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={group?.id || 'root'}
+              initial={{ x: group ? OFFSET : -OFFSET, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: group ? -OFFSET : OFFSET, opacity: 0 }}
+              transition={{ duration: 0.22, ease: "easeOut" }}
+              className="flex flex-col gap-3"
+            >
+              {group && group?.links?.map((link) => <NavLink key={link.id} link={link} />)}
+              {!group && <RootMenu />}
+            </motion.div>
+          </AnimatePresence>
         </div>
-        <NavGroups />
         <SiteList />
       </nav>
     </Aside>
   );
 }
 
-function CloseButton() {
-  const { toggleNav } = useNavContext()
-  return (
-    <button
-      className="text-cream flex justify-end cursor-pointer"
-      onClick={toggleNav}
-      aria-label="Close navigation"
-    >
-      <IoCloseOutline size={24} />
-    </button>
-  )
-}
-
 function Aside({ children }: { children: React.ReactNode }) {
-  const { isNavOpen, toggleNav } = useNavContext()
-  useEscapeToClose(isNavOpen, toggleNav);
+  const { isNavOpen, closeNav } = useNavContext()
+  useEscapeToClose(isNavOpen, closeNav);
 
   const { lock, unlock } = useScrollLock({ autoLock: false, lockTarget: "html" })
 
@@ -52,7 +54,7 @@ function Aside({ children }: { children: React.ReactNode }) {
       {isNavOpen && (
         <div
           className="fixed inset-0 bg-black/30 z-40"
-          onClick={toggleNav}
+          onClick={closeNav}
         />
       )}
 
@@ -78,6 +80,7 @@ function Aside({ children }: { children: React.ReactNode }) {
           pointer-events-auto p-6
           absolute top-0 left-0 h-full w-full md:w-sm
           transform transition-transform duration-300 ease-in-out bg-[#1E1E1E] text-cream
+           overflow-y-auto overscroll-contain
           ${isNavOpen ? 'translate-x-0' : '-translate-x-[calc(100%+2px)]'}
         `}>
           {children}

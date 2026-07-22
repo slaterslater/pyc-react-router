@@ -11,7 +11,7 @@ export function Header() {
   return (
     <header className="w-full bg-white">
       <Announcements />
-      <div className="relative flex items-center justify-center w-full px-4 py-6 min-w-xs max-w-[1450px] mx-auto">
+      <div className="relative flex items-center justify-center w-full px-4 py-6 min-w-xs max-w-[1450px] mx-auto h-[80px]">
         <div className="absolute left-4">
           <NavProvider>
             <HambugerButton />

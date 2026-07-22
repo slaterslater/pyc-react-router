@@ -9,6 +9,7 @@ const NavContext = createContext<{
   openGroup: (group: MenuGroup) => void,
   goRoot: () => void,
   setGroup: (group: MenuGroup | null) => void,
+  closeNav: () => void,
 }>
   ({
     isNavOpen: false,
@@ -17,6 +18,7 @@ const NavContext = createContext<{
     openGroup: () => { },
     goRoot: () => { },
     setGroup: () => { },
+    closeNav: () => { },
   });
 
 export function NavProvider({ children }: { children: React.ReactNode }) {
@@ -31,6 +33,11 @@ export function NavProvider({ children }: { children: React.ReactNode }) {
     setGroup(null);
   }, []);
 
+  const closeNav = useCallback(() => {
+    toggleNav();
+    setGroup(null);
+  }, []);
+
   const value = useMemo(
     () => ({
       isNavOpen,
@@ -39,8 +46,9 @@ export function NavProvider({ children }: { children: React.ReactNode }) {
       openGroup,
       goRoot,
       setGroup,
+      closeNav,
     }),
-    [isNavOpen, toggleNav, group, openGroup, goRoot, setGroup]
+    [isNavOpen, toggleNav, group, openGroup, goRoot, setGroup, closeNav]
   );
 
   return (
@@ -56,6 +64,8 @@ export function useNavContext() {
 
 export type MenuGroup = {
   id?: string,
+  type: 'group' | 'link',
   text: string,
-  links: MenuLink[],
+  link?: MenuLink,
+  links?: MenuLink[],
 }

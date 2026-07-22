@@ -7,7 +7,7 @@ export function NavLink({ link }: { link: MenuLink }) {
 }
 
 function ExternalLink({ link }: { link: MenuLink }) {
-  const { toggleNav } = useNavContext()
+  const { closeNav } = useNavContext()
   if (!link.url) return null;
 
   const href = /^https?:\/\//i.test(link.url)
@@ -15,16 +15,16 @@ function ExternalLink({ link }: { link: MenuLink }) {
     : `https://${link.url}`;
 
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer" onClick={toggleNav}>
+    <a href={href} target="_blank" rel="noopener noreferrer" onClick={closeNav}>
       {link.text}
     </a>
   )
 }
 
 function InternalLink({ link }: { link: MenuLink }) {
-  const { toggleNav } = useNavContext()
+  const { closeNav } = useNavContext()
   if (!link.page) return null;
-  return <Link to={link.page.slug} onClick={toggleNav}>{link.text}</Link>
+  return <Link to={link.page.slug} onClick={closeNav}>{link.text}</Link>
 }
 
 export type MenuLink = {
