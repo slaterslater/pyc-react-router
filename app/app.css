@@ -35,6 +35,10 @@ body {
 
 /* mindbody widget heading */
 
+html {
+  @apply px-2 md:px-4;
+}
+
 body {
   @apply min-w-xs max-w-[1450px] mx-auto min-h-screen flex flex-col;
 }

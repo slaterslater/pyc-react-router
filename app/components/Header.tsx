@@ -34,7 +34,7 @@ function HeaderTitle() {
     return (
       <>
         <h1 className={`heading uppercase flex items-center gap-3 ${name.length > 15 ? 'text-xl' : 'text-2xl'}`}>
-          <img src="/pyc-icon.png" alt="power yoga canada logo" width={24} />
+          <img src="/pyc-icon.png" alt="" width={24} />
           {name}
         </h1>
       </>
@@ -43,7 +43,8 @@ function HeaderTitle() {
 
   return (
     <>
-      <img src="/canada-logo.svg" alt="power yoga canada logo" width={225} />
+      <img src="/canada-logo.svg" alt="power yoga canada logo" width={225} className="hidden md:block" />
+      <img src="/canada-logo.svg" alt="power yoga canada logo" width={130} className="block md:hidden" />
       <h1 className="sr-only">power yoga canada</h1>
     </>
   )

@@ -24,7 +24,7 @@ function ExternalLink({ link }: { link: MenuLink }) {
 function InternalLink({ link }: { link: MenuLink }) {
   const { closeNav } = useNavContext()
   if (!link.page) return null;
-  return <Link to={link.page.slug} onClick={closeNav}>{link.text}</Link>
+  return <Link to={`/${link.page.slug}`} onClick={closeNav}>{link.text}</Link>
 }
 
 export type MenuLink = {

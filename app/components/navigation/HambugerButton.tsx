@@ -5,7 +5,8 @@ export function HambugerButton() {
   const { toggleNav } = useNavContext()
   return (
     <button onClick={toggleNav}>
-      <RxHamburgerMenu size={42} />
+      <RxHamburgerMenu size={42} className="hidden md:block" />
+      <RxHamburgerMenu size={32} className="block md:hidden" />
     </button>
   )
 }

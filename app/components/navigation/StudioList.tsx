@@ -13,7 +13,7 @@ export function StudioList() {
       text: studio.name,
       type: 'internal',
       page: {
-        slug: `/studios/${studio.slug}`,
+        slug: `studios/${studio.slug}`,
         title: studio.name,
       },
     }))
