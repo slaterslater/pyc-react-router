@@ -14,9 +14,9 @@ export function NavAside() {
   const { group } = useNavContext();
   return (
     <Aside>
-      <nav className="relative overflow-hidden flex flex-col gap-4 h-full">
+      <nav className="relative overflow-hidden flex flex-col h-full">
         <NavHeader />
-        <div className="relative overflow-hidden">
+        <div className="relative overflow-y-scroll">
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={group?.id || 'root'}
@@ -77,7 +77,7 @@ function Aside({ children }: { children: React.ReactNode }) {
         }}
       >
         <aside className={`
-          pointer-events-auto p-6
+          pointer-events-auto p-6 pt-3 sm:pt-6
           absolute top-0 left-0 h-full w-full md:w-sm
           transform transition-transform duration-300 ease-in-out bg-[#1E1E1E] text-cream
            overflow-y-auto overscroll-contain

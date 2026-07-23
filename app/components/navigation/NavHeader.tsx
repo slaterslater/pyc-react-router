@@ -5,7 +5,7 @@ import { Link } from "react-router";
 
 export function NavHeader() {
   return (
-    <div className="flex justify-end items-center py-3">
+    <div className="flex justify-end items-center pt-3 pb-5">
       <GroupTitle />
       <CloseButton />
     </div>
