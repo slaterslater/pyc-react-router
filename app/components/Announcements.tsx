@@ -13,6 +13,8 @@ export function Announcements() {
 
   if (!announcements || announcements.length === 0) return null;
 
+  console.log(announcements);
+
   return (
     <div
       className="bg-charcoal text-cream min-w-xs w-full py-3 overflow-hidden relative h-8"

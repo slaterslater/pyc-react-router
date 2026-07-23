@@ -52,5 +52,13 @@ export const SITE_QUERY = gql`
         slug
       }
     }
+    Announcement {
+    items {
+      sites {
+        name
+      }
+      text
+    }
+  }  
   }
 `;

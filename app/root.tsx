@@ -9,8 +9,7 @@ import {
 } from "react-router";
 
 import "./app.css";
-import { ANNOUNCEMENTS_QUERY } from "./graphql/queries/announcementQuery";
-import { payloadClient } from "./lib/payloadClient.server";
+import { payload } from "./lib/payloadClient.server";
 import { SITE_QUERY } from "./graphql/queries/siteQuery";
 import { getSite } from "./lib/getSite.server";
 import { useSuppressMindbodyCartModal } from "./hooks/useSuppressMindbodyCartModal";
@@ -40,14 +39,11 @@ export const links = () => [
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const url = new URL(request.url);
   const site = getSite(url);
-  const data = await payloadClient.request(ANNOUNCEMENTS_QUERY);
-  const announcements = data.Announcement.items.filter(({ sites }: { sites: { name: string }[] }) => sites.some(({ name }) => name.toLowerCase() === site.name.toLowerCase()));
-  const siteData = await payloadClient.request(SITE_QUERY, { name: site.name, id: site.id });
+  const siteData = await payload.request(SITE_QUERY, { name: site.name, id: site.id });
+  const announcements = siteData.Announcement.items.filter(({ sites }: { sites: { name: string }[] }) => sites.some(({ name }) => name.toLowerCase() === site.name.toLowerCase()));
   return {
-    data,
-    announcements,
-    // site: siteData.Sites.docs[0],
     site,
+    announcements,
     menu: siteData.Sites.docs[0].menuItems,
     studios: siteData.Studios.docs,
     footer: siteData.Sites.docs[0].footer,

@@ -2,12 +2,12 @@ import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 import { PageLayout } from "~/components/PageLayout";
 import { PAGE_QUERY } from "~/graphql/queries/pageQuery";
 import { getSite } from "~/lib/getSite.server";
-import { payloadClient } from "~/lib/payloadClient.server";
+import { payload } from "~/lib/payloadClient.server";
 
 export async function loader({ request, params }: LoaderFunctionArgs) {
   const { slug } = params
 
-  const payloadData = await payloadClient.request(PAGE_QUERY, { slug })
+  const payloadData = await payload.request(PAGE_QUERY, { slug })
   const pageData = payloadData.Pages?.docs[0]
 
   const url = new URL(request.url);

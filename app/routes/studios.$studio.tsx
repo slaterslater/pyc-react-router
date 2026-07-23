@@ -7,7 +7,7 @@ import { PageLayout } from "~/components/PageLayout";
 import { Reviews } from "~/components/Reviews";
 import { STUDIO_QUERY } from "~/graphql/queries/studioQuery";
 import { getSite } from "~/lib/getSite.server";
-import { payloadClient } from "~/lib/payloadClient.server";
+import { payload } from "~/lib/payloadClient.server";
 
 export function meta() {
   return [
@@ -21,7 +21,7 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 
   const { studio } = params
 
-  const payloadData = await payloadClient.request(STUDIO_QUERY, { studio })
+  const payloadData = await payload.request(STUDIO_QUERY, { studio })
   const studioData = payloadData.Studios?.docs[0]
 
   const url = new URL(request.url);
