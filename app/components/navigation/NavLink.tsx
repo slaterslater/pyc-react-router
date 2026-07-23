@@ -1,12 +1,15 @@
 import { Link } from "react-router";
 import { useNavContext } from "./NavProvider";
+import { MindbodyLink } from "../MindbodyLink";
 
-export function NavLink({ link }: { link: MenuLink }) {
-  if (link.type === 'external') return <ExternalLink link={link} />
-  if (link.type === 'internal') return <InternalLink link={link} />
+export function NavLink({ link, className }: { link: MenuLink, className?: string }) {
+  if (link.type === 'external') return <External link={link} className={className} />
+  if (link.type === 'internal') return <Internal link={link} className={className} />
+  if (link.type === 'mindbody') return <Mindbody link={link} className={className} />
+  return null;
 }
 
-function ExternalLink({ link }: { link: MenuLink }) {
+function External({ link, className }: { link: MenuLink, className?: string }) {
   const { closeNav } = useNavContext()
   if (!link.url) return null;
 
@@ -15,16 +18,22 @@ function ExternalLink({ link }: { link: MenuLink }) {
     : `https://${link.url}`;
 
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer" onClick={closeNav}>
+    <a href={href} target="_blank" rel="noopener noreferrer" onClick={closeNav} className={className}>
       {link.text}
     </a>
   )
 }
 
-function InternalLink({ link }: { link: MenuLink }) {
+function Internal({ link, className }: { link: MenuLink, className?: string }) {
   const { closeNav } = useNavContext()
   if (!link.page) return null;
-  return <Link to={`/${link.page.slug}`} onClick={closeNav}>{link.text}</Link>
+  return <Link to={`/${link.page.slug}`} onClick={closeNav} className={className}>{link.text}</Link>
+}
+
+function Mindbody({ link, className }: { link: MenuLink, className?: string }) {
+  const { closeNav } = useNavContext()
+  if (!link.mboLink) return null;
+  return <MindbodyLink html={link.mboLink as string} onClick={closeNav} className={className}>{link.text}</MindbodyLink>
 }
 
 export type MenuLink = {

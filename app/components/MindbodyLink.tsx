@@ -25,10 +25,12 @@ export function MindbodyLink({
   html = '',
   className,
   children,
+  onClick,
 }: {
   html: string
   className?: string
   children: string
+  onClick?: () => void
 }) {
   const containerRef = useRef<HTMLDivElement>(null)
   const attrs = useMemo(() => parseHealcodeTag(html), [html])
@@ -77,5 +79,5 @@ export function MindbodyLink({
 
   if (!attrs) return null
 
-  return <div ref={containerRef} className={className} />
+  return <div ref={containerRef} className={className} onClick={onClick} />
 }

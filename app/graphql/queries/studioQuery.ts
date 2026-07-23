@@ -4,12 +4,12 @@ export const STUDIO_QUERY = gql`
   query ($studio: String) {
     Studios(where: { slug: { equals: $studio } }) {
       docs {
-      id
+        id
         name
         loginLink
         banner {
-            title
-            media {
+          title
+          media {
             alt
             sizes {
               thumbnail {
@@ -22,8 +22,8 @@ export const STUDIO_QUERY = gql`
                 url
               }
             }
-            }
           }
+        }
         description
         site {
           id
@@ -37,14 +37,22 @@ export const STUDIO_QUERY = gql`
           }
         }
         studioNav {
+          id
+          type
           text
-        }
-          reviews {
-            id
-            text
-            name
-            description
+          url
+          page {
+            slug
           }
+          mboLink
+        }
+        reviews {
+          id
+          text
+          name
+          description
+        }
       }
     }
-}`
+  }
+`
