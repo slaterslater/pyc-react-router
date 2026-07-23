@@ -37,7 +37,7 @@ function Mindbody({ link, className }: { link: MenuLink, className?: string }) {
 }
 
 export type MenuLink = {
-  id: string;
+  id?: string;
   text: string;
   type: 'external' | 'internal';
   url?: string;

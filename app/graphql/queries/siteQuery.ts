@@ -53,12 +53,22 @@ export const SITE_QUERY = gql`
       }
     }
     Announcement {
-    items {
-      sites {
-        name
+      items {
+        id
+        sites {
+          name
+        }
+        text
+        hasLink
+        link {
+          type
+          url
+          page {
+            slug
+          }
+          mboLink
+        }
       }
-      text
     }
-  }  
   }
 `;

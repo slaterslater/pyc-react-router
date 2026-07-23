@@ -12,7 +12,10 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 
   const url = new URL(request.url);
   const site = getSite(url);
-  const isSitePage = pageData?.site?.name === site.name;
+  const siteName = pageData?.site?.name;
+  const isSitePage = siteName === site.name || siteName === 'Collective';
+
+  console.log({ pageData, isSitePage })
 
   if (!pageData || !isSitePage) {
     throw new Error("Page not found")
@@ -26,10 +29,10 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 export default function PageRoute() {
   const { title } = useLoaderData<typeof loader>()
 
-  console.log({ title })
   return (
     <PageLayout>
-      <h1>{title}</h1>
+      <h1 className="heading text-center">{title}</h1>
+      <p className="text-center">coming soon</p>
     </PageLayout>
   )
 }

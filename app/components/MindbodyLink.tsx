@@ -49,7 +49,7 @@ export function MindbodyLink({
     const finalAttrs = {
       ...attrs,
       'data-inner-html': children,
-      'data-link-class': className ?? attrs['data-link-class'] ?? '',
+      // 'data-link-class': className ?? attrs['data-link-class'] ?? '',
     }
 
     const attrString = Object.entries(finalAttrs)

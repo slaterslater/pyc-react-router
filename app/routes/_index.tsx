@@ -16,9 +16,8 @@ export default function Home() {
 
   return (
     <PageLayout>
-      <div className="text-center text-2xl font-medium px-4 py-8 min-h-[300px] flex items-center justify-center">
-        <h2>Power Yoga {site.name} coming soon</h2>
-      </div>
+      <h2 className="heading text-center">Power Yoga {site.name}</h2>
+      <p className="text-center">coming soon</p>
       {/* <Hero  /> */}
       {/* <h2 className="mx-auto text-4xl tracking-wide uppercase p-4 pt-12 font-light">sweat | discover | transform</h2> */}
       {/* <p className="mx-auto text-center text-light-gray max-w-6xl leading-relaxed text-2xl font-medium px-4 py-8">Power Yoga Canada is your home for hot power yoga.<br />Our locally operated studios deliver heated classes that build strength, flexibility, and resilience, while fostering connection, consistency, and community across every location.</p> */}
