@@ -13,10 +13,11 @@ export async function loader({ params }: LoaderFunctionArgs) {
 
 export default function TeachingTeam() {
   const { teachers } = useLoaderData<typeof loader>();
+  const gridCols = teachers.length > 3 ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3" : "grid-cols-1 md:grid-cols-2";
   return (
     <>
       <ComingSoon title="Teaching Team" />
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4">
+      <section className={`grid ${gridCols} gap-4 px-4`}>
         {teachers.map((teacher: Teacher) => <Teacher key={teacher.id} teacher={teacher} />)}
       </section>
     </>

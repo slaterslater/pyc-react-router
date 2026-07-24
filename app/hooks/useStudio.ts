@@ -8,10 +8,12 @@ export function useStudio() {
 
   const name = data?.name
   const loginLink = data?.loginLink
+  const studioLink = `/studios/${data?.slug}`
 
   return {
     isStudioPage: Boolean(name),
     name,
     loginLink,
+    studioLink,
   }
 }

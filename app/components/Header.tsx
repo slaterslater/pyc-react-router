@@ -28,14 +28,16 @@ export function Header() {
 }
 
 function HeaderTitle() {
-  const { isStudioPage, name } = useStudio()
+  const { isStudioPage, name, studioLink } = useStudio()
 
   if (isStudioPage) {
     return (
       <>
-        <h1 className={`heading uppercase flex items-center gap-3 ${name.length > 15 ? 'text-xl' : 'text-2xl'}`}>
-          <img src="/pyc-icon.png" alt="" width={24} />
-          {name}
+        <h1 className={`heading uppercase ${name.length > 15 ? 'text-xl' : 'text-2xl'}`}>
+          <Link to={studioLink} className="flex items-center gap-2">
+            <img src="/pyc-icon.png" alt="" width={24} />
+            {name}
+          </Link>
         </h1>
       </>
     )

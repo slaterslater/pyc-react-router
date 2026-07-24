@@ -6,14 +6,14 @@ import { MindBodyWidget } from "~/components/MindbodyWidget";
 import { Reviews } from "~/components/Reviews";
 
 export function meta() {
+  const { name, siteName } = useRouteLoaderData("routes/studios.$studio")
   return [
-    { title: "studio page | dev PYC" },
+    { title: `${name} | Power Yoga ${siteName}` },
     { name: "description", content: "studio page" },
   ];
 }
 
 export default function StudioRoute() {
-  // const { id, banner, description, schedule, amenities, studioNav } = useLoaderData<typeof loader>()
   const { id, banner, description, schedule, amenities, studioNav } = useRouteLoaderData("routes/studios.$studio")
 
   // console.log({ banner, description, schedule, studioNav })

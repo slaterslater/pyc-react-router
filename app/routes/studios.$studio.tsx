@@ -12,6 +12,9 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
   const payloadData = await payload.request(STUDIO_QUERY, { studio })
   const studioData = payloadData.Studios?.docs[0]
 
+  const hasWorkshops = Boolean(studioData?.workshops?.docs[0]?.id)
+  const offerings = studioData?.offerings?.docs[0]?.offeringBlocks
+
   const url = new URL(request.url);
   const site = getSite(url);
   const isSiteStudio = studioData?.site?.name === site.name;
@@ -21,14 +24,14 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
   }
 
   const defaultNav = [
-    {
+    ...(hasWorkshops ? [{
       id: 'workshops',
       text: 'Workshops',
       type: 'internal',
       page: {
         slug: `studios/${studio}/workshops`,
       },
-    },
+    }] : []),
     {
       id: 'teaching-team',
       text: 'Teaching Team',
@@ -42,7 +45,9 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
   return {
     ...studioData,
     studioNav: [...defaultNav, ...studioData.studioNav],
-    amenities: studioData.amenities.sort((a: any, b: any) => a.name.localeCompare(b.name))
+    amenities: studioData.amenities.sort((a: any, b: any) => a.name.localeCompare(b.name)),
+    offerings,
+    siteName: site.name,
   }
 }
 

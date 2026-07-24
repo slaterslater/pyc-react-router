@@ -6,6 +6,7 @@ export const STUDIO_QUERY = gql`
       docs {
         id
         name
+        slug
         loginLink
         banner {
           title
@@ -45,6 +46,22 @@ export const STUDIO_QUERY = gql`
             slug
           }
           mboLink
+        }
+        workshops(limit:0) {
+          docs {
+            id
+          }
+        }
+        offerings(limit:0) {
+          totalDocs
+          docs {
+            offeringBlocks {
+              ... on OfferingBlock {
+              id
+                title
+              }
+            }
+          }
         }
         reviews {
           id

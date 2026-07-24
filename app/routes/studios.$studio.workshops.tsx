@@ -1,5 +1,4 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
-import ComingSoon from "~/components/ComingSoon";
 import { STUDIO_WORKSHOP_QUERY } from "~/graphql/queries/studioWorkshopQuery";
 import { payload } from "~/lib/payloadClient.server";
 
@@ -12,21 +11,40 @@ export async function loader({ params }: LoaderFunctionArgs) {
 }
 
 export default function StudioWorkshops() {
-  const { workshops, offerings } = useLoaderData<typeof loader>();
   return (
     <>
-      <ComingSoon title="Workshops" />
-      <h2 className="heading text-center">Workshops We Offer</h2>
+      <Workshops />
+      <Offerings />
+    </>
+  )
+}
+
+function Workshops() {
+  const { workshops } = useLoaderData<typeof loader>();
+  if (!workshops) return null;
+  return (
+    <>
+      <h2 className="heading text-center">Workshops</h2>
       <section className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4">
         {workshops?.map((workshop: Workshop) => <Workshop key={workshop.id} workshop={workshop} />)}
       </section>
-      <h2 className="heading text-center">Classes We Offer</h2>
+    </>
+  )
+}
+
+function Offerings() {
+  const { offerings } = useLoaderData<typeof loader>();
+  if (!offerings) return null;
+  return (
+    <>
+      <h2 className="heading text-center">Classes</h2>
       <section className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4">
         {offerings?.map((offering: Offering) => <Offering key={offering.id} offering={offering} />)}
       </section>
     </>
   )
 }
+
 
 function Workshop({ workshop }: { workshop: Workshop }) {
   return (
