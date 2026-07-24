@@ -24,7 +24,7 @@ export function NavAside() {
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: group ? -OFFSET : OFFSET, opacity: 0 }}
               transition={{ duration: 0.22, ease: "easeOut" }}
-              className="flex flex-col gap-3"
+              className="flex flex-col gap-4"
             >
               {group && group?.links?.map((link) => <NavLink key={link.id} link={link} />)}
               {!group && <RootMenu />}
@@ -81,7 +81,7 @@ function Aside({ children }: { children: React.ReactNode }) {
           absolute top-0 left-0 h-full w-full md:w-sm
           transform transition-transform duration-300 ease-in-out text-cream
            overflow-y-auto overscroll-contain
-          ${isNavOpen ? 'bg-[#1E1E1E] translate-x-0' : 'bg-charcoal -translate-x-[calc(100%+2px)]'}
+          ${isNavOpen ? 'bg-[#1D1D1D] translate-x-0' : 'bg-charcoal -translate-x-[calc(100%+2px)]'}
         `}>
           {children}
         </aside>
