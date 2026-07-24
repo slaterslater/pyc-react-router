@@ -1,7 +1,7 @@
-import { useLoaderData } from "react-router"
+import { useLoaderData, useRouteLoaderData } from "react-router"
 
 export function Reviews() {
-  const { reviews } = useLoaderData()
+  const { reviews } = useRouteLoaderData("routes/studios.$studio")
 
   if (!reviews || reviews.length === 0) return null;
 

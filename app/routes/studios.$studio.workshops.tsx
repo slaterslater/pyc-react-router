@@ -13,7 +13,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
 
 export default function StudioWorkshops() {
   const { workshops, offerings } = useLoaderData<typeof loader>();
-  console.log({ workshops, offerings })
+  // console.log({ workshops, offerings })
   return (
     <>
       <ComingSoon title="Workshops" />

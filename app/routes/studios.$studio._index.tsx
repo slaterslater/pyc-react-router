@@ -1,12 +1,9 @@
-import { useLoaderData, type LoaderFunctionArgs } from "react-router";
+import { useRouteLoaderData } from "react-router";
 import { Amenities } from "~/components/Amenities";
 import { ButtonRow } from "~/components/ButtonRow";
 import { Hero } from "~/components/Hero";
 import { MindBodyWidget } from "~/components/MindbodyWidget";
 import { Reviews } from "~/components/Reviews";
-import { STUDIO_QUERY } from "~/graphql/queries/studioQuery";
-import { getSite } from "~/lib/getSite.server";
-import { payload } from "~/lib/payloadClient.server";
 
 export function meta() {
   return [
@@ -15,50 +12,9 @@ export function meta() {
   ];
 }
 
-export async function loader({ request, params }: LoaderFunctionArgs) {
-
-
-  const { studio } = params
-
-  const payloadData = await payload.request(STUDIO_QUERY, { studio })
-  const studioData = payloadData.Studios?.docs[0]
-
-  const url = new URL(request.url);
-  const site = getSite(url);
-  const isSiteStudio = studioData?.site?.name === site.name;
-
-  if (!studioData || !isSiteStudio) {
-    throw new Error("Studio not found")
-  }
-
-  const defaultNav = [
-    {
-      id: 'workshops',
-      text: 'Workshops',
-      type: 'internal',
-      page: {
-        slug: `studios/${studio}/workshops`,
-      },
-    },
-    {
-      id: 'teaching-team',
-      text: 'Teaching Team',
-      type: 'internal',
-      page: {
-        slug: `studios/${studio}/teaching-team`,
-      },
-    }
-  ]
-
-  return {
-    ...studioData,
-    studioNav: [...defaultNav, ...studioData.studioNav],
-    amenities: studioData.amenities.sort((a: any, b: any) => a.name.localeCompare(b.name))
-  }
-}
-
 export default function StudioRoute() {
-  const { id, banner, description, schedule, amenities, studioNav } = useLoaderData<typeof loader>()
+  // const { id, banner, description, schedule, amenities, studioNav } = useLoaderData<typeof loader>()
+  const { id, banner, description, schedule, amenities, studioNav } = useRouteLoaderData("routes/studios.$studio")
 
   // console.log({ banner, description, schedule, studioNav })
 

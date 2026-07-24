@@ -1,8 +1,8 @@
 import { useRouteLoaderData } from "react-router";
-import type { loader } from "~/routes/studios.$studio._index";
+import type { loader } from "~/routes/studios.$studio";
 
 export function useStudio() {
-  const data = useRouteLoaderData("routes/studios.$studio._index") as
+  const data = useRouteLoaderData("routes/studios.$studio") as
     | Awaited<ReturnType<typeof loader>>
     | undefined;
 
