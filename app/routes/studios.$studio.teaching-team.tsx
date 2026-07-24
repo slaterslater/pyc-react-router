@@ -26,7 +26,7 @@ export default function TeachingTeam() {
 function Teacher({ teacher }: { teacher: Teacher }) {
   return (
     <div key={teacher.id}>
-      <img src={teacher.image.thumbnailURL} alt={teacher.name} />
+      <img src={teacher.image.thumbnailURL} alt={teacher.name} className="aspect-square object-cover" />
       <h3>{teacher.name}</h3>
       <p>{teacher.description}</p>
     </div>
