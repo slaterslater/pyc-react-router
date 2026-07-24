@@ -33,6 +33,7 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 
   const defaultNav = [
     {
+      id: 'workshops',
       text: 'Workshops',
       type: 'internal',
       page: {
@@ -40,6 +41,7 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
       },
     },
     {
+      id: 'teaching-team',
       text: 'Teaching Team',
       type: 'internal',
       page: {

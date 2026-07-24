@@ -1,8 +1,11 @@
-import { useLoaderData } from "react-router";
-import type { loader } from "~/routes/studios.$studio";
+import { useRouteLoaderData } from "react-router";
+import type { loader } from "~/routes/studios.$studio._index";
 
 export function useStudio() {
-  const data = useLoaderData<typeof loader>()
+  const data = useRouteLoaderData("routes/studios.$studio._index") as
+    | Awaited<ReturnType<typeof loader>>
+    | undefined;
+
   const name = data?.name
   const loginLink = data?.loginLink
 

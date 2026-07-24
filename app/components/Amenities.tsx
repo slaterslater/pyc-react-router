@@ -1,8 +1,6 @@
 export function Amenities({ amenities }: Amenities) {
   if (amenities.length === 0) return null;
 
-  console.log({ amenities })
-
   return (
     <>
       <h2 className="heading px-4 text-center capitalize">studio amenities</h2>
