@@ -1,4 +1,5 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
+import ComingSoon from "~/components/ComingSoon";
 import { PageLayout } from "~/components/PageLayout";
 import { PAGE_QUERY } from "~/graphql/queries/pageQuery";
 import { getSite } from "~/lib/getSite.server";
@@ -15,8 +16,6 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
   const siteName = pageData?.site?.name;
   const isSitePage = siteName === site.name || siteName === 'Collective';
 
-  console.log({ pageData, isSitePage })
-
   if (!pageData || !isSitePage) {
     throw new Error("Page not found")
   }
@@ -31,8 +30,7 @@ export default function PageRoute() {
 
   return (
     <PageLayout>
-      <h1 className="heading text-center">{title}</h1>
-      <p className="text-center">coming soon</p>
+      <ComingSoon title={title} />
     </PageLayout>
   )
 }
