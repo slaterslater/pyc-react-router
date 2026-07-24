@@ -79,9 +79,9 @@ function Aside({ children }: { children: React.ReactNode }) {
         <aside className={`
           pointer-events-auto p-6 pt-3 sm:pt-6
           absolute top-0 left-0 h-full w-full md:w-sm
-          transform transition-transform duration-300 ease-in-out bg-[#1E1E1E] text-cream
+          transform transition-transform duration-300 ease-in-out text-cream
            overflow-y-auto overscroll-contain
-          ${isNavOpen ? 'translate-x-0' : '-translate-x-[calc(100%+2px)]'}
+          ${isNavOpen ? 'bg-[#1E1E1E] translate-x-0' : 'bg-charcoal -translate-x-[calc(100%+2px)]'}
         `}>
           {children}
         </aside>
