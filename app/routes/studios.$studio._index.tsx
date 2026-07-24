@@ -50,7 +50,8 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 
   return {
     ...studioData,
-    studioNav: [...defaultNav, ...studioData.studioNav]
+    studioNav: [...defaultNav, ...studioData.studioNav],
+    amenities: studioData.amenities.sort((a: any, b: any) => a.name.localeCompare(b.name))
   }
 }
 

@@ -1,17 +1,23 @@
 export function Amenities({ amenities }: Amenities) {
   if (amenities.length === 0) return null;
 
+  console.log({ amenities })
+
   return (
     <>
       <h2 className="heading px-4 text-center capitalize">studio amenities</h2>
-      <div className="flex flex-wrap gap-8 px-8 py-4 w-full justify-center md:justify-around">
-        {/* <img src="/development/towels.svg" alt="towels" width={135} />
-        <img src="/development/hot-yoga.svg" alt="hot yoga" width={135} />
-        <img src="/development/showers.svg" alt="showers" width={135} />
-        <img src="/development/power-yoga.svg" alt="warm yoga" width={135} />
-        <img src="/development/mat-rental.svg" alt="mat rental" width={135} /> */}
+      <div className="flex flex-wrap gap-8 md:gap-16 md:px-8 py-4 w-full justify-center">
         {amenities.map((amenity) => (
-          <div key={amenity.name}> {amenity.name} </div>
+          <div key={amenity.name} className="flex flex-col items-center gap-2">
+            <img
+              src={amenity.image.url}
+              alt={amenity.name}
+              // width={135}
+              // height={135}
+              className="w-20 h-20 md:w-32 md:h-32 object-contain"
+            />
+            {amenity.name}
+          </div>
         ))}
       </div>
     </>
@@ -21,6 +27,8 @@ export function Amenities({ amenities }: Amenities) {
 type Amenities = {
   amenities: {
     name: string
-    description: string
+    image: {
+      url: string
+    }
   }[]
 }
