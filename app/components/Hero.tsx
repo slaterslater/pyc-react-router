@@ -8,7 +8,7 @@ type HeroProps = {
       sizes:
       {
         desktop: { url: string },
-        thumbnail: { url: string }
+        tablet: { url: string }
       }
     };
   };
@@ -45,7 +45,7 @@ export function Hero({ hero }: HeroProps) {
           className="relative h-[390px] md:h-[500px] overflow-hidden rounded-md"
         >
           <img
-            src={media.sizes.thumbnail.url}
+            src={media.sizes.tablet.url}
             alt=""
             className="md:hidden absolute inset-0 h-full w-full object-cover bg-charcoal"
           />
