@@ -1,4 +1,6 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
+import { Amenities } from "~/components/Amenities";
+import { Hero } from "~/components/Hero";
 import { STUDIO_WORKSHOP_QUERY } from "~/graphql/queries/studioWorkshopQuery";
 import { payload } from "~/lib/payloadClient.server";
 
@@ -7,12 +9,23 @@ export async function loader({ params }: LoaderFunctionArgs) {
   const data = await payload.request(STUDIO_WORKSHOP_QUERY, { studio })
   const workshops = data.Studios.docs[0].workshops.docs[0]?.workshops;
   const offerings = data.Studios.docs[0].offerings.docs[0]?.offerings;
-  return { workshops, offerings };
+  const amenities = data.Studios.docs[0].amenities;
+  const media = data.Studios.docs[0].workshops.docs[0]?.banner;
+  return { workshops, offerings, amenities, media };
 }
 
 export default function StudioWorkshops() {
+  const { media, amenities } = useLoaderData<typeof loader>();
+
+  const hero = {
+    title: "Workshops",
+    media
+  }
+
   return (
     <>
+      <Hero hero={hero} />
+      <Amenities amenities={amenities} />
       <Workshops />
       <Offerings />
     </>

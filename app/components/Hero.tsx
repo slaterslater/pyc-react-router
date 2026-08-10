@@ -50,7 +50,7 @@ export function Hero({ hero }: HeroProps) {
             className="md:hidden absolute inset-0 h-full w-full object-cover bg-charcoal"
           />
           <img
-            src={media.sizes.desktop.url}
+            src={media.sizes.desktop.url || media.sizes.tablet.url}
             alt=""
             className="hidden md:block absolute bg-charcoal left-1/2 top-[-10%] h-[120%] w-[102%] max-w-none -translate-x-1/2 object-cover will-change-transform"
             style={{ transform: `translate3d(0, ${offset}px, 0)` }}
