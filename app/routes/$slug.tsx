@@ -11,8 +11,7 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
   const payloadData = await payload.request(PAGE_QUERY, { slug })
   const pageData = payloadData.Pages?.docs[0]
 
-  const url = new URL(request.url);
-  const site = getSite(url);
+  const site = getSite(request);
   const siteName = pageData?.site?.name;
   const isSitePage = siteName === site.name || siteName === 'Collective';
 

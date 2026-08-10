@@ -1,4 +1,6 @@
-export function getSite(url: URL): SiteConfig {
+// export function getSite(url: URL): SiteConfig {
+export function getSite(request: Request): SiteConfig {
+  const url = new URL(request.url);
 
   // Very important that the IDs match payload
   const SITES = {

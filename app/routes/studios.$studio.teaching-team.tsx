@@ -11,7 +11,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
   return { teachers };
 }
 
-export default function TeachingTeam() {
+export default function StudioTeachingTeam() {
   const { teachers } = useLoaderData<typeof loader>();
   const gridCols = teachers.length > 3 ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3" : "grid-cols-1 md:grid-cols-2";
   return (

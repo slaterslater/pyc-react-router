@@ -1,4 +1,4 @@
-import { useLoaderData, useRouteLoaderData } from "react-router"
+import { useRouteLoaderData } from "react-router"
 
 export function Reviews() {
   const { reviews } = useRouteLoaderData("routes/studios.$studio")

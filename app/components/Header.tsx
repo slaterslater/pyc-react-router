@@ -62,7 +62,7 @@ function HeaderCTAs() {
         </Link> */}
         <LoginLink />
         {!isStudioPage && (
-          <Link to="/" className="button btn-red uppercase">
+          <Link to="/studios" className="button btn-red uppercase">
             find your studio
           </Link>
         )}

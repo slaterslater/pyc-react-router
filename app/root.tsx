@@ -37,8 +37,7 @@ export const links = () => [
 
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  const url = new URL(request.url);
-  const site = getSite(url);
+  const site = getSite(request);
   const siteData = await payload.request(SITE_QUERY, { name: site.name, id: site.id });
   const announcements = siteData.Announcement.items.filter(({ sites }: { sites: { name: string }[] }) => sites.some(({ name }) => name.toLowerCase() === site.name.toLowerCase()));
   return {
@@ -52,7 +51,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
       canada: process.env.HOSTNAME_CANADA!,
       usa: process.env.HOSTNAME_USA!,
     },
-    port: url.port
+    port: new URL(request.url).port
   };
 }
 

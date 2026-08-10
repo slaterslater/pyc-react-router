@@ -1,22 +1,25 @@
-import { useRouteLoaderData } from "react-router";
+import { useLoaderData, useRouteLoaderData, type LoaderFunctionArgs } from "react-router";
 import { Amenities } from "~/components/Amenities";
 import { ButtonRow } from "~/components/ButtonRow";
 import { Hero } from "~/components/Hero";
 import { MindBodyWidget } from "~/components/MindbodyWidget";
 import { Reviews } from "~/components/Reviews";
+import type { loader } from "./studios.$studio";
+// import { STUDIO_QUERY } from "~/graphql/queries/studioQuery";
+// import { getSite } from "~/lib/getSite.server";
+// import { payload } from "~/lib/payloadClient.server";
 
-export function meta() {
-  const { name, siteName } = useRouteLoaderData("routes/studios.$studio")
-  return [
-    { title: `${name} | Power Yoga ${siteName}` },
-    { name: "description", content: "studio page" },
-  ];
-}
+// export function meta() {
+//   const { name, siteName } = useLoaderData<typeof loader>()
+//   return [
+//     { title: `${name} | Power Yoga ${siteName}` },
+//     { name: "description", content: "studio page" },
+//   ];
+// }
 
-export default function StudioRoute() {
+export default function IndividualStudioRoute() {
+  // const { id, banner, description, schedule, amenities, studioNav } = useLoaderData<typeof loader>()
   const { id, banner, description, schedule, amenities, studioNav } = useRouteLoaderData("routes/studios.$studio")
-
-  // console.log({ banner, description, schedule, studioNav })
 
   return (
     <>
