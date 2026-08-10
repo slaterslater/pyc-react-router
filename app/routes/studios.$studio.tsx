@@ -13,7 +13,8 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
   const studioData = payloadData.Studios?.docs[0]
 
   const hasWorkshops = Boolean(studioData?.workshops?.docs[0]?.id)
-  const offerings = studioData?.offerings?.docs[0]?.offeringBlocks
+  const offerings = []
+  // const offerings = studioData?.offerings?.docs[0]?.offeringBlocks
 
   const url = new URL(request.url);
   const site = getSite(url);
@@ -46,7 +47,7 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
     ...studioData,
     studioNav: [...defaultNav, ...studioData.studioNav],
     amenities: studioData.amenities.sort((a: any, b: any) => a.name.localeCompare(b.name)),
-    offerings,
+    // offerings,
     siteName: site.name,
   }
 }

@@ -5,8 +5,8 @@ import { payload } from "~/lib/payloadClient.server";
 export async function loader({ params }: LoaderFunctionArgs) {
   const { studio } = params;
   const data = await payload.request(STUDIO_WORKSHOP_QUERY, { studio })
-  const workshops = data.Studios.docs[0].workshops.docs[0]?.workshopBlocks;
-  const offerings = data.Studios.docs[0].offerings.docs[0]?.offeringBlocks;
+  const workshops = data.Studios.docs[0].workshops.docs[0]?.workshops;
+  const offerings = data.Studios.docs[0].offerings.docs[0]?.offerings;
   return { workshops, offerings };
 }
 

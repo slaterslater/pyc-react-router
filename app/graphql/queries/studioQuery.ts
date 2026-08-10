@@ -47,20 +47,14 @@ export const STUDIO_QUERY = gql`
           }
           mboLink
         }
-        workshops(limit:0) {
+        workshops(limit: 0) {
           docs {
             id
           }
         }
-        offerings(limit:0) {
-          totalDocs
+        offerings(limit: 0) {
           docs {
-            offeringBlocks {
-              ... on OfferingBlock {
-              id
-                title
-              }
-            }
+            id
           }
         }
         reviews {

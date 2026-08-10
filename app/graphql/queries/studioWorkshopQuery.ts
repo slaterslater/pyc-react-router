@@ -6,21 +6,17 @@ export const STUDIO_WORKSHOP_QUERY = gql`
       docs {
         workshops(limit:0) {
           docs {
-            workshopBlocks {
-              ... on OfferingBlock {
-              id
-                title
+              workshops {
+id
+title              
               }
-            }
           }
         }
         offerings(limit:0) {
           docs {
-            offeringBlocks {
-              ... on OfferingBlock {
+            offerings {
               id
-                title
-              }
+              title
             }
           }
         }
