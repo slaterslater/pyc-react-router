@@ -12,7 +12,7 @@ export function Amenities({ amenities }: Amenities) {
               alt={amenity.name}
               // width={135}
               // height={135}
-              className="w-20 h-20 md:w-28 md:h-28 object-contain"
+              className="w-18 h-20 md:w-22 md:h-22 object-contain"
             />
             {/* {amenity.name} */}
           </div>
