@@ -18,7 +18,7 @@ export default function StudiosIndexRoute() {
   return (
     <>
       <div className="w-full px-4">
-        <div className="flex flex-col items-center justify-center gap-4 px-4 bg-charcoal text-white w-full h-[390px] md:h-[500px] rounded-md">
+        <div className="flex flex-col items-center justify-center gap-4 px-4 bg-charcoal text-white w-full h-[390px] md:h-[500px] rounded-md text-center">
           <h1 className="heading text-white uppercase">contact us</h1>
           <p>For general questions about PYC please email us at <a className="underline" href="mailto:info@poweryogacanada.com">info@poweryogacanada.com</a></p>
         </div>

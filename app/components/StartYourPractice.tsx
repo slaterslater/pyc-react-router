@@ -7,14 +7,19 @@ export function StartYourPracticeSection() {
 
   return (
     <section className="bg-charcoal w-full h-[150px] md:h-[200px]">
-      <div className="h-full flex flex-col sm:flex-row justify-center gap-4 sm:justify-between items-left sm:items-center min-w-xs max-w-[1450px] mx-auto px-8">
+      <div className="h-full flex flex-col sm:flex-row justify-center gap-4 sm:justify-between items-left sm:items-center min-w-xs max-w-[1450px] mx-auto px-8 text-center">
         <h2 className="capitalize heading text-white font-medium">start your practice today</h2>
-        <div className="flex gap-4 mr-8 w-fit">
-          {/* <Link to="/" className="button btn-red uppercase">book a class</Link> */}
+        {/* <div className="flex gap-4  mr-8 w-fit"> */}
+        <div className="flex gap-4 w-fit mx-auto sm:mx-4">
           {loginLink && (
             <MindbodyLink html={loginLink} className="button btn-red uppercase h-[42px]">
               book a class
             </MindbodyLink>
+          )}
+          {!isStudioPage && (
+            <Link to="/studios" className="button btn-red uppercase">
+              find your studio
+            </Link>
           )}
         </div>
       </div>

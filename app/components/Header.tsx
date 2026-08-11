@@ -54,12 +54,10 @@ function HeaderTitle() {
 
 function HeaderCTAs() {
   const { isStudioPage } = useStudio()
+  console.log(isStudioPage)
   return (
     <div className="flex-1 flex justify-end">
       <div className="hidden lg:flex gap-4">
-        {/* <Link to="/" className="button btn-red uppercase">
-          book a class
-        </Link> */}
         <LoginLink />
         {!isStudioPage && (
           <Link to="/studios" className="button btn-red uppercase">

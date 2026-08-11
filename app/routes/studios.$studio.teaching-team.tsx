@@ -42,7 +42,7 @@ function Teacher({ teacher }: { teacher: Teacher }) {
       onMouseLeave={() => setShowDescription(false)}
       onFocus={() => setShowDescription(true)}
       onBlur={() => setShowDescription(false)}
-      className="relative flex flex-col items-center justify-center outline-none focus:ring-2 focus:ring-primary"
+      className="relative flex flex-col items-center justify-center outline-none"
       style={{ cursor: "pointer" }}
     >
       <img
@@ -63,7 +63,7 @@ function Teacher({ teacher }: { teacher: Teacher }) {
           aria-modal="false"
         >
           <h3 className="text-xl uppercase text-white py-4 text-left">{teacher.name}</h3>
-          <p>{teacher.description}</p>
+          <p className="max-h-[70%] overflow-y-hidden">{teacher.description}</p>
         </div>
       )}
     </div>
