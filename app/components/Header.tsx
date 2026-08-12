@@ -5,6 +5,7 @@ import { NavAside } from "./navigation/NavAside";
 import { MindbodyLink } from "./MindbodyLink";
 import { NavProvider } from "./navigation/NavProvider";
 import { HambugerButton } from "./navigation/HambugerButton";
+import { useSite } from "~/hooks/useSite";
 
 export function Header() {
 
@@ -29,6 +30,7 @@ export function Header() {
 
 function HeaderTitle() {
   const { isStudioPage, name, studioLink } = useStudio()
+  const { site, logoSrc } = useSite()
 
   if (isStudioPage) {
     return (
@@ -45,16 +47,14 @@ function HeaderTitle() {
 
   return (
     <>
-      <img src="/canada-logo.svg" alt="power yoga canada logo" width={225} className="hidden md:block" />
-      <img src="/canada-logo.svg" alt="power yoga canada logo" width={130} className="block md:hidden" />
-      <h1 className="sr-only">power yoga canada</h1>
+      <img src={logoSrc} alt="logo" width={225} className="w-[130px] md:w-[225px]" />
+      <h1 className="sr-only">Power Yoga {site.name}</h1>
     </>
   )
 }
 
 function HeaderCTAs() {
   const { isStudioPage } = useStudio()
-  console.log(isStudioPage)
   return (
     <div className="flex-1 flex justify-end">
       <div className="hidden lg:flex gap-4">
