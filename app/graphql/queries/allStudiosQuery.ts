@@ -9,6 +9,15 @@ export const ALL_STUDIOS_QUERY = `
         id
         name
         slug
+  address1
+  address2
+  city
+  province
+  state
+  zip
+  postalCode
+  phone
+  email
       }
     }
   }
