@@ -27,7 +27,7 @@ export default function IndividualStudioRoute() {
       <ButtonRow buttons={studioNav} />
       <p className="mx-auto text-center text-light-gray max-w-4xl leading-relaxed text-lg font-medium px-4">{description}</p>
       <MindBodyWidget html={schedule} key={id} />
-      <Amenities amenities={amenities} />
+      <Amenities amenities={amenities} title="Studio Amenities" />
       <Reviews />
       {/* <p className="mx-auto text-center text-light-gray max-w-5xl leading-relaxed text-2xl font-medium px-4 py-7">Power Yoga Collective is your home for hot power yoga. Our locally operated studios deliver heated classes that build strength, flexibility, and resilience, while fostering connection, consistency, and community across every location.</p> */}
     </>

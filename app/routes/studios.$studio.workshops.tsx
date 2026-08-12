@@ -1,21 +1,40 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 import { Amenities } from "~/components/Amenities";
 import { Hero } from "~/components/Hero";
+import LocationMap from "~/components/LocationMap";
+import Offering, { type OfferingType } from "~/components/Offering";
 import { STUDIO_WORKSHOP_QUERY } from "~/graphql/queries/studioWorkshopQuery";
 import { payload } from "~/lib/payloadClient.server";
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const { studio } = params;
   const data = await payload.request(STUDIO_WORKSHOP_QUERY, { studio })
-  const workshops = data.Studios.docs[0].workshops.docs[0]?.workshops;
-  const offerings = data.Studios.docs[0].offerings.docs[0]?.offerings;
-  const amenities = data.Studios.docs[0].amenities;
-  const media = data.Studios.docs[0].workshops.docs[0]?.banner;
-  return { workshops, offerings, amenities, media };
+  const studioData = data.Studios.docs[0];
+  const workshops = studioData.workshops.docs[0]?.workshops;
+  const offerings = studioData.offerings.docs[0]?.offerings;
+
+  const addressParts = [
+    studioData.address1,
+    studioData.address2,
+    studioData.city,
+    studioData.province,
+    studioData.state,
+    studioData.zip,
+    studioData.postalCode,
+  ].filter(Boolean);
+
+  const fullAddress = addressParts.join(" ");
+
+  return {
+    ...studioData,
+    workshops,
+    offerings,
+    fullAddress,
+  }
 }
 
 export default function StudioWorkshops() {
-  const { media, amenities } = useLoaderData<typeof loader>();
+  const { media, amenities, fullAddress } = useLoaderData<typeof loader>();
 
   const hero = {
     title: "Workshops",
@@ -25,10 +44,19 @@ export default function StudioWorkshops() {
   return (
     <>
       <Hero hero={hero} />
-      <Amenities amenities={amenities} />
+      <Amenities amenities={amenities} title="STUDIO AMENITIES" />
       <Workshops />
+      <SweatDiscoverTransform />
+      <LocationMap fullAddress={fullAddress} />
       <Offerings />
     </>
+  )
+}
+
+function SweatDiscoverTransform() {
+  const spanSpacing = "px-4";
+  return (
+    <h2 className="hidden md:block heading text-center uppercase">sweat <span className={spanSpacing}>|</span> discover <span className={spanSpacing}>|</span> transform</h2>
   )
 }
 
@@ -37,9 +65,9 @@ function Workshops() {
   if (!workshops) return null;
   return (
     <>
-      <h2 className="heading text-center">Workshops</h2>
+      <h2 className="heading text-center uppercase">Workshops</h2>
       <section className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4">
-        {workshops?.map((workshop: Workshop) => <Workshop key={workshop.id} workshop={workshop} />)}
+        {workshops?.map((workshop: OfferingType) => <Offering key={workshop.id} offering={workshop} />)}
       </section>
     </>
   )
@@ -52,35 +80,8 @@ function Offerings() {
     <>
       <h2 className="heading text-center">Classes</h2>
       <section className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4">
-        {offerings?.map((offering: Offering) => <Offering key={offering.id} offering={offering} />)}
+        {offerings?.map((offering: OfferingType) => <Offering key={offering.id} offering={offering} />)}
       </section>
     </>
   )
-}
-
-
-function Workshop({ workshop }: { workshop: Workshop }) {
-  return (
-    <div key={workshop.id}>
-      <h3>{workshop.title}</h3>
-    </div>
-  )
-}
-
-function Offering({ offering }: { offering: Offering }) {
-  return (
-    <div key={offering.id}>
-      <h3>{offering.title}</h3>
-    </div>
-  )
-}
-
-type Workshop = {
-  id: string;
-  title: string;
-}
-
-type Offering = {
-  id: string;
-  title: string;
 }
