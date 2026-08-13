@@ -1,3 +1,5 @@
+import { NavLink } from "./navigation/NavLink";
+
 export default function Offering({ offering }: { offering: OfferingType }) {
 
   const { dates, time, cost, intensity, temperature } = offering;
@@ -17,6 +19,13 @@ export default function Offering({ offering }: { offering: OfferingType }) {
         {temperature && temperature !== "na" && <p>Temperature: {temperature}</p>}
       </div>
       <p>{offering.description}</p>
+      {offering.button && (
+        <NavLink
+          key={offering.button?.id}
+          link={offering.button}
+          className="button btn-black min-w-[140px] sm:max-w-[220px] flex-1"
+        />
+      )}
     </div>
   )
 }
