@@ -31,12 +31,9 @@ export default function StudiosIndexRoute() {
 }
 
 function Studio({ studio }: { studio: Studio }) {
-
   const studioName = studio.name.toUpperCase().startsWith('PYC') ?
     studio.name :
     `PYC - ${studio.name}`;
-
-  console.log(studio);
 
   return (
     <div key={studio.id} className="bg-cream rounded-md px-8 py-10 flex flex-col gap-6">
