@@ -100,4 +100,8 @@ body {
   .btn-black {
     @apply bg-charcoal text-white;
   }
+
+  .big-copy {
+    @apply mx-auto text-center text-light-gray max-w-4xl leading-relaxed text-lg font-medium px-4
+  }
 }

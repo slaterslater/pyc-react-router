@@ -1,6 +1,8 @@
 import { gql } from "graphql-request";
+import { OFFERING_FRAGMENT } from "../fragments/offeringFragment";
 
 export const STUDIO_QUERY = gql`
+  ${OFFERING_FRAGMENT}
   query ($studio: String) {
     Studios(where: { slug: { equals: $studio } }) {
       docs {
@@ -54,7 +56,9 @@ export const STUDIO_QUERY = gql`
         }
         offerings(limit: 0) {
           docs {
-            id
+            offerings {
+              ...OfferingFragment
+            }
           }
         }
         reviews {

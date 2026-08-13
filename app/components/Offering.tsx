@@ -1,10 +1,9 @@
-import { NavLink } from "./navigation/NavLink";
+import { NavLink, type MenuLink } from "./navigation/NavLink";
 
 export default function Offering({ offering }: { offering: OfferingType }) {
 
   const { dates, time, cost, intensity, temperature } = offering;
 
-  console.log({ offering });
   return (
     <div className="bg-cream p-4 rounded-md p-6 text-sm flex flex-col gap-4">
       <div>
@@ -51,7 +50,7 @@ export type OfferingType = {
   intensity: string
   temperature: string
   description: string
-  // button: OfferingItem_Button
+  button: MenuLink
   id: string
 }
 

@@ -1,5 +1,4 @@
 import { Outlet, type LoaderFunctionArgs } from "react-router";
-import { ALL_STUDIOS_QUERY } from "~/graphql/queries/allStudiosQuery";
 import { STUDIO_QUERY } from "~/graphql/queries/studioQuery";
 import { getSite } from "~/lib/getSite.server";
 import { payload } from "~/lib/payloadClient.server";
@@ -11,7 +10,7 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
   const studioData = payloadData.Studios?.docs[0]
 
   const hasWorkshops = Boolean(studioData?.workshops?.docs[0]?.id)
-  const offerings = studioData?.offerings?.docs[0]?.offerings?.docs
+  const offerings = studioData?.offerings?.docs[0]?.offerings
 
   const site = getSite(request);
   const isSiteStudio = studioData?.site?.name === site.name;
