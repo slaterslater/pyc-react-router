@@ -1,4 +1,4 @@
-import { useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { useScript, useIsomorphicLayoutEffect } from 'usehooks-ts'
 
 const HEALCODE_SRC = 'https://widgets.mindbodyonline.com/javascripts/healcode.js'
@@ -41,6 +41,20 @@ export function MindbodyLink({ html = '', className, children, onClick }: {
     container.innerHTML = `<healcode-widget ${attrString}></healcode-widget>`
     return () => { container.innerHTML = '' }
   }, [status, attrs, children])
+
+  // History-arming trick from before: give healcode's
+  // location.replace a sacrificial duplicate entry to consume.
+  useEffect(() => {
+    const container = containerRef.current
+    if (!container) return
+
+    const armHistory = () => {
+      window.history.pushState(window.history.state, '', window.location.href)
+    }
+
+    container.addEventListener('pointerdown', armHistory)
+    return () => container.removeEventListener('pointerdown', armHistory)
+  }, [attrs])
 
   if (!attrs) return null
 
