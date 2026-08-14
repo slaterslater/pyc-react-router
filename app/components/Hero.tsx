@@ -15,7 +15,15 @@ type HeroProps = {
 };
 
 export function Hero({ hero }: HeroProps) {
+  return (
+    <div className="w-full px-4">
+      <HeroMedia media={hero.media} />
+      <HeroTitle title={hero.title} />
+    </div>
+  );
+}
 
+function HeroMedia({ media }: { media: HeroProps['hero']['media'] }) {
   const heroRef = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState(0);
   const prefersReducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)")
@@ -35,39 +43,38 @@ export function Hero({ hero }: HeroProps) {
 
   useEventListener('scroll', onScroll)
 
-  const { media, title } = hero ?? {}
+  if (!media) return null;
 
   return (
-    <div className="w-full px-4">
-      {media && (
-        <div
-          ref={heroRef}
-          className="relative h-[390px] md:h-[500px] overflow-hidden rounded-md"
-        >
-          <img
-            src={media.sizes.tablet.url}
-            alt=""
-            className="md:hidden absolute inset-0 h-full w-full object-cover bg-charcoal"
-          />
-          <img
-            src={media.sizes.desktop.url || media.sizes.tablet.url}
-            alt=""
-            className="hidden md:block absolute bg-charcoal left-1/2 top-[-10%] h-[120%] w-[102%] max-w-none -translate-x-1/2 object-cover will-change-transform"
-            style={{ transform: `translate3d(0, ${offset}px, 0)` }}
-          />
-        </div>
-      )}
-      {title && (
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div
-            className="heading text-4xl font-bold text-center text-white pointer-events-auto"
-            style={{ textShadow: "0 6px 24px rgba(0,0,0,0.90), 0 1.5px 14px rgba(0,0,0,0.60)" }}
-          >
-            {title}
-          </div>
+    <div
+      ref={heroRef}
+      className="relative h-[390px] md:h-[500px] overflow-hidden rounded-md"
+    >
+      <img
+        src={media.sizes.tablet.url}
+        alt=""
+        className="md:hidden absolute inset-0 h-full w-full object-cover bg-charcoal"
+      />
+      <img
+        src={media.sizes.desktop.url || media.sizes.tablet.url}
+        alt=""
+        className="hidden md:block absolute bg-charcoal left-1/2 top-[-10%] h-[120%] w-[102%] max-w-none -translate-x-1/2 object-cover will-change-transform"
+        style={{ transform: `translate3d(0, ${offset}px, 0)` }}
+      />
+    </div>
+  );
+}
 
-        </div>
-      )}
+function HeroTitle({ title }: { title: string }) {
+  if (!title) return null;
+  return (
+    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+      <div
+        className="heading text-2xl font-bold text-center text-white pointer-events-auto"
+        style={{ textShadow: "0 6px 24px rgba(0,0,0,0.90), 0 1.5px 14px rgba(0,0,0,0.60)" }}
+      >
+        {title}
+      </div>
     </div>
   );
 }
