@@ -1,5 +1,6 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 import { Amenities } from "~/components/Amenities";
+import { FadeIn } from "~/components/FadeIn";
 import { Hero } from "~/components/Hero";
 import LocationMap from "~/components/LocationMap";
 import Offering, { type OfferingType } from "~/components/Offering";
@@ -67,7 +68,11 @@ function Workshops() {
     <>
       <h2 className="heading text-center uppercase">Workshops</h2>
       <section className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4">
-        {workshops?.map((workshop: OfferingType) => <Offering key={workshop.id} offering={workshop} />)}
+        {workshops?.map((workshop: OfferingType, i: number) => (
+          <FadeIn key={workshop.id} delay={i * 0.08} className="h-full grid">
+            <Offering key={workshop.id} offering={workshop} />
+          </FadeIn>
+        ))}
       </section>
     </>
   )
@@ -80,7 +85,11 @@ function Offerings() {
     <>
       <h2 className="heading text-center">Classes</h2>
       <section className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4">
-        {offerings?.map((offering: OfferingType) => <Offering key={offering.id} offering={offering} />)}
+        {offerings?.map((offering: OfferingType, i: number) => (
+          <FadeIn key={offering.id} delay={i * 0.08} className="h-full grid">
+            <Offering key={offering.id} offering={offering} />
+          </FadeIn>
+        ))}
       </section>
     </>
   )

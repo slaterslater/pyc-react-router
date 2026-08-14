@@ -7,6 +7,7 @@ import { Reviews } from "~/components/Reviews";
 import type { OfferingType } from "~/components/Offering";
 import Offering from "~/components/Offering";
 import IntroOffer from "~/components/IntroOffer";
+import { FadeIn } from "~/components/FadeIn";
 
 export function meta() {
   const { name, siteName } = useRouteLoaderData("routes/studios.$studio")
@@ -30,7 +31,11 @@ export default function IndividualStudioRoute() {
       {/* <p className="mx-auto text-center text-light-gray max-w-5xl leading-relaxed text-2xl font-medium px-4 py-7">Power Yoga Collective is your home for hot power yoga. Our locally operated studios deliver heated classes that build strength, flexibility, and resilience, while fostering connection, consistency, and community across every location.</p> */}
       {offerings && (
         <section className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4">
-          {offerings.map((offering: OfferingType) => <Offering key={offering.id} offering={offering} />)}
+          {offerings.map((offering: OfferingType, i: number) => (
+            <FadeIn key={offering.id} delay={i * 0.08} className="h-full grid">
+              <Offering key={offering.id} offering={offering} />
+            </FadeIn>
+          ))}
         </section>
       )}
       <IntroOffer />

@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router";
 import { STUDIO_TEACHERS_QUERY } from "~/graphql/queries/studioTeacherQuery";
 import { payload } from "~/lib/payloadClient.server";
 import { useRef, useState } from "react";
+import { FadeIn } from "~/components/FadeIn";
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const { studio } = params;
@@ -20,7 +21,11 @@ export default function StudioTeachingTeam() {
     <>
       <h1 className="heading uppercase py-4 text-center">meet the {name} teaching team</h1>
       <section className={`grid ${gridCols} gap-4 px-4`}>
-        {teachers.docs.map((teacher: Teacher) => <Teacher key={teacher.id} teacher={teacher} />)}
+        {teachers.docs.map((teacher: Teacher, i: number) => (
+          <FadeIn key={teacher.id} delay={i * 0.08} className="h-full grid">
+            <Teacher teacher={teacher} />
+          </FadeIn>
+        ))}
       </section>
     </>
   )
@@ -48,22 +53,22 @@ function Teacher({ teacher }: { teacher: Teacher }) {
       <img
         src={teacher.image.thumbnailURL}
         alt={teacher.name}
-        className="aspect-square object-cover w-full bg-cream"
+        className="aspect-square object-cover w-full bg-cream rounded-sm"
         aria-hidden="true"
       />
       {!showDescription && (
         <div className="absolute inset-0 flex items-end justify-center pointer-events-none">
-          <h3 className="heading text-red text-5xl uppercase px-2 pb-22 rounded text-center">{teacher.name}</h3>
+          <h3 className="heading text-red text-4xl uppercase px-2 pb-22 rounded text-center">{teacher.name}</h3>
         </div>
       )}
       {showDescription && (
         <div
-          className="h-full w-full flex flex-col items-start justify-center absolute bottom-0 left-0 right-0 bg-charcoal/70 text-white p-8"
+          className="h-full w-full flex flex-col items-start justify-center absolute bottom-0 left-0 right-0 bg-charcoal/70 text-white p-8 rounded-sm"
           role="dialog"
           aria-modal="false"
         >
           <h3 className="text-xl uppercase text-white py-4 text-left">{teacher.name}</h3>
-          <p className="max-h-[70%] overflow-y-hidden">{teacher.description}</p>
+          <p className="max-h-[75%] overflow-y-hidden text-sm">{teacher.description}</p>
         </div>
       )}
     </div>
