@@ -1,5 +1,6 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 import ComingSoon from "~/components/ComingSoon";
+import { Hero } from "~/components/Hero";
 import { PageLayout } from "~/components/PageLayout";
 import { PAGE_QUERY } from "~/graphql/queries/pageQuery";
 import { getSite } from "~/lib/getSite.server";
@@ -25,11 +26,13 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 }
 
 export default function PageRoute() {
-  const { title } = useLoaderData<typeof loader>()
+  const { title, banner, content } = useLoaderData<typeof loader>()
 
+
+  console.log({ banner, content })
   return (
     <PageLayout>
-      <ComingSoon title={title} />
+      <Hero hero={{ title, ...banner }} />
     </PageLayout>
   )
 }

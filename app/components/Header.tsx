@@ -6,6 +6,7 @@ import { MindbodyLink } from "./MindbodyLink";
 import { NavProvider } from "./navigation/NavProvider";
 import { HambugerButton } from "./navigation/HambugerButton";
 import { useSite } from "~/hooks/useSite";
+import { usePage } from "~/hooks/usePage";
 
 export function Header() {
 
@@ -30,6 +31,7 @@ export function Header() {
 
 function HeaderTitle() {
   const { isStudioPage, name, studioLink } = useStudio()
+  const { title } = usePage()
   const { site, logoSrc } = useSite()
 
   if (isStudioPage) {
@@ -48,7 +50,7 @@ function HeaderTitle() {
   return (
     <>
       <img src={logoSrc} alt="logo" width={225} className="w-[130px] md:w-[225px]" />
-      <h1 className="sr-only">Power Yoga {site.name}</h1>
+      <h1 className="sr-only">{title ?? `Power Yoga ${site.name}`}</h1>
     </>
   )
 }

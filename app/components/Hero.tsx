@@ -35,7 +35,7 @@ export function Hero({ hero }: HeroProps) {
 
   useEventListener('scroll', onScroll)
 
-  const media = hero?.media
+  const { media, title } = hero ?? {}
 
   return (
     <div className="w-full px-4">
@@ -55,6 +55,17 @@ export function Hero({ hero }: HeroProps) {
             className="hidden md:block absolute bg-charcoal left-1/2 top-[-10%] h-[120%] w-[102%] max-w-none -translate-x-1/2 object-cover will-change-transform"
             style={{ transform: `translate3d(0, ${offset}px, 0)` }}
           />
+        </div>
+      )}
+      {title && (
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div
+            className="heading text-4xl font-bold text-center text-white pointer-events-auto"
+            style={{ textShadow: "0 6px 24px rgba(0,0,0,0.90), 0 1.5px 14px rgba(0,0,0,0.60)" }}
+          >
+            {title}
+          </div>
+
         </div>
       )}
     </div>
