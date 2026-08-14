@@ -43,7 +43,7 @@ function HeroMedia({ media }: { media: HeroProps['hero']['media'] }) {
 
   useEventListener('scroll', onScroll)
 
-  if (!media) return null;
+  if (!media) return <div className="relative h-[390px] md:h-[500px] overflow-hidden rounded-md bg-charcoal" />;
 
   return (
     <div
@@ -70,7 +70,7 @@ function HeroTitle({ title }: { title: string }) {
   return (
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
       <div
-        className="heading text-2xl font-bold text-center text-white pointer-events-auto"
+        className="heading text-2xl font-bold text-center text-white pointer-events-auto px-8"
         style={{ textShadow: "0 6px 24px rgba(0,0,0,0.90), 0 1.5px 14px rgba(0,0,0,0.60)" }}
       >
         {title}
