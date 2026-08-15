@@ -56,6 +56,7 @@ export const STUDIO_QUERY = gql`
         }
         offerings(limit: 0) {
           docs {
+            introOffer
             offerings {
               ...OfferingFragment
             }

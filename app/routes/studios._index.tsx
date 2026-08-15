@@ -23,7 +23,7 @@ export default function StudiosIndexRoute() {
           <p>For general questions about PYC please email us at <a className="underline" href="mailto:info@poweryogacanada.com">info@poweryogacanada.com</a></p>
         </div>
       </div>
-      <section className={`grid grid-cols-1 md:grid-cols-2 gap-4 px-4`}>
+      <section className={`grid grid-cols-1 sm:grid-cols-2 gap-4 px-4`}>
         {data?.studios.map((studio: Studio) => <Studio key={studio.id} studio={studio} />)}
       </section>
     </>
@@ -36,11 +36,11 @@ function Studio({ studio }: { studio: Studio }) {
     `PYC - ${studio.name}`;
 
   return (
-    <div key={studio.id} className="bg-cream rounded-md px-8 py-10 flex flex-col gap-6">
+    <div key={studio.id} className="bg-cream rounded-md p-8 md:p-10 lg:p-12 flex flex-col gap-6">
       <Link to={`/studios/${studio.slug}`} className="underline">
         <h3 className="text-xl uppercase">{studioName}</h3>
       </Link>
-      <address className="not-italic uppercase">
+      <address className="not-italic uppercase text-sm">
         <div>{studio.address1} {studio.address2 && `- ${studio.address2}`}</div>
         <div>
           {[studio.city, studio.province || studio.state]
@@ -49,11 +49,16 @@ function Studio({ studio }: { studio: Studio }) {
         </div>
         <div>{studio.postalCode || studio.zip}</div>
       </address>
-      {(studio.phone || studio.email) && <div className="flex flex-col">
-        <div>{studio.phone}</div>
-        <a href={`mailto:${studio.email}`} className="underline">{studio.email}</a>
-      </div>
-      }
+      {(studio.phone || studio.email) && (
+        <div className="flex flex-col text-sm">
+          {studio.phone && (
+            <a href={`tel:${studio.phone.replace(/[^+\d]/g, "")}`} className="underline">
+              {studio.phone}
+            </a>
+          )}
+          <a href={`mailto:${studio.email}`} className="underline">{studio.email}</a>
+        </div>
+      )}
       <Link
         to={`/studios/${studio.slug}`}
         className="border border-black rounded-md px-2 py-1 flex items-center gap-2 w-fit uppercase"

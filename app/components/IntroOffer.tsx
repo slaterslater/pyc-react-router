@@ -2,10 +2,12 @@ import { useRouteLoaderData } from "react-router";
 import { MindbodyLink } from "./MindbodyLink";
 
 export default function IntroOffer() {
-  const { name } = useRouteLoaderData("routes/studios.$studio")
+  const { name, introOffer } = useRouteLoaderData("routes/studios.$studio")
+
+  if (!introOffer) return null;
+
   const studioName = name.toUpperCase().startsWith('PYC') ?
-    name :
-    `Power Yoga ${name}`;
+    name : `Power Yoga ${name}`;
 
   return (
     <div className="flex flex-col gap-4 p-4">
