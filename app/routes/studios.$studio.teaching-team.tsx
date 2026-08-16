@@ -2,8 +2,10 @@ import type { LoaderFunctionArgs } from "react-router";
 import { useLoaderData } from "react-router";
 import { STUDIO_TEACHERS_QUERY } from "~/graphql/queries/studioTeacherQuery";
 import { payload } from "~/lib/payloadClient.server";
-import { useRef, useState } from "react";
+import { useRef, useState, type RefObject } from "react";
 import { FadeIn } from "~/components/FadeIn";
+import { useOnClickOutside } from "usehooks-ts";
+import { motion } from "motion/react";
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const { studio } = params;
@@ -31,22 +33,30 @@ export default function StudioTeachingTeam() {
   )
 }
 
+
+
+
+
+const nameVariants = { hidden: { opacity: 1 }, show: { opacity: 0 } };
+const descVariants = { hidden: { opacity: 0 }, show: { opacity: 1 } };
+
 function Teacher({ teacher }: { teacher: Teacher }) {
-  const [showDescription, setShowDescription] = useState(false);
+  const [tapped, setTapped] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  useOnClickOutside(containerRef as RefObject<HTMLElement>, () => setTapped(false));
+
   return (
-    <div
-      key={teacher.id}
+    <motion.div
       ref={containerRef}
       tabIndex={0}
       role="button"
-      aria-pressed={showDescription}
       aria-label={`View description for ${teacher.name}`}
-      onMouseEnter={() => setShowDescription(true)}
-      onMouseLeave={() => setShowDescription(false)}
-      onFocus={() => setShowDescription(true)}
-      onBlur={() => setShowDescription(false)}
+      initial="hidden"
+      animate={tapped ? "show" : "hidden"} // touch toggle
+      whileHover="show"                     // desktop, device-filtered
+      whileFocus="show"                     // keyboard
+      onClick={() => setTapped((v) => !v)}  // touch/tap
       className="relative flex flex-col items-center justify-center outline-none"
       style={{ cursor: "pointer" }}
     >
@@ -56,22 +66,26 @@ function Teacher({ teacher }: { teacher: Teacher }) {
         className="aspect-square object-cover w-full bg-cream rounded-sm"
         aria-hidden="true"
       />
-      {!showDescription && (
-        <div className="absolute inset-0 flex items-end justify-center pointer-events-none">
-          <h3 className="heading text-red text-4xl uppercase px-2 pb-22 rounded text-center">{teacher.name}</h3>
-        </div>
-      )}
-      {showDescription && (
-        <div
-          className="h-full w-full flex flex-col items-start justify-center absolute bottom-0 left-0 right-0 bg-charcoal/70 text-white p-8 rounded-sm"
-          role="dialog"
-          aria-modal="false"
-        >
-          <h3 className="text-xl uppercase text-white py-4 text-left">{teacher.name}</h3>
-          <p className="max-h-[75%] overflow-y-hidden text-sm">{teacher.description}</p>
-        </div>
-      )}
-    </div>
+
+      <motion.div
+        variants={nameVariants}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className="absolute inset-0 flex items-end justify-center pointer-events-none"
+      >
+        <h3 className="heading text-red text-4xl uppercase px-2 pb-22 rounded text-center">
+          {teacher.name}
+        </h3>
+      </motion.div>
+
+      <motion.div
+        variants={descVariants}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className="h-full w-full flex flex-col items-start justify-center absolute bottom-0 left-0 right-0 bg-charcoal/70 text-white p-8 rounded-sm"
+      >
+        <h3 className="text-xl uppercase text-white py-4 text-left">{teacher.name}</h3>
+        <p className="max-h-[75%] overflow-y-hidden text-sm">{teacher.description}</p>
+      </motion.div>
+    </motion.div>
   );
 }
 
