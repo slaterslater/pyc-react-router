@@ -33,10 +33,6 @@ export default function StudioTeachingTeam() {
   )
 }
 
-
-
-
-
 const nameVariants = { hidden: { opacity: 1 }, show: { opacity: 0 } };
 const descVariants = { hidden: { opacity: 0 }, show: { opacity: 1 } };
 
@@ -72,7 +68,10 @@ function Teacher({ teacher }: { teacher: Teacher }) {
         transition={{ duration: 0.3, ease: "easeInOut" }}
         className="absolute inset-0 flex items-end justify-center pointer-events-none"
       >
-        <h3 className="heading text-red text-4xl uppercase px-2 pb-22 rounded text-center">
+        <h3
+          className="heading text-red text-4xl uppercase px-2 pb-22 rounded text-center"
+          style={{ textShadow: "0 2px 5px #cfc4b3, 0 1px 2px #cfc4b3" }}
+        >
           {teacher.name}
         </h3>
       </motion.div>
