@@ -1,6 +1,7 @@
 import { Outlet, type LoaderFunctionArgs } from "react-router";
 import { STUDIO_QUERY } from "~/graphql/queries/studioQuery";
 import { getSite } from "~/lib/getSite.server";
+// import { getSocialLinks } from "~/lib/getSocialLinks.server";
 import { payload } from "~/lib/payloadClient.server";
 
 export async function loader({ request, params }: LoaderFunctionArgs) {
@@ -37,6 +38,14 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
       },
     }
   ]
+
+  // const socialLinks = [
+  //   { instagram: studioData?.instagram },
+  //   { facebook: studioData?.facebook },
+  //   { tiktok: studioData?.tiktok },
+  //   { twitter: studioData?.twitter },
+  //   { youtube: studioData?.youtube },
+  // ]
 
   return {
     ...studioData,

@@ -68,6 +68,11 @@ export const STUDIO_QUERY = gql`
           name
           description
         }
+        instagram
+        facebook
+        tiktok  
+        twitter
+        youtube
       }
     }
   }

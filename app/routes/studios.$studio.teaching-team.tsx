@@ -70,7 +70,8 @@ function Teacher({ teacher }: { teacher: Teacher }) {
       >
         <h3
           className="heading text-red text-4xl uppercase px-2 pb-22 rounded text-center"
-          style={{ textShadow: "0 2px 5px #cfc4b3, 0 1px 2px #cfc4b3" }}
+          style={{ textShadow: "0 1px 1px #b8aa92, 0 1px 2px #b8aa92" }}
+
         >
           {teacher.name}
         </h3>
