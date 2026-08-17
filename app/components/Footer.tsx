@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
 import { Link, useRouteLoaderData } from "react-router";
 import { useSite } from "~/hooks/useSite";
+import { NavLink, type MenuLink } from "./navigation/NavLink";
 
 export function Footer() {
   const { footer } = useRouteLoaderData('root')
@@ -21,14 +22,12 @@ export function Footer() {
         </div>
       </div>
       <nav className="grid grid-cols-1 sm:grid-cols-3 gap-8 order-0 sm:order-2 max-w-[700px] flex-1 pl-4">
-        {footer.map(({ id, title, links }: { id: string, title: string, links: { text: string, url: string }[] }) => (
+        {footer.map(({ id, title, links }: { id: string, title: string, links: MenuLink[] }) => (
           <div key={id}>
             <h3 className="font-bold mb-3">{title}</h3>
-            <ul className="space-y-3">
-              {links.map(({ text }, index: number) => (
-                <li key={index}>
-                  {text}
-                </li>
+            <ul className="flex flex-col gap-3">
+              {links.map((link) => (
+                <NavLink link={link} key={link.id} />
               ))}
             </ul>
           </div>

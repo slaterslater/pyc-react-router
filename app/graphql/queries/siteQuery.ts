@@ -1,4 +1,5 @@
 import { gql } from "graphql-request";
+import { LINK_FIELDS } from "../fields/linkFields";
 
 export const SITE_QUERY = gql`
   query ($name: String!, $id: JSON!) {
@@ -35,8 +36,7 @@ export const SITE_QUERY = gql`
           id
           title
           links {
-            text
-            url
+            ${LINK_FIELDS}
           }
         }
       }
