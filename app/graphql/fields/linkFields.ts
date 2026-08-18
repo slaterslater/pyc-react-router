@@ -6,5 +6,8 @@ export const LINK_FIELDS = `
   mboLink
   page {
     slug
+    studio {
+      slug
+    }
   }
 `

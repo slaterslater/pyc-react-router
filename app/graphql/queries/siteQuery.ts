@@ -18,18 +18,13 @@ export const SITE_QUERY = gql`
             page {
               slug
               title
+              studio {
+                slug
+              }
             }
           }
           links {
-            id
-            text
-            type
-            url
-            mboLink
-            page {
-              slug
-              title
-            }
+            ${LINK_FIELDS}
           }
         }
         footer {
@@ -65,6 +60,9 @@ export const SITE_QUERY = gql`
           url
           page {
             slug
+            studio {
+              slug
+            }
           }
           mboLink
         }

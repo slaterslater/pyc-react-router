@@ -27,7 +27,12 @@ function External({ link, className }: { link: MenuLink, className?: string }) {
 function Internal({ link, className }: { link: MenuLink, className?: string }) {
   const { closeNav } = useNavContext()
   if (!link.page) return null;
-  return <Link to={`/${link.page.slug}`} onClick={closeNav} className={className}>{link.text}</Link>
+
+  const { slug, studio } = link.page;
+  let pageSlug = `/${slug}`
+  if (studio) pageSlug = `/studios/${studio.slug}` + pageSlug
+
+  return <Link to={pageSlug} onClick={closeNav} className={className}>{link.text}</Link>
 }
 
 function Mindbody({ link, className }: { link: MenuLink, className?: string }) {
@@ -45,5 +50,8 @@ export type MenuLink = {
   page?: {
     slug: string;
     title: string;
+    studio?: {
+      slug: string;
+    };
   };
 }

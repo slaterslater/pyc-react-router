@@ -1,5 +1,6 @@
 import { gql } from "graphql-request";
 import { OFFERING_FRAGMENT } from "../fragments/offeringFragment";
+import { LINK_FIELDS } from "../fields/linkFields";
 
 export const STUDIO_QUERY = gql`
   ${OFFERING_FRAGMENT}
@@ -40,14 +41,7 @@ export const STUDIO_QUERY = gql`
           }
         }
         studioNav {
-          id
-          type
-          text
-          url
-          page {
-            slug
-          }
-          mboLink
+          ${LINK_FIELDS}
         }
         workshops(limit: 0) {
           docs {
