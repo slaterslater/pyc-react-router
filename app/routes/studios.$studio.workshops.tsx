@@ -48,7 +48,7 @@ export default function StudioWorkshops() {
       <Amenities amenities={amenities} title="STUDIO AMENITIES" />
       <Workshops />
       <SweatDiscoverTransform />
-      <LocationMap fullAddress={fullAddress} />
+      <LocationMap fullAddress={`power yoga ${fullAddress}`} />
       <Offerings />
     </>
   )

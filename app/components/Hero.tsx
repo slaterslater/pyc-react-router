@@ -12,24 +12,25 @@ type HeroProps = {
       }
     };
   };
+  parallax?: boolean;
 };
 
-export function Hero({ hero }: HeroProps) {
+export function Hero({ hero, parallax = true }: HeroProps) {
   return (
     <div className="w-full relative">
-      <HeroMedia media={hero.media} />
+      <HeroMedia media={hero.media} parallax={parallax} />
       <HeroTitle title={hero.title} />
     </div>
   );
 }
 
-function HeroMedia({ media }: { media: HeroProps['hero']['media'] }) {
+function HeroMedia({ media, parallax }: { media: HeroProps['hero']['media'], parallax: boolean }) {
   const heroRef = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState(0);
   const prefersReducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)")
 
   const onScroll = () => {
-    if (prefersReducedMotion) return;
+    if (prefersReducedMotion || !parallax) return;
     const hero = heroRef.current;
     if (!hero) return;
 

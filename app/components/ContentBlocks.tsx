@@ -1,5 +1,6 @@
 import Grid from "./Grid";
 import { Hero } from "./Hero";
+import LocationMap from "./LocationMap";
 import { MindBodyWidget } from "./MindbodyWidget";
 import Offering from "./Offering";
 import { Review, type ReviewType } from "./Reviews";
@@ -43,13 +44,12 @@ export function ContentBlocks({ block }: { block: any }) {
       return <RichText data={block.richText} className={className} />
 
     case 'banner':
-      return <Hero hero={{ title: block.title, media: block.media }} />
+      return <Hero hero={{ title: block.title, media: block.media }} parallax={false} />
 
     case 'reviews':
       const { length } = block.reviews;
-      const cols = length > 2 ? 3 : length;
       return (
-        <div className={`grid grid-cols-${cols} gap-4`}>
+        <div className={`grid grid-cols-${length > 2 ? 3 : length} gap-4`}>
           {block.reviews.map((review: ReviewType) => <Review key={review.id} review={review} />)}
         </div>
       )
@@ -58,8 +58,18 @@ export function ContentBlocks({ block }: { block: any }) {
       return <MindBodyWidget html={block.code} />
 
     case 'locationMap':
-      console.log({ block })
-      return null
+      const addressParts = [
+        block.address1,
+        block.address2,
+        block.city,
+        block.province,
+        block.state,
+        block.zip,
+        block.postalCode,
+      ].filter(Boolean);
+
+      const fullAddress = addressParts.join(" ");
+      return <LocationMap fullAddress={fullAddress} />
 
     default:
       return <div className="text-center py-5 font-bold">{block.blockType}...</div>

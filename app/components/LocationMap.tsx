@@ -10,9 +10,9 @@ export default function LocationMap({ fullAddress }: { fullAddress: string }) {
           className="rounded-md h-[400px] w-full"
           width="100%"
           src={`https://maps.google.com/maps?width=600&height=400&hl=en&q=${encodeURIComponent(
-            `power yoga ${fullAddress}`
+            fullAddress
           )}&t=&z=16&ie=UTF8&iwloc=B&output=embed`}
-          title="Power Yoga Map"
+          title="LocationMap"
           // allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"

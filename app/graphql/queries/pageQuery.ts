@@ -75,6 +75,7 @@ export const PAGE_QUERY = gql`
             # ...Buttons fields
           }
           ... on Widget {
+            id
             blockType
             code
           }
