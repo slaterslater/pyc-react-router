@@ -1,12 +1,11 @@
 import { gql } from "graphql-request";
 import { MEDIA_FRAGMENT } from "../fragments/mediaFragment";
 import { OFFERING_FIELDS } from "../fields/offeringFields";
-import { IMAGE_FIELDS } from "../fields/imageFields";
 import { LINK_FIELDS } from "../fields/linkFields";
 
 export const PAGE_QUERY = gql`
   ${MEDIA_FRAGMENT}
-  query ($slug: String!) {
+  query ($slug: String!, $studio: String) {
     Pages(where: { slug: { equals: $slug } }) {
       docs {
         title
@@ -19,13 +18,11 @@ export const PAGE_QUERY = gql`
           }
         }
         content {
-          __typename
           ... on Grid {
             id
             blockType
             columns
             items {
-              __typename
               ... on Banner {
                 id
                 blockType
@@ -78,9 +75,8 @@ export const PAGE_QUERY = gql`
             # ...Buttons fields
           }
           ... on Widget {
-            id
             blockType
-            # ...Widget fields
+            code
           }
           ... on AmenitiesBlock {
             id
@@ -90,7 +86,13 @@ export const PAGE_QUERY = gql`
           ... on LocationMap {
             id
             blockType
-            # ...LocationMap fields
+            address1
+            address2
+            city
+            province
+            state
+            zip
+            postalCode
           }
           ... on Reviews {
             id
@@ -105,5 +107,11 @@ export const PAGE_QUERY = gql`
         }
       }
     }
+    Studios(where: { slug: { equals: $studio } }) {
+      docs {
+        id
+        name
+}
+}  
   }
 `;

@@ -6,10 +6,11 @@ import { getSite } from "~/lib/getSite.server";
 import { payload } from "~/lib/payloadClient.server";
 
 export async function loader({ request, params }: LoaderFunctionArgs) {
-  const { slug } = params
+  const { slug, studio } = params
 
-  const payloadData = await payload.request(PAGE_QUERY, { slug })
+  const payloadData = await payload.request(PAGE_QUERY, { slug, studio })
   const pageData = payloadData.Pages?.docs[0]
+  const studioData = payloadData.Studios?.docs[0]
 
   const site = getSite(request);
   const siteName = pageData?.site?.name;
@@ -20,7 +21,8 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
   }
 
   return {
-    ...pageData
+    ...pageData,
+    ...studioData
   }
 }
 
