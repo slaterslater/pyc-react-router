@@ -14,7 +14,7 @@ export function Reviews() {
       </div>
 
       <div className="grid w-full grid-cols-1 md:grid-cols-3 gap-4 px-5">
-        {reviews.map((review: Review) => (
+        {reviews.map((review: ReviewType) => (
           <Review key={review.id} review={review} />
         ))}
       </div>
@@ -22,7 +22,7 @@ export function Reviews() {
   )
 }
 
-export function Review({ review }: { review: Review }) {
+export function Review({ review }: { review: ReviewType }) {
   return (
     <article className="bg-cream rounded-md p-4 flex flex-col gap-4 flex-1 p-8">
       <p className="text-md">"{review.text}"</p>
@@ -37,7 +37,7 @@ export function Review({ review }: { review: Review }) {
   )
 }
 
-type Review = {
+export type ReviewType = {
   id: string
   text: string
   name: string

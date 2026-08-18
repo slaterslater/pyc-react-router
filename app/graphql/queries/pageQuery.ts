@@ -95,7 +95,12 @@ export const PAGE_QUERY = gql`
           ... on Reviews {
             id
             blockType
-            # ...Reviews fields
+            reviews {
+              id
+              text
+              name
+              description
+            }
           }
         }
       }
