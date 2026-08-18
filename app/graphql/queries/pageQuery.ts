@@ -1,5 +1,8 @@
 import { gql } from "graphql-request";
 import { MEDIA_FRAGMENT } from "../fragments/mediaFragment";
+import { OFFERING_FIELDS } from "../fields/offeringFields";
+import { IMAGE_FIELDS } from "../fields/imageFields";
+import { LINK_FIELDS } from "../fields/linkFields";
 
 export const PAGE_QUERY = gql`
   ${MEDIA_FRAGMENT}
@@ -36,12 +39,14 @@ export const PAGE_QUERY = gql`
               ... on OfferingBlock {
                 id
                 blockType
-                # ...OfferingBlock fields
+                ${OFFERING_FIELDS}
               }
               ... on Image {
                 id
                 blockType
-                # ...Image fields
+                media: image {
+                  ...MediaFragment
+                }
               }
               ... on ContactForm {
                 id
@@ -53,12 +58,19 @@ export const PAGE_QUERY = gql`
           ... on Banner {
             id
             blockType
-            # ...Banner fields
+            title
+            button {
+              ${LINK_FIELDS}
+            }
+              media {
+                ...MediaFragment
+              }
           }
           ... on Headline {
             id
             blockType
-            # ...Headline fields
+            heading
+            subtitle
           }
           ... on Buttons {
             id

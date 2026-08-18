@@ -12,7 +12,7 @@ export function Footer() {
     <footer className="w-full min-w-xs max-w-[1450px] mx-auto px-4 flex flex-col sm:flex-row flex-wrap py-8 gap-8 bg-white">
       <div className="flex flex-col gap-5 items-center justify-between w-fit mx-auto px-8 order-1">
         <Link to="/">
-          <img src={logoSrc} alt="logo" width={150} />
+          {logoSrc && <img src={logoSrc} alt="logo" width={150} />}
         </Link>
         <SocialLinks />
       </div>

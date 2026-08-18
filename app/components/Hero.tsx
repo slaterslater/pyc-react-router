@@ -16,7 +16,7 @@ type HeroProps = {
 
 export function Hero({ hero }: HeroProps) {
   return (
-    <div className="w-full px-4 relative">
+    <div className="w-full relative">
       <HeroMedia media={hero.media} />
       <HeroTitle title={hero.title} />
     </div>

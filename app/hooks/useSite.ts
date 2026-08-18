@@ -12,7 +12,7 @@ export function useSite() {
 }
 
 const logos = {
-  'Collective': '',
+  'Collective': null,
   'Canada': '/canada-logo.svg',
-  'USA': '',
+  'USA': null,
 }

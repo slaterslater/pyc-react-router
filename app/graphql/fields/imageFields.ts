@@ -1,9 +1,5 @@
-import { gql } from "graphql-request";
-
-export const MEDIA_FRAGMENT = gql`
-  fragment MediaFragment on Media {
-      alt
-      url
+export const IMAGE_FIELDS = `
+  alt
       sizes {
         thumbnail {
           url
@@ -16,4 +12,4 @@ export const MEDIA_FRAGMENT = gql`
         }
       }
     }
-`;
+`
