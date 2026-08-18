@@ -74,7 +74,7 @@ function ContentBlocks({ block }: { block: any }) {
         </div>
       )
     case "Text":
-      const className = 'bg-cream p-10 rounded-md flex flex-col gap-4 [&_h2]:text-2xl [&_h2]:uppercase'
+      const className = 'bg-cream p-10 lg:p-16 rounded-md flex flex-col gap-4 [&_h2]:text-2xl [&_h2]:uppercase'
       return <RichText data={block.richText} className={className} />
     case 'Banner':
       return <Hero hero={{ title: block.title, media: block.media }} />

@@ -1,4 +1,4 @@
-import { Link, useLoaderData, type LoaderFunctionArgs } from "react-router";
+import { Link, useLoaderData, useRouteLoaderData, type LoaderFunctionArgs } from "react-router";
 import { ALL_STUDIOS_QUERY } from "~/graphql/queries/allStudiosQuery";
 import { getSite } from "~/lib/getSite.server";
 import { payload } from "~/lib/payloadClient.server";
@@ -14,6 +14,10 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
 export default function StudiosIndexRoute() {
   const data = useLoaderData<typeof loader>()
+  const hasStudios = data.studios.length > 0;
+
+  const { sites, port } = useRouteLoaderData('root')
+  const portString = port ? `:${port}` : '';
 
   return (
     <>
@@ -24,7 +28,13 @@ export default function StudiosIndexRoute() {
         </div>
       </div>
       <section className={`grid grid-cols-1 sm:grid-cols-2 gap-4 px-4`}>
-        {data?.studios.map((studio: Studio) => <Studio key={studio.id} studio={studio} />)}
+        {hasStudios && data.studios.map((studio: Studio) => <Studio key={studio.id} studio={studio} />)}
+        {!hasStudios && (
+          <>
+            <a href={`//${sites.canada}${portString}/studios`} className="flex items-center gap-5 text-2xl px-4 md:justify-center"><img src="/flags/CA.svg" alt="power yoga Canada" width={64} className="rounded-xs" />Power Yoga Canada</a>
+            <a href={`//${sites.usa}${portString}/studios`} className="flex items-center gap-5 text-2xl px-4 md:justify-center"><img src="/flags/US.svg" alt="power yoga USA" width={64} className="rounded-xs" />Power Yoga USA</a>
+          </>
+        )}
       </section>
     </>
   )

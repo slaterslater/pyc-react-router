@@ -5,7 +5,7 @@ export default function Offering({ offering }: { offering: OfferingType }) {
   const { dates, time, cost, intensity, temperature } = offering;
 
   return (
-    <div className="bg-cream p-4 rounded-md p-6 text-sm flex flex-col gap-4">
+    <div className="bg-cream p-8 lg:p-12 rounded-md text-sm flex flex-col gap-4">
       <div>
         <h3 className="text-lg uppercase">{offering.title}</h3>
         <h4 className="lowercase italic">{offering.subtitle}</h4>
