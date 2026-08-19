@@ -1,3 +1,4 @@
+import { useRouteLoaderData } from "react-router";
 import Grid from "./Grid";
 import { Hero } from "./Hero";
 import LocationMap from "./LocationMap";
@@ -5,6 +6,9 @@ import { MindBodyWidget } from "./MindbodyWidget";
 import Offering from "./Offering";
 import { Review, type ReviewType } from "./Reviews";
 import { RichText } from "./RichText";
+import { Amenities } from "./Amenities";
+import { ButtonRow } from "./ButtonRow";
+import { ContactForm } from "./ContactForm";
 
 export function ContentBlocks({ block }: { block: any }) {
   switch (block.blockType) {
@@ -44,7 +48,6 @@ export function ContentBlocks({ block }: { block: any }) {
       return <RichText data={block.richText} className={className} />
 
     case 'banner':
-      console.log({ block })
       return <Hero hero={{ title: block.title, media: block.media }} parallax={false} />
 
     case 'reviews':
@@ -68,11 +71,24 @@ export function ContentBlocks({ block }: { block: any }) {
         block.zip,
         block.postalCode,
       ].filter(Boolean);
+      return <LocationMap fullAddress={addressParts.join(" ")} />
 
-      const fullAddress = addressParts.join(" ");
-      return <LocationMap fullAddress={fullAddress} />
+    case 'amenities':
+      return <AmenitiesContentBlocks block={block} />;
+
+    case 'buttons':
+      return <ButtonRow buttons={block.buttons} className="py-6" />
+
+    case 'contactForm':
+      return <ContactForm />
 
     default:
-      return <div className="text-center py-5 font-bold">{block.blockType}...</div>
+      // return <div className="text-center py-5 font-bold">{block.blockType}...</div>
+      return null
   }
+}
+
+function AmenitiesContentBlocks({ block }: { block: any }) {
+  const studioData = useRouteLoaderData('routes/studios.$studio_.$slug')
+  return <Amenities amenities={studioData?.amenities} />
 }

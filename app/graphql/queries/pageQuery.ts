@@ -72,7 +72,9 @@ export const PAGE_QUERY = gql`
           ... on Buttons {
             id
             blockType
-            # ...Buttons fields
+            buttons { 
+              ${LINK_FIELDS}
+            }
           }
           ... on Widget {
             id
@@ -115,9 +117,15 @@ export const PAGE_QUERY = gql`
         studioNav {
           ${LINK_FIELDS}
         }
-         workshops(limit: 1) {
+        workshops(limit: 1) {
           docs {
             id
+          }
+        }
+        amenities {
+          name
+          image {
+            url
           }
         }  
       }
