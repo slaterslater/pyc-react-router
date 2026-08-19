@@ -19,6 +19,8 @@ export default function StudiosIndexRoute() {
   const { sites, port } = useRouteLoaderData('root')
   const portString = port ? `:${port}` : '';
 
+  const anchorClass = 'flex items-center gap-5 text-2xl px-6 md:justify-center py-4 md:py-16 [&_span]:underline';
+
   return (
     <>
       <div className="w-full px-4">
@@ -31,8 +33,8 @@ export default function StudiosIndexRoute() {
         {hasStudios && data.studios.map((studio: Studio) => <Studio key={studio.id} studio={studio} />)}
         {!hasStudios && (
           <>
-            <a href={`//${sites.canada}${portString}/studios`} className="flex items-center gap-5 text-2xl px-4 md:justify-center"><img src="/flags/CA.svg" alt="power yoga Canada" width={64} className="rounded-xs" />Power Yoga Canada</a>
-            <a href={`//${sites.usa}${portString}/studios`} className="flex items-center gap-5 text-2xl px-4 md:justify-center"><img src="/flags/US.svg" alt="power yoga USA" width={64} className="rounded-xs" />Power Yoga USA</a>
+            <a href={`//${sites.canada}${portString}/studios`} className={anchorClass}><img src="/flags/CA.svg" alt="power yoga Canada" width={64} className="rounded-xs" /><span>Power Yoga Canada</span></a>
+            <a href={`//${sites.usa}${portString}/studios`} className={anchorClass}><img src="/flags/US.svg" alt="power yoga USA" width={64} className="rounded-xs" /><span>Power Yoga USA</span></a>
           </>
         )}
       </section>
