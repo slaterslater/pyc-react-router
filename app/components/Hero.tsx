@@ -5,6 +5,7 @@ type HeroProps = {
   hero: {
     title: string;
     media?: {
+      url: string;
       sizes:
       {
         desktop: { url: string },
@@ -46,18 +47,20 @@ function HeroMedia({ media, parallax }: { media: HeroProps['hero']['media'], par
 
   if (!media) return <div className="relative h-[390px] md:h-[500px] overflow-hidden rounded-md bg-charcoal" />;
 
+  const { tablet, desktop } = media.sizes;
+
   return (
     <div
       ref={heroRef}
       className="relative h-[390px] md:h-[500px] overflow-hidden rounded-md"
     >
       <img
-        src={media.sizes.tablet.url}
+        src={tablet.url || media.url}
         alt=""
         className="md:hidden absolute inset-0 h-full w-full object-cover bg-charcoal"
       />
       <img
-        src={media.sizes.desktop.url || media.sizes.tablet.url}
+        src={desktop.url || tablet.url || media.url}
         alt=""
         className="hidden md:block absolute bg-charcoal left-1/2 top-[-10%] h-[120%] w-[102%] max-w-none -translate-x-1/2 object-cover will-change-transform"
         style={{ transform: `translate3d(0, ${offset}px, 0)` }}

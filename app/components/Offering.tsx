@@ -3,6 +3,8 @@ import { NavLink, type MenuLink } from "./navigation/NavLink";
 export default function Offering({ offering }: { offering: OfferingType }) {
 
   const { dates, time, cost, intensity, temperature } = offering;
+  const { page, url, mboLink } = offering.button;
+  const hasButtonLink = page || url || mboLink;
 
   return (
     <div className="bg-cream p-8 lg:p-12 rounded-md flex flex-col gap-4">
@@ -20,7 +22,7 @@ export default function Offering({ offering }: { offering: OfferingType }) {
       <p className="text-md py-5">{offering.description}</p>
       {offering.button && (
         <div className="flex justify-center items-center gap-2 mt-4">
-          <img src="/pyc-icon.png" alt="" className="w-3 h-3" />
+          {hasButtonLink && <img src="/pyc-icon.png" alt="" className="w-3 h-3" />}
           <NavLink
             key={offering.button?.id}
             link={offering.button}

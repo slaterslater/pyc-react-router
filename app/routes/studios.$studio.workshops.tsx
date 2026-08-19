@@ -39,8 +39,7 @@ export default function StudioWorkshops() {
 
   return (
     <>
-      {/* <Hero hero={hero} /> */}
-      <Amenities amenities={amenities} title="STUDIO AMENITIES" />
+      <Amenities amenities={amenities} />
       <Workshops />
       <SweatDiscoverTransform />
       <LocationMap fullAddress={`power yoga ${fullAddress}`} />
@@ -61,7 +60,7 @@ function Workshops() {
   if (!workshops) return null;
   return (
     <>
-      <h2 className="heading text-center uppercase">Workshops</h2>
+      <h2 className="heading text-center uppercase py-4">Workshops</h2>
       <section className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4">
         {workshops?.map((workshop: OfferingType, i: number) => (
           <FadeIn key={workshop.id} delay={i * 0.08} className="h-full grid">

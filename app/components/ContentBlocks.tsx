@@ -33,9 +33,9 @@ export function ContentBlocks({ block }: { block: any }) {
     case "headline":
       const { heading, subtitle } = block;
       return (
-        <div className="flex flex-col gap-4 text-center py-10">
-          <h2 className="text-2xl font-bold">{heading}</h2>
-          {subtitle && <div className="text-lg">{subtitle}</div>}
+        <div className="flex flex-col gap-4 text-center py-10 px-8">
+          {heading && <h2 className="text-2xl font-bold">{heading}</h2>}
+          {subtitle && <div className="text-lg max-w-4xl mx-auto">{subtitle}</div>}
         </div>
       )
 
@@ -44,12 +44,13 @@ export function ContentBlocks({ block }: { block: any }) {
       return <RichText data={block.richText} className={className} />
 
     case 'banner':
+      console.log({ block })
       return <Hero hero={{ title: block.title, media: block.media }} parallax={false} />
 
     case 'reviews':
-      const { length } = block.reviews;
+      const cols = Math.min(block.reviews.length, 3)
       return (
-        <div className={`grid grid-cols-${length > 2 ? 3 : length} gap-4`}>
+        <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}>
           {block.reviews.map((review: ReviewType) => <Review key={review.id} review={review} />)}
         </div>
       )

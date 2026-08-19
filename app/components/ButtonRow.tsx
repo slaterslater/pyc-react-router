@@ -2,7 +2,7 @@ import { NavLink, type MenuLink } from "./navigation/NavLink";
 
 export function ButtonRow({ buttons }: { buttons: MenuLink[] }) {
   return (
-    <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-2 w-full px-8">
+    <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-2 w-full px-8 pb-3">
       {buttons.map((button) => (
         <NavLink
           key={button.id}

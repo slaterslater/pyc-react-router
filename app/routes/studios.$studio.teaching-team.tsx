@@ -21,7 +21,7 @@ export default function StudioTeachingTeam() {
 
   return (
     <>
-      <h1 className="heading uppercase py-4 text-center">meet the {name} teaching team</h1>
+      <h2 className="heading uppercase py-5 text-center">meet the {name} teaching team</h2>
       <section className={`grid ${gridCols} gap-4 px-4`}>
         {teachers.docs.map((teacher: Teacher, i: number) => (
           <FadeIn key={teacher.id} delay={i * 0.08} className="h-full grid">
