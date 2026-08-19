@@ -10,11 +10,9 @@ export function Amenities({ amenities, title }: Amenities & { title?: string }) 
             <img
               src={amenity.image.url}
               alt={amenity.name}
-              // width={135}
-              // height={135}
               className="w-18 h-20 md:w-22 md:h-22 object-contain"
             />
-            {/* {amenity.name} */}
+            {amenity.name}
           </div>
         ))}
       </div>
