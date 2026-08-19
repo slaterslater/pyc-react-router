@@ -4,14 +4,14 @@ import type { loader } from "~/routes/studios.$studio";
 export function useStudio() {
   const { studio } = useParams(); // only set on /studios/:studio/*
 
-  const studioData = useRouteLoaderData("routes/studios.$studio") as
-    | Awaited<ReturnType<typeof loader>>
-    | undefined;
+  const studioLayout = useRouteLoaderData("routes/studios.$studio")
+  const studioSlugPage = useRouteLoaderData("routes/studios.$studio_.$slug")
+  const studioData = studioLayout ?? studioSlugPage
 
   return {
-    isStudioPage: Boolean(studio), // not /studios list, not home
+    isStudioPage: Boolean(studioData),
     name: studioData?.name,
     loginLink: studioData?.loginLink,
     studioLink: studio ? `/studios/${studio}` : "/studios",
-  };
+  }
 }

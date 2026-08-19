@@ -43,7 +43,7 @@ export const STUDIO_QUERY = gql`
         studioNav {
           ${LINK_FIELDS}
         }
-        workshops(limit: 0) {
+        workshops(limit: 1) {
           docs {
             id
           }

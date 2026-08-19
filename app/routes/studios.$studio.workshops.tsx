@@ -35,16 +35,11 @@ export async function loader({ params }: LoaderFunctionArgs) {
 }
 
 export default function StudioWorkshops() {
-  const { media, amenities, fullAddress } = useLoaderData<typeof loader>();
-
-  const hero = {
-    title: "Workshops",
-    media
-  }
+  const { amenities, fullAddress } = useLoaderData<typeof loader>();
 
   return (
     <>
-      <Hero hero={hero} />
+      {/* <Hero hero={hero} /> */}
       <Amenities amenities={amenities} title="STUDIO AMENITIES" />
       <Workshops />
       <SweatDiscoverTransform />

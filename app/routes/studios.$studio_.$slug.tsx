@@ -1,8 +1,10 @@
-import { useLoaderData, type LoaderFunctionArgs } from "react-router";
+import { useLoaderData, useRouteLoaderData, type LoaderFunctionArgs } from "react-router";
+import { ButtonRow } from "~/components/ButtonRow";
 import { ContentBlocks } from "~/components/ContentBlocks";
 import { Hero } from "~/components/Hero";
 import { PAGE_QUERY } from "~/graphql/queries/pageQuery";
 import { getSite } from "~/lib/getSite.server";
+import { getStudioNav } from "~/lib/getStudioNav.server";
 import { payload } from "~/lib/payloadClient.server";
 
 export async function loader({ request, params }: LoaderFunctionArgs) {
@@ -20,20 +22,22 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
     throw new Error("Page not found")
   }
 
+  const studioNav = getStudioNav(studio, studioData)
+
   return {
     ...pageData,
-    ...studioData
+    ...studioData,
+    studioNav,
   }
 }
 
 export default function StudioSubpage() {
-  const { title, banner, content } = useLoaderData<typeof loader>()
-
-  console.log({ content })
+  const { title, banner, content, studioNav } = useLoaderData<typeof loader>()
 
   return (
     <>
       <Hero hero={{ title, ...banner }} />
+      <ButtonRow buttons={studioNav} />
       <section className="w-full flex flex-col gap-4">
         {content.map((block: any) => (
           <ContentBlocks key={block.id} block={block} />

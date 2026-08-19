@@ -22,8 +22,8 @@ export default function IndividualStudioRoute() {
 
   return (
     <>
-      <Hero hero={banner} />
-      <ButtonRow buttons={studioNav} />
+      {/* <Hero hero={banner} /> */}
+      {/* <ButtonRow buttons={studioNav} /> */}
       <p className="big-copy">{description}</p>
       <MindBodyWidget html={schedule} key={id} />
       <Amenities amenities={amenities} title="Studio Amenities" />

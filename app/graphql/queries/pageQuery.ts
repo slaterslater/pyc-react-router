@@ -112,7 +112,15 @@ export const PAGE_QUERY = gql`
       docs {
         id
         name
-}
-}  
+        studioNav {
+          ${LINK_FIELDS}
+        }
+         workshops(limit: 1) {
+          docs {
+            id
+          }
+        }  
+      }
+    }
   }
 `;
