@@ -59,9 +59,9 @@ export const PAGE_QUERY = gql`
             button {
               ${LINK_FIELDS}
             }
-              media {
-                ...MediaFragment
-              }
+            media {
+              ...MediaFragment
+            }
           }
           ... on Headline {
             id

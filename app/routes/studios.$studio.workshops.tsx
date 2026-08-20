@@ -4,6 +4,7 @@ import { FadeIn } from "~/components/FadeIn";
 import { Hero } from "~/components/Hero";
 import LocationMap from "~/components/LocationMap";
 import Offering, { type OfferingType } from "~/components/Offering";
+import { SweatDiscoverTransform } from "~/components/SweatDiscoverTransform";
 import { STUDIO_WORKSHOP_QUERY } from "~/graphql/queries/studioWorkshopQuery";
 import { payload } from "~/lib/payloadClient.server";
 
@@ -45,13 +46,6 @@ export default function StudioWorkshops() {
       <LocationMap fullAddress={`power yoga ${fullAddress}`} />
       <Offerings />
     </>
-  )
-}
-
-function SweatDiscoverTransform() {
-  const spanSpacing = "px-4";
-  return (
-    <h2 className="hidden md:block heading text-center uppercase py-4">sweat <span className={spanSpacing}>|</span> discover <span className={spanSpacing}>|</span> transform</h2>
   )
 }
 
