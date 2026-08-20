@@ -4,9 +4,9 @@ import { useNavContext } from "./NavProvider"
 export function HambugerButton() {
   const { toggleNav } = useNavContext()
   return (
-    <button onClick={toggleNav}>
-      <RxHamburgerMenu size={42} className="hidden md:block" />
-      <RxHamburgerMenu size={32} className="block md:hidden" />
+    <button onClick={toggleNav} aria-label="Open navigation menu" title="Open navigation menu">
+      <RxHamburgerMenu size={42} className="hidden md:block" aria-hidden="true" focusable="false" />
+      <RxHamburgerMenu size={32} className="block md:hidden" aria-hidden="true" focusable="false" />
     </button>
   )
 }

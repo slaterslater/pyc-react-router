@@ -22,7 +22,7 @@ export function Footer() {
             <h3 className="font-bold mb-3">{title}</h3>
             <ul className="flex flex-col gap-3">
               {links.map((link) => (
-                <NavLink link={link} key={link.id} />
+                <li key={link.id}><NavLink link={link} /></li>
               ))}
             </ul>
           </div>
@@ -39,19 +39,19 @@ function SocialLinks() {
 
   return (
     <div className="flex items-center gap-6 text-light-gray">
-      {instagram && <SocialLink link={instagram} icon={<FaInstagram size={25} />} />}
-      {facebook && <SocialLink link={facebook} icon={<FaFacebook size={25} />} />}
-      {tiktok && <SocialLink link={tiktok} icon={<FaTiktok size={25} />} />}
-      {twitter && <SocialLink link={twitter} icon={<FaTwitter size={25} />} />}
-      {youtube && <SocialLink link={youtube} icon={<FaYoutube size={25} />} />}
+      {instagram && <SocialLink link={instagram} icon={<FaInstagram size={25} />} name="Instagram" />}
+      {facebook && <SocialLink link={facebook} icon={<FaFacebook size={25} />} name="Facebook" />}
+      {tiktok && <SocialLink link={tiktok} icon={<FaTiktok size={25} />} name="TikTok" />}
+      {twitter && <SocialLink link={twitter} icon={<FaTwitter size={25} />} name="Twitter" />}
+      {youtube && <SocialLink link={youtube} icon={<FaYoutube size={25} />} name="YouTube" />}
     </div>
   )
 }
 
-function SocialLink({ link, icon }: { link: string, icon: React.ReactNode }) {
+function SocialLink({ link, icon, name }: { link: string, icon: React.ReactNode, name: string }) {
   return (
-    <a href={link} target="_blank" rel="noopener noreferrer">
+    <a href={link} target="_blank" rel="noopener noreferrer" aria-label={name} title={name}>
       {icon}
-    </ a>
+    </a>
   )
 }
