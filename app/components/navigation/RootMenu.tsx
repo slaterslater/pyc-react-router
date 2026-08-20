@@ -8,10 +8,11 @@ import { useSite } from "~/hooks/useSite";
 export function RootMenu() {
   const { site } = useSite()
   const { menu } = useRouteLoaderData('root')
+  const { closeNav } = useNavContext()
 
   return (
     <>
-      <Link to="/" className="font-semibold">Power Yoga {site?.name}</Link>
+      <Link to="/" className="font-semibold" onClick={closeNav}>Power Yoga {site?.name}</Link>
       <StudioList />
       {menu.map((item: MenuGroup) => {
         if (item.type === 'group') return <MenuGroupButton key={item.id} item={item} />

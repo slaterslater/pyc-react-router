@@ -31,7 +31,7 @@ export function NavAside() {
             </motion.div>
           </AnimatePresence>
         </div>
-        <SiteList />
+        {/* <SiteList /> */}
       </nav>
     </Aside>
   );

@@ -2,10 +2,11 @@ import { IoChevronBackOutline, IoCloseOutline } from "react-icons/io5";
 import { useNavContext } from "./NavProvider"
 import { useSite } from "~/hooks/useSite";
 import { Link } from "react-router";
+import { SiteList } from "./SiteList";
 
 export function NavHeader() {
   return (
-    <div className="flex justify-end items-center pt-3 pb-5">
+    <div className="flex justify-end items-center pt-3 pb-7">
       <GroupTitle />
       <CloseButton />
     </div>
@@ -29,12 +30,9 @@ export function GroupTitle() {
   const { group, goRoot } = useNavContext();
   // const { site } = useSite();
 
-  if (!group) return (null
-    // <h2 className="text-md font-semibold text-cream">
-    //   {/* <Link to="/">Power Yoga {site?.name}</Link> */}
-    //   Power Yoga {site?.name}
-    // </h2>
-  );
+  if (!group) return <SiteList />
+  // if (!group) return null
+
 
   return (
     <>

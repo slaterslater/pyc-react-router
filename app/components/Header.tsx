@@ -48,10 +48,10 @@ function HeaderTitle() {
   }
 
   return (
-    <>
+    <Link to="/">
       {logoSrc && <img src={logoSrc} alt="logo" width={225} className="w-[130px] md:w-[225px]" />}
       <h1 className="sr-only">{title ?? `Power Yoga ${site.name}`}</h1>
-    </>
+    </Link>
   )
 }
 
