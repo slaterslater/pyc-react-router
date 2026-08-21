@@ -23,13 +23,13 @@ export default function StudiosIndexRoute() {
 
   return (
     <>
-      <div className="w-full px-4">
+      <div className="w-full">
         <div className="flex flex-col items-center justify-center gap-4 px-4 bg-charcoal text-white w-full h-[390px] md:h-[500px] rounded-md text-center">
           <h1 className="heading text-white uppercase">contact us</h1>
           <p>For general questions about PYC please email us at <a className="underline" href="mailto:info@poweryogacanada.com">info@poweryogacanada.com</a></p>
         </div>
       </div>
-      <section className={`grid grid-cols-1 sm:grid-cols-2 gap-4 px-4`}>
+      <section className={`grid grid-cols-1 sm:grid-cols-2 gap-4`}>
         {hasStudios && data.studios.map((studio: Studio) => <Studio key={studio.id} studio={studio} />)}
         {!hasStudios && (
           <>
