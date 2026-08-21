@@ -18,16 +18,21 @@ export function meta() {
 }
 
 export default function IndividualStudioRoute() {
-  const { id, banner, description, schedule, amenities, studioNav, offerings } = useRouteLoaderData("routes/studios.$studio")
+  const { id, description, schedule, amenities, reviews, offerings } = useRouteLoaderData("routes/studios.$studio")
 
   return (
     <>
       {/* <Hero hero={banner} /> */}
       {/* <ButtonRow buttons={studioNav} /> */}
-      <p className="big-copy">{description}</p>
+      <p className="subtitle">{description}</p>
       <MindBodyWidget html={schedule} key={id} />
       <Amenities amenities={amenities} title="Studio Amenities" />
-      <Reviews />
+      <div className="bg-charcoal w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
+        <h2 className="text-white text-center uppercase text-xl font-medium py-6 max-w-5xl mx-auto">
+          our community
+        </h2>
+      </div>
+      <Reviews reviews={reviews} />
       {/* <p className="mx-auto text-center text-light-gray max-w-5xl leading-relaxed text-2xl font-medium px-4 py-7">Power Yoga Collective is your home for hot power yoga. Our locally operated studios deliver heated classes that build strength, flexibility, and resilience, while fostering connection, consistency, and community across every location.</p> */}
       {offerings && (
         <section className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 max-w-[1200px] mx-auto">

@@ -1,8 +1,9 @@
 import { Link, useLoaderData, useRouteLoaderData, type LoaderFunctionArgs } from "react-router";
+import { ButtonRow } from "~/components/ButtonRow";
 import { Cards } from "~/components/Cards";
 import { Hero } from "~/components/Hero";
 import { PageLayout } from "~/components/PageLayout";
-import { Review } from "~/components/Reviews";
+import { Review, Reviews } from "~/components/Reviews";
 import { SweatDiscoverTransform } from "~/components/SweatDiscoverTransform";
 import { HOMEPAGE_QUERY } from "~/graphql/queries/homepageQuery";
 import { getSite } from "~/lib/getSite.server";
@@ -25,7 +26,6 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
 export default function Home() {
   const data = useLoaderData<typeof loader>()
-  // const { banner1 } = useLoadeData<typeof loader>()
 
   console.log({ data })
 
@@ -35,6 +35,13 @@ export default function Home() {
       <SweatDiscoverTransform />
       <Cards cards={data.cards} />
       <Hero hero={data.banner2} parallax={false} />
+      <p className="subtitle max-w-5xl mx-auto">Power Yoga Canada operates locally owned hot power yoga studios across Canada, offering consistent heated classes in communities including Toronto, Oakville, Sudbury, Barrie, and beyond.</p>
+      <ButtonRow buttons={data.homepageNav} />
+      <h2 className="heading text-center uppercase">see what our members say</h2>
+      <p className="subtitle">From first-time students to long-time members, Power Yoga Canada<br />studios are built around consistency, encouragement, and shared growth.</p>
+      <Reviews reviews={data.reviews} />
+      <h2 className="heading text-center uppercase">more than a workout</h2>
+      {/* <Hero hero={data.banner3} parallax={false} /> */}
     </PageLayout>
   );
 }

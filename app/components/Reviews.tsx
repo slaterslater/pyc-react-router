@@ -1,24 +1,13 @@
-import { useRouteLoaderData } from "react-router"
-
-export function Reviews() {
-  const { reviews } = useRouteLoaderData("routes/studios.$studio")
+export function Reviews({ reviews }: { reviews: ReviewType[] }) {
 
   if (!reviews || reviews.length === 0) return null;
 
   return (
-    <>
-      <div className="bg-charcoal w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
-        <h2 className="text-white text-center uppercase text-xl font-medium py-6 max-w-5xl mx-auto">
-          our community
-        </h2>
-      </div>
-
-      <div className="grid w-full grid-cols-1 md:grid-cols-3 gap-4 px-5">
-        {reviews.map((review: ReviewType) => (
-          <Review key={review.id} review={review} />
-        ))}
-      </div>
-    </>
+    <div className="grid w-full grid-cols-1 md:grid-cols-3 gap-4 px-5">
+      {reviews.map((review: ReviewType) => (
+        <Review key={review.id} review={review} />
+      ))}
+    </div>
   )
 }
 

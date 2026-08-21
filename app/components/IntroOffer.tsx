@@ -12,7 +12,7 @@ export default function IntroOffer() {
   return (
     <div className="flex flex-col gap-4 p-4">
       <h2 className="heading text-center capitalize">New to {studioName}?</h2>
-      <p className="big-copy">Get started with our 30 Days Unlimited Yoga Intro Special available at every studio. Find the flexible class passes or membership to power your practice</p>
+      <p className="subtitle">Get started with our 30 Days Unlimited Yoga Intro Special available at every studio. Find the flexible class passes or membership to power your practice</p>
       <MindbodyLink html="" className="btn-red">View Intro Offer</MindbodyLink>
     </div>
   )
