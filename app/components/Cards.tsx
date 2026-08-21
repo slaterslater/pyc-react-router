@@ -22,7 +22,7 @@ function Card({ card }: { card: CardType }) {
     >
       {/* {card.title} */}
       {/* <NavLink link={card.button} /> */}
-      <div className="flex justify-center text-center items-center gap-2 mt-4 border border-white p-2 rounded-md bg-black/40">
+      <div className="flex justify-center text-center items-center gap-2 mt-4 border border-white py-2 px-4 rounded-md bg-black/40 min-w-[150px]">
         <img src="/pyc-icon.png" alt="" className="w-3 h-3" />
         <NavLink
           link={card.button}

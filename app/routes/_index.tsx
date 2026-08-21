@@ -51,7 +51,7 @@ export default function Home() {
       <div className="flex flex-col gap-4 p-4 justify-center items-center">
         <h2 className="heading text-center capitalize">New to Power Yoga {site.name}?</h2>
         <p className="subtitle">Get started with our 30 Days Unlimited Yoga Intro Special available at every studio. Find the flexible class passes or membership to power your practice</p>
-        <Link to="/studios" className="btn-red w-fit rounded-md px-4 py-2 uppercase">View Intro Offers</Link>
+        <Link to="/studios" className="btn-red w-fit rounded-md px-5 py-3 uppercase text-sm">View Intro Offers</Link>
       </div>
     </PageLayout>
   );

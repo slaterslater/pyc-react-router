@@ -102,6 +102,6 @@ body {
   }
 
   .subtitle {
-    @apply mx-auto text-center text-light-gray max-w-4xl leading-relaxed text-lg font-medium px-4 whitespace-pre-line
+    @apply mx-auto text-center text-light-gray max-w-4xl leading-relaxed text-base font-medium px-4 whitespace-pre-line
   }
 }
