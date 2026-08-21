@@ -39,7 +39,7 @@ export function ContentBlocks({ block }: { block: any }) {
       return (
         <div className="flex flex-col gap-4 text-center py-10 px-8">
           {heading && <h2 className="text-2xl font-bold">{heading}</h2>}
-          {subtitle && <div className="text-lg max-w-4xl mx-auto">{subtitle}</div>}
+          {subtitle && <div className="subtitle">{subtitle}</div>}
         </div>
       )
 
