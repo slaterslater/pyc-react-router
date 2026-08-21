@@ -28,7 +28,7 @@ export function Footer() {
           </div>
         ))}
       </nav>
-      <p className="w-full basis-full mt-4 text-center text-sm uppercase order-3">{`© ${dayjs().year()} Power Yoga ${site.name}`}</p>
+      <Link to="/" className="w-full basis-full mt-4 text-center text-sm uppercase order-3">{`© ${dayjs().year()} Power Yoga ${site.name}`}</Link>
     </footer>
   )
 }
