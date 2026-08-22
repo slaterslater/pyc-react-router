@@ -5,6 +5,7 @@ export function useSite() {
 
   return {
     site,
+    siteName: site.name,
     studios,
     hasStudios: studios.length > 0,
     logoSrc: logos[site.name as keyof typeof logos],

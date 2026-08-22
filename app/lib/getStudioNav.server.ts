@@ -20,7 +20,8 @@ export function getStudioNav(studio: string | undefined, studioData: any) {
     }] : []),
     {
       id: 'teaching-team',
-      text: 'Teaching Team',
+      text: 'Teaching\u00A0Team',
+
       type: 'internal',
       page: {
         slug: `studios/${studio}/teaching-team`,

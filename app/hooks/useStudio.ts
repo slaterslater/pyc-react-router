@@ -11,6 +11,7 @@ export function useStudio() {
   return {
     isStudioPage: Boolean(studioData),
     name: studioData?.name,
+    studioName: studioData?.name,
     loginLink: studioData?.loginLink,
     studioLink: studio ? `/studios/${studio}` : "/studios",
   }

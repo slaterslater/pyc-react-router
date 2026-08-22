@@ -80,7 +80,7 @@ export function ContentBlocks({ block }: { block: any }) {
       return <ButtonRow buttons={block.buttons} className="py-6" />
 
     case 'contactForm':
-      return <ContactForm />
+      return <ContactForm recipientEmail={block.recipientEmail} />
 
     default:
       // return <div className="text-center py-5 font-bold">{block.blockType}...</div>

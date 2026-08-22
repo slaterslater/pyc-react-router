@@ -48,7 +48,7 @@ export const PAGE_QUERY = gql`
               ... on ContactForm {
                 id
                 blockType
-                # ...ContactForm fields
+                recipientEmail
               }
             }
           }

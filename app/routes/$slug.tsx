@@ -28,8 +28,6 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 export default function PageRoute() {
   const { title, banner, content } = useLoaderData<typeof loader>()
 
-  console.log({ content })
-
   return (
     <PageLayout>
       <Hero hero={{ title, ...banner }} />
