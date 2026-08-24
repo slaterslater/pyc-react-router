@@ -1,4 +1,5 @@
-import { NavLink, type MenuLink } from "./navigation/NavLink";
+import { type MenuLink } from "./navigation/NavLink";
+import { PYCButton } from "./PYCbutton";
 
 export function Cards({ cards }: { cards: CardType[] }) {
   return (
@@ -20,15 +21,7 @@ function Card({ card }: { card: CardType }) {
         backgroundPosition: "center",
       }}
     >
-      {/* {card.title} */}
-      {/* <NavLink link={card.button} /> */}
-      <div className="flex justify-center text-center items-center gap-2 mt-4 border border-white py-2 px-4 rounded-md bg-black/40 min-w-[150px]">
-        <img src="/pyc-icon.png" alt="" className="w-3 h-3" />
-        <NavLink
-          link={card.button}
-          className="underline uppercase text-white"
-        />
-      </div>
+      <PYCButton button={card.button} />
     </div>
   )
 }

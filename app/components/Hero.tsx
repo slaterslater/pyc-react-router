@@ -1,5 +1,7 @@
 import { useRef, useState } from "react";
 import { useEventListener, useMediaQuery } from "usehooks-ts";
+import { type MenuLink } from "./navigation/NavLink";
+import { PYCButton } from "./PYCbutton";
 
 type HeroProps = {
   hero: {
@@ -12,15 +14,18 @@ type HeroProps = {
         tablet: { url: string }
       }
     };
+    button?: MenuLink;
   };
   parallax?: boolean;
 };
 
 export function Hero({ hero, parallax = true }: HeroProps) {
+  console.log({ hero });
   return (
     <div className="w-full relative">
       <HeroMedia media={hero.media} parallax={parallax} />
       <HeroTitle title={hero.title} />
+      <HeroButton button={hero.button} />
     </div>
   );
 }
@@ -75,10 +80,19 @@ function HeroTitle({ title }: { title: string }) {
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
       <div
         className="heading text-2xl font-bold text-center text-white pointer-events-auto px-8"
-        style={{ textShadow: "0 6px 24px rgba(0,0,0,0.90), 0 1.5px 14px rgba(0,0,0,0.60)" }}
+      // style={{ textShadow: "0 6px 24px rgba(0,0,0,0.90), 0 1.5px 14px rgba(0,0,0,0.60)" }}
       >
         {title}
       </div>
+    </div>
+  );
+}
+
+function HeroButton({ button }: { button: MenuLink | undefined }) {
+  if (!button) return null;
+  return (
+    <div className="absolute inset-0 flex items-center justify-center pointer-events-auto mt-45">
+      <PYCButton button={button} />
     </div>
   );
 }

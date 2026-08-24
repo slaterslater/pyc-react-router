@@ -1,10 +1,12 @@
 import {
   isRouteErrorResponse,
+  Link,
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
+  useNavigate,
   type LoaderFunctionArgs,
 } from "react-router";
 
@@ -13,6 +15,8 @@ import { payload } from "./lib/payloadClient.server";
 import { SITE_QUERY } from "./graphql/queries/siteQuery";
 import { getSite } from "./lib/getSite.server";
 import { useSuppressMindbodyCartModal } from "./hooks/useSuppressMindbodyCartModal";
+import { PageLayout } from "./components/PageLayout";
+import { useEffect } from "react";
 
 export const links = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -101,17 +105,29 @@ export function ErrorBoundary({ error }: { error: Error }) {
     stack = error.stack;
   }
 
+  const navigate = useNavigate();
+  const isDev = import.meta.env.DEV;
+
   // create useeffect redirecet after 5 seconds to the home page
+  useEffect(() => {
+    if (isDev) return
+    setTimeout(() => {
+      navigate("/");
+    }, 5000);
+  }, [isDev]);
 
   return (
-    <main className="pt-16 p-4 container mx-auto">
-      <h1>{message}</h1>
-      <p>{details}</p>
-      {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
-          <code>{stack}</code>
-        </pre>
-      )}
-    </main>
+    <PageLayout>
+      <main className="pt-16 p-4 container mx-auto flex flex-col items-center justify-center gap-4">
+        <h1 className="heading">{message}</h1>
+        <p className="subtitle">{details}</p>
+        <Link to="/" className="underline text-center">Go to Homepage</Link>
+        {stack && (
+          <pre className="w-full p-4 overflow-x-auto">
+            <code>{stack}</code>
+          </pre>
+        )}
+      </main>
+    </PageLayout >
   );
 }

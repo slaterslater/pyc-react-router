@@ -27,6 +27,9 @@ export const STUDIO_QUERY = gql`
               }
             }
           }
+          button {
+            ${LINK_FIELDS}
+          }  
         }
         description
         site {

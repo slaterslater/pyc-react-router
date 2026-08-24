@@ -52,7 +52,8 @@ body {
     font-style: normal;
     font-weight: 700;
     line-height: 36px;
-    letter-spacing: -0.1px;
+    /* letter-spacing: -0.1px; */
+    letter-spacing: 1.5px;
     color: rgb(17, 17, 17);
     @apply text-2xl md:text-3xl;
   }

@@ -44,16 +44,15 @@ export function ContactForm({ recipientEmail }: { recipientEmail: string }) {
   const { studioName } = useStudio();
   const page = useLocation().pathname;
 
-  const l = useLocation()
-  const site = studioName ?? siteName;
-  console.log({ fetcherData: fetcher.data, site });
+  // const l = useLocation()
+  // const site = studioName ?? siteName;
 
   return (
     <div className="bg-cream px-7 py-10 rounded-md">
       <div className="text-xl pb-4 uppercase">contact Us</div>
       {!success && (
-        <fetcher.Form className="flex flex-col gap-5" method="post" action="/contact" {...getFormProps(form)}>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4">
+        <fetcher.Form className="flex flex-col gap-2" method="post" action="/contact" {...getFormProps(form)}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-2 sm:gap-4 md:gap-2 lg:gap-4">
             <InputControl input={fields.firstName} label="First Name" />
             <InputControl input={fields.lastName} label="Last Name" />
           </div>
@@ -93,7 +92,7 @@ export function InputControl({ input, label, placeholder, type = 'text', maxLeng
       <label htmlFor={input.id} className="text-sm font-semibold">{label}</label>
       <input
         {...getInputProps(input, { type, ariaAttributes: true })}
-        className="w-full bg-white rounded-md p-2 border border-gray-300"
+        className="w-full bg-white rounded-md p-2 border border-gray-300 text-sm"
         placeholder={placeholder}
         maxLength={maxLength}
         type={type}

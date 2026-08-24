@@ -1,6 +1,5 @@
 import dayjs from "dayjs";
 import type { ActionFunctionArgs } from "react-router";
-// schema + send email...
 
 export async function action({ request }: ActionFunctionArgs) {
   const url = new URL(request.url);
@@ -28,10 +27,9 @@ export async function action({ request }: ActionFunctionArgs) {
   console.log(to, html);
 
   // await resend.emails.send({
-  //   from: 'Exchange Request <no-reply@contact.bluboho.com>',
-  // from: ,
+  //   from: 'PYC Contact Form <no-reply@contact.poweryogacollective.com>',
   //   to,
-  //   subject: `exchange request from ${firstName} ${lastName} - ${nanoid(6)}`,
+  //   subject,
   //   html,
   // });
 
