@@ -84,7 +84,6 @@ export const PAGE_QUERY = gql`
           ... on AmenitiesBlock {
             id
             blockType
-            # ...AmenitiesBlock fields
           }
           ... on LocationMap {
             id

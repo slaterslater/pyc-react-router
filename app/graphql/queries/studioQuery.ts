@@ -1,9 +1,11 @@
 import { gql } from "graphql-request";
 import { OFFERING_FRAGMENT } from "../fragments/offeringFragment";
 import { LINK_FIELDS } from "../fields/linkFields";
+import { MEDIA_FRAGMENT } from "../fragments/mediaFragment";
 
 export const STUDIO_QUERY = gql`
   ${OFFERING_FRAGMENT}
+  ${MEDIA_FRAGMENT}
   query ($studio: String) {
     Studios(where: { slug: { equals: $studio } }) {
       docs {
@@ -14,18 +16,7 @@ export const STUDIO_QUERY = gql`
         banner {
           title
           media {
-            alt
-            sizes {
-              thumbnail {
-                url
-              }
-              tablet {
-                url
-              }
-              desktop {
-                url
-              }
-            }
+            ...MediaFragment
           }
           button {
             ${LINK_FIELDS}

@@ -3,24 +3,7 @@ import { useEventListener, useMediaQuery } from "usehooks-ts";
 import { type MenuLink } from "./navigation/NavLink";
 import { PYCButton } from "./PYCbutton";
 
-type HeroProps = {
-  hero: {
-    title: string;
-    media?: {
-      url: string;
-      sizes:
-      {
-        desktop: { url: string },
-        tablet: { url: string }
-      }
-    };
-    button?: MenuLink;
-  };
-  parallax?: boolean;
-};
-
 export function Hero({ hero, parallax = true }: HeroProps) {
-  console.log({ hero });
   return (
     <div className="w-full relative">
       <HeroMedia media={hero.media} parallax={parallax} />
@@ -30,7 +13,27 @@ export function Hero({ hero, parallax = true }: HeroProps) {
   );
 }
 
-function HeroMedia({ media, parallax }: { media: HeroProps['hero']['media'], parallax: boolean }) {
+function HeroMedia({ media, parallax }: HeroMediaProps) {
+  const mimeType = media?.mimeType.split('/')[0];
+  switch (mimeType) {
+    case 'video':
+      return <HeroVideo media={media} parallax={false} />;
+    case 'image':
+      return <HeroImage media={media} parallax={parallax} />;
+    default:
+      return <div className="relative h-[390px] md:h-[500px] overflow-hidden rounded-md bg-charcoal" />;
+  }
+}
+
+function HeroVideo({ media }: HeroMediaProps) {
+  return (
+    <div className="relative h-[390px] md:h-[500px] overflow-hidden rounded-md">
+      <video src={media?.url} autoPlay muted loop className="absolute inset-0 h-full w-full object-cover" />
+    </div>
+  );
+}
+
+function HeroImage({ media, parallax }: HeroMediaProps) {
   const heroRef = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState(0);
   const prefersReducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)")
@@ -96,3 +99,25 @@ function HeroButton({ button }: { button: MenuLink | undefined }) {
     </div>
   );
 }
+
+type HeroProps = {
+  hero: {
+    title: string;
+    media?: {
+      mimeType: string;
+      url: string;
+      sizes:
+      {
+        desktop: { url: string },
+        tablet: { url: string }
+      }
+    };
+    button?: MenuLink;
+  };
+  parallax?: boolean;
+};
+
+type HeroMediaProps = {
+  media: HeroProps['hero']['media'];
+  parallax: boolean;
+};
