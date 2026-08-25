@@ -105,13 +105,12 @@ export function ErrorBoundary({ error }: { error: Error }) {
     stack = error.stack;
   }
 
-  const [count, setCount] = useState<number>(5)
+  const [count, setCount] = useState<number>(4)
   const navigate = useNavigate();
 
   const countdown = () => {
+    if (count === 1) navigate("/")
     setCount(count - 1)
-    if (count > 0) return
-    navigate("/");
   }
 
   useInterval(countdown, !stack ? 1000 : null)
@@ -123,8 +122,16 @@ export function ErrorBoundary({ error }: { error: Error }) {
           <>
             <h1 className="heading">{message}</h1>
             <p className="subtitle">{details}</p>
-            <Link to="/" className="underline text-center">Go to Homepage</Link>
-            <p className="text-center">You will be redirected in {count} seconds</p>
+            <p className="text-center">
+              You will be redirected to the <Link to="/" className="underline">Homepage</Link> in&nbsp;
+              <span
+                className="inline-block align-middle text-center w-[1em]"
+                aria-label={String(count)}
+              >
+                {count}
+              </span>
+              &nbsp;seconds
+            </p>
           </>
         )}
         {stack && (
