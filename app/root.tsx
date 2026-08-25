@@ -16,7 +16,8 @@ import { SITE_QUERY } from "./graphql/queries/siteQuery";
 import { getSite } from "./lib/getSite.server";
 import { useSuppressMindbodyCartModal } from "./hooks/useSuppressMindbodyCartModal";
 import { PageLayout } from "./components/PageLayout";
-import { useEffect } from "react";
+import { useState } from "react";
+import { useInterval } from "usehooks-ts";
 
 export const links = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -79,7 +80,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
         {children}
         <ScrollRestoration />
         <Scripts />
-
       </body>
     </html>
   );
@@ -105,23 +105,28 @@ export function ErrorBoundary({ error }: { error: Error }) {
     stack = error.stack;
   }
 
+  const [count, setCount] = useState<number>(5)
   const navigate = useNavigate();
-  const isDev = import.meta.env.DEV;
 
-  // create useeffect redirecet after 5 seconds to the home page
-  useEffect(() => {
-    if (isDev) return
-    setTimeout(() => {
-      navigate("/");
-    }, 5000);
-  }, [isDev]);
+  const countdown = () => {
+    setCount(count - 1)
+    if (count > 0) return
+    navigate("/");
+  }
+
+  useInterval(countdown, !stack ? 1000 : null)
 
   return (
     <PageLayout>
       <main className="pt-16 p-4 container mx-auto flex flex-col items-center justify-center gap-4">
-        <h1 className="heading">{message}</h1>
-        <p className="subtitle">{details}</p>
-        <Link to="/" className="underline text-center">Go to Homepage</Link>
+        {!stack && (
+          <>
+            <h1 className="heading">{message}</h1>
+            <p className="subtitle">{details}</p>
+            <Link to="/" className="underline text-center">Go to Homepage</Link>
+            <p className="text-center">You will be redirected in {count} seconds</p>
+          </>
+        )}
         {stack && (
           <pre className="w-full p-4 overflow-x-auto">
             <code>{stack}</code>
