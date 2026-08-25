@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { useEventListener, useMediaQuery } from "usehooks-ts";
 import { type MenuLink } from "./navigation/NavLink";
 import { PYCButton } from "./PYCbutton";
+import { getMimeType } from "~/lib/getMimeType";
 
 export function Hero({ hero, parallax = true }: HeroProps) {
   return (
@@ -14,7 +15,7 @@ export function Hero({ hero, parallax = true }: HeroProps) {
 }
 
 function HeroMedia({ media, parallax }: HeroMediaProps) {
-  const mimeType = media?.mimeType.split('/')[0];
+  const mimeType = getMimeType(media?.mimeType);
   switch (mimeType) {
     case 'video':
       return <HeroVideo media={media} parallax={false} />;

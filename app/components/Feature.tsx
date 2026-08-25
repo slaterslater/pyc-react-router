@@ -1,3 +1,5 @@
+import { getMimeType } from "~/lib/getMimeType";
+
 export function HomepageFeature({ feature }: { feature: HomepageFeatureType }) {
   return (
     <div>
@@ -9,7 +11,7 @@ export function HomepageFeature({ feature }: { feature: HomepageFeatureType }) {
 }
 
 function FeatureMedia({ media }: { media: HomepageFeatureType['media'] }) {
-  const mimeType = media?.mimeType.split('/')[0];
+  const mimeType = getMimeType(media?.mimeType);
   switch (mimeType) {
     case 'video':
       return (

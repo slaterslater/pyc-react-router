@@ -1,3 +1,4 @@
+import { getMimeType } from "~/lib/getMimeType";
 import { type MenuLink } from "./navigation/NavLink";
 import { PYCButton } from "./PYCbutton";
 
@@ -12,11 +13,13 @@ export function Cards({ cards }: { cards: CardType[] }) {
 }
 
 function Card({ card }: { card: CardType }) {
+  const mimeType = getMimeType(card.media?.mimeType);
+  const backgroundImage = mimeType === 'image' ? card.media?.sizes.tablet.url ?? card.media?.url : '';
   return (
     <div
-      className="w-full h-[350px] md:h-[450px] rounded-md flex flex-col items-center justify-end p-4"
+      className="w-full h-[350px] md:h-[450px] rounded-md flex flex-col items-center justify-end p-4 bg-charcoal"
       style={{
-        backgroundImage: `url('${card.media?.sizes.tablet.url ?? card.media?.url}')`,
+        backgroundImage: `url('${backgroundImage}')`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -30,6 +33,7 @@ type CardType = {
   id: string;
   title: string;
   media?: {
+    mimeType: string;
     url: string;
     sizes:
     {
