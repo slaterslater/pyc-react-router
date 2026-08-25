@@ -23,11 +23,6 @@ export const PAGE_QUERY = gql`
             blockType
             columns
             items {
-              ... on Banner {
-                id
-                blockType
-                # ...Banner fields
-              }
               ... on Text {
                 id
                 blockType
