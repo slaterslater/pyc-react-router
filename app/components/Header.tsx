@@ -14,7 +14,7 @@ export function Header() {
     <header className="w-full bg-charcoal">
       <Announcements />
       <div className="relative flex items-center justify-center w-full px-4 py-6 min-w-xs max-w-[1450px] mx-auto h-[80px] rounded-t-lg bg-white">
-        <div className="absolute left-4">
+        <div className="absolute left-3 md:left-4">
           <NavProvider>
             <HambugerButton />
             <NavAside />

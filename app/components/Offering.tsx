@@ -9,15 +9,15 @@ export default function Offering({ offering }: { offering: OfferingType }) {
   return (
     <div className="bg-cream p-8 lg:p-12 rounded-md flex flex-col gap-4">
       <div>
-        <h3 className="text-lg uppercase">{offering.title}</h3>
-        <h4 className="lowercase italic">{offering.subtitle}</h4>
+        <h3 className="text-xl uppercase">{offering.title}</h3>
+        <h4 className="uppercase text-sm">{offering.subtitle}</h4>
       </div>
       <div className="uppercase text-sm">
-        {dates && <p><span className="font-medium mr-3">Date:</span>{dates}</p>}
-        {time && <p><span className="font-medium mr-3">Time:</span>{time}</p>}
-        {cost && <p><span className="font-medium mr-3">Cost:</span>{cost}</p>}
+        {dates && <p><span className="font-bold mr-3">Date:</span>{dates}</p>}
+        {time && <p><span className="font-bold mr-3">Time:</span>{time}</p>}
+        {cost && <p><span className="font-bold mr-3">Cost:</span>{cost}</p>}
         <IntensityBadge intensity={intensity} />
-        {temperature && temperature !== "na" && <p><span className="font-medium mr-3">Temperature:</span> {temperature}</p>}
+        {temperature && temperature !== "na" && <p><span className="font-bold mr-3">Temperature:</span> {temperature}</p>}
       </div>
       <p className="text-md py-5">{offering.description}</p>
       {offering.button && (
