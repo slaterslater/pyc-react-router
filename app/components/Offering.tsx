@@ -9,7 +9,7 @@ export default function Offering({ offering }: { offering: OfferingType }) {
   return (
     <div className="bg-cream p-8 lg:p-12 rounded-md flex flex-col gap-4">
       <div>
-        <h3 className="text-xl uppercase">{offering.title}</h3>
+        <h3 className="text-xl uppercase font-semibold">{offering.title}</h3>
         <h4 className="uppercase text-sm">{offering.subtitle}</h4>
       </div>
       <div className="uppercase text-sm">
@@ -19,7 +19,7 @@ export default function Offering({ offering }: { offering: OfferingType }) {
         <IntensityBadge intensity={intensity} />
         {temperature && temperature !== "na" && <p><span className="font-bold mr-3">Temperature:</span> {temperature}</p>}
       </div>
-      <p className="text-md py-5">{offering.description}</p>
+      <p className="text-md py-5 whitespace-pre-line">{offering.description}</p>
       {offering.button && (
         <div className="flex justify-center items-center gap-2 mt-4">
           {hasButtonLink && <img src="/pyc-icon.png" alt="" className="w-3 h-3" />}
@@ -38,7 +38,7 @@ function IntensityBadge({ intensity }: { intensity: string }) {
   if (!intensity || intensity === "na") return null;
   return (
     <div className="flex gap-2 items-center">
-      <p className="font-medium mr-3">Intensity:</p>
+      <p className="font-bold mr-3">Intensity:</p>
       {Array.from({ length: Intensity[intensity as keyof typeof Intensity] }).map((_, index) => (
         <img src={`/pyc-icon.png`} alt="" key={index} className="w-3 h-3" />
       ))}
