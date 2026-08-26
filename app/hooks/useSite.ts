@@ -13,7 +13,7 @@ export function useSite() {
 }
 
 const logos = {
-  'Collective': null,
+  'Collective': '/collective-logo.png',
   'Canada': '/canada-logo.svg',
   'USA': null,
 }
