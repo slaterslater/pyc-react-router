@@ -1,4 +1,5 @@
 import { Link, useLoaderData, useRouteLoaderData, type LoaderFunctionArgs } from "react-router";
+import Contact from "~/components/Contact";
 import SEO from "~/components/SEO";
 import { ALL_STUDIOS_QUERY } from "~/graphql/queries/allStudiosQuery";
 import { getSite } from "~/lib/getSite.server";
@@ -54,25 +55,7 @@ function Studio({ studio }: { studio: Studio }) {
       <Link to={`/studios/${studio.slug}`} className="underline">
         <h3 className="text-xl uppercase">{studioName}</h3>
       </Link>
-      <address className="not-italic uppercase text-sm">
-        <div>{studio.address1} {studio.address2 && `- ${studio.address2}`}</div>
-        <div>
-          {[studio.city, studio.province || studio.state]
-            .filter(Boolean)
-            .join(", ")}
-        </div>
-        <div>{studio.postalCode || studio.zip}</div>
-      </address>
-      {(studio.phone || studio.email) && (
-        <div className="flex flex-col text-sm">
-          {studio.phone && (
-            <a href={`tel:${studio.phone.replace(/[^+\d]/g, "")}`} className="underline">
-              {studio.phone}
-            </a>
-          )}
-          <a href={`mailto:${studio.email}`} className="underline">{studio.email}</a>
-        </div>
-      )}
+      <Contact studio={studio} />
       <Link
         to={`/studios/${studio.slug}`}
         className="border border-black rounded-md px-2 py-1 flex items-center gap-2 w-fit uppercase"
@@ -91,7 +74,7 @@ function Studio({ studio }: { studio: Studio }) {
   )
 }
 
-type Studio = {
+export type Studio = {
   id: string;
   name: string;
   slug: string;

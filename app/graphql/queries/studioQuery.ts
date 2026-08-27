@@ -61,6 +61,24 @@ export const STUDIO_QUERY = gql`
         tiktok  
         twitter
         youtube
+        address1
+        address2
+        city
+        province
+        state
+        zip
+        postalCode
+        phone
+        email
+        hoursOfOperation {
+        id
+        day
+        isClosed
+        openTime
+        openMeridiem
+        closeTime
+        closeMeridiem
+        }
       }
     }
   }
