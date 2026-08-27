@@ -6,7 +6,7 @@ import { SiteList } from "./SiteList";
 
 export function NavHeader() {
   return (
-    <div className="flex justify-end items-center pt-5 pb-10">
+    <div className="flex justify-end items-center pt-5 pb-12">
       <GroupTitle />
       <CloseButton />
     </div>
