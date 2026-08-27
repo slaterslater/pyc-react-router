@@ -15,5 +15,5 @@ export function useSite() {
 const logos = {
   'Collective': '/collective-logo.png',
   'Canada': '/canada-logo.svg',
-  'USA': null,
+  'USA': '/collective-logo.png',
 }
