@@ -3,7 +3,7 @@ export function Reviews({ reviews }: { reviews: ReviewType[] }) {
   if (!reviews || reviews.length === 0) return null;
 
   return (
-    <div className="grid w-full grid-cols-1 md:grid-cols-3 gap-4">
+    <div className="grid w-full grid-cols-1 md:grid-cols-3 gap-4 max-w-[1200px] mx-auto">
       {reviews.map((review: ReviewType) => (
         <Review key={review.id} review={review} />
       ))}
