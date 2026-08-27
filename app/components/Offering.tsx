@@ -21,12 +21,12 @@ export default function Offering({ offering }: { offering: OfferingType }) {
       </div>
       <p className="text-md py-5 whitespace-pre-line">{offering.description}</p>
       {offering.button && (
-        <div className="flex justify-center items-center gap-2 mt-4">
+        <div className="flex justify-center items-center gap-2 mt-4 border border-black w-fit px-4 py-2 rounded-md">
           {hasButtonLink && <img src="/pyc-icon.png" alt="" className="w-3 h-3" />}
           <NavLink
             key={offering.button?.id}
             link={offering.button}
-            className="underline uppercase"
+            className="underline uppercase font-medium"
           />
         </div>
       )}
