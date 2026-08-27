@@ -18,7 +18,7 @@ export default function IndividualStudioRoute() {
       <SEO title={studio.name} />
       <p className="subtitle">{studio.description}</p>
       <MindBodyWidget html={studio.schedule} key={studio.id} />
-      <div className="w-full bg-cream px-8 py-10 lg:px-16 rounded-md max-w-[1200px] mx-auto">
+      <div className="w-full bg-cream px-8 py-10 lg:px-16 rounded-md max-w-[1200px] mx-auto mb-4">
         <div className="flex flex-col sm:flex-row gap-8 justify-between lg:px-8 w-fit sm:w-full mx-auto">
           <div className="flex flex-col">
             <span className="uppercase font-medium block pb-2">Power Yoga {studio.name}</span>
