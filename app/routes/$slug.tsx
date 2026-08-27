@@ -2,6 +2,7 @@ import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 import { ContentBlocks } from "~/components/ContentBlocks";
 import { Hero } from "~/components/Hero";
 import { PageLayout } from "~/components/PageLayout";
+import SEO from "~/components/SEO";
 import { PAGE_QUERY } from "~/graphql/queries/pageQuery";
 import { getSite } from "~/lib/getSite.server";
 import { payload } from "~/lib/payloadClient.server";
@@ -30,6 +31,7 @@ export default function PageRoute() {
 
   return (
     <PageLayout>
+      <SEO title={title} />
       <Hero hero={{ title, ...banner }} />
       <section className="w-full flex flex-col gap-4">
         {content.map((block: any) => (

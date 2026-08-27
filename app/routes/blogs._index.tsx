@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import { Link, useLoaderData, type LoaderFunctionArgs } from "react-router";
 import { PageLayout } from "~/components/PageLayout";
+import SEO from "~/components/SEO";
 import { ALL_BLOGS_QUERY } from "~/graphql/queries/allBlogsQuery";
 import { getSite } from "~/lib/getSite.server";
 import { payload } from "~/lib/payloadClient.server";
@@ -19,6 +20,7 @@ export default function AllBlogs() {
 
   return (
     <PageLayout>
+      <SEO title="Blog" />
       <div className="w-full">
         <div className="flex flex-col items-center justify-center gap-4 px-4 bg-charcoal text-white w-full h-[390px] md:h-[500px] rounded-md text-center">
           <h1 className="heading text-white uppercase">Power Yoga {name} blog</h1>

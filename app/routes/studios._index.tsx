@@ -1,4 +1,5 @@
 import { Link, useLoaderData, useRouteLoaderData, type LoaderFunctionArgs } from "react-router";
+import SEO from "~/components/SEO";
 import { ALL_STUDIOS_QUERY } from "~/graphql/queries/allStudiosQuery";
 import { getSite } from "~/lib/getSite.server";
 import { payload } from "~/lib/payloadClient.server";
@@ -23,6 +24,7 @@ export default function StudiosIndexRoute() {
 
   return (
     <>
+      <SEO title="Studios" />
       <div className="w-full">
         <div className="flex flex-col items-center justify-center gap-4 px-4 bg-charcoal text-white w-full h-[390px] md:h-[500px] rounded-md text-center">
           <h1 className="heading text-white uppercase">contact us</h1>

@@ -2,7 +2,6 @@ import { useNavContext } from './NavProvider';
 import { useEscapeToClose } from '~/hooks/useEscapeToClose';
 import { useScrollLock } from 'usehooks-ts';
 import { useEffect } from 'react';
-import { SiteList } from './SiteList';
 import { AnimatePresence, motion } from 'framer-motion';
 import { RootMenu } from './RootMenu';
 import { NavHeader } from './NavHeader';
@@ -31,7 +30,6 @@ export function NavAside() {
             </motion.div>
           </AnimatePresence>
         </div>
-        {/* <SiteList /> */}
       </nav>
     </Aside>
   );

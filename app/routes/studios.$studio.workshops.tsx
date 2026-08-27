@@ -4,6 +4,7 @@ import { FadeIn } from "~/components/FadeIn";
 import { Hero } from "~/components/Hero";
 import LocationMap from "~/components/LocationMap";
 import Offering, { type OfferingType } from "~/components/Offering";
+import SEO from "~/components/SEO";
 import { SweatDiscoverTransform } from "~/components/SweatDiscoverTransform";
 import { STUDIO_WORKSHOP_QUERY } from "~/graphql/queries/studioWorkshopQuery";
 import { payload } from "~/lib/payloadClient.server";
@@ -36,10 +37,11 @@ export async function loader({ params }: LoaderFunctionArgs) {
 }
 
 export default function StudioWorkshops() {
-  const { amenities, fullAddress } = useLoaderData<typeof loader>();
+  const { amenities, name, fullAddress } = useLoaderData<typeof loader>();
 
   return (
     <>
+      <SEO title={`Workshops | ${name} Studio`} />
       <Amenities amenities={amenities} />
       <Workshops />
       <SweatDiscoverTransform />

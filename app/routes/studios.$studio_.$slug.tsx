@@ -2,6 +2,7 @@ import { useLoaderData, useRouteLoaderData, type LoaderFunctionArgs } from "reac
 import { ButtonRow } from "~/components/ButtonRow";
 import { ContentBlocks } from "~/components/ContentBlocks";
 import { Hero } from "~/components/Hero";
+import SEO from "~/components/SEO";
 import { PAGE_QUERY } from "~/graphql/queries/pageQuery";
 import { getSite } from "~/lib/getSite.server";
 import { getStudioNav } from "~/lib/getStudioNav.server";
@@ -32,10 +33,11 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 }
 
 export default function StudioSubpage() {
-  const { title, banner, content, studioNav } = useLoaderData<typeof loader>()
+  const { title, banner, content, name, studioNav } = useLoaderData<typeof loader>()
 
   return (
     <>
+      <SEO title={`${title} | ${name} Studio`} />
       <Hero hero={{ title, ...banner }} />
       <ButtonRow buttons={studioNav} />
       <section className="w-full flex flex-col gap-4">

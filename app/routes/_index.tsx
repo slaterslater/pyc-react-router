@@ -5,18 +5,12 @@ import { HomepageFeature } from "~/components/Feature";
 import { Hero } from "~/components/Hero";
 import { PageLayout } from "~/components/PageLayout";
 import { Reviews } from "~/components/Reviews";
+import SEO from "~/components/SEO";
 import { SweatDiscoverTransform } from "~/components/SweatDiscoverTransform";
 import { HOMEPAGE_QUERY } from "~/graphql/queries/homepageQuery";
 import { useSite } from "~/hooks/useSite";
 import { getSite } from "~/lib/getSite.server";
 import { payload } from "~/lib/payloadClient.server";
-
-export function meta() {
-  return [
-    { title: "dev PYC" },
-    { name: "description", content: "development" },
-  ];
-}
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const site = getSite(request);
@@ -32,6 +26,7 @@ export default function Home() {
 
   return (
     <PageLayout>
+      <SEO title="Home" />
       <Hero hero={data.banner1} />
       <SweatDiscoverTransform />
       <p className="subtitle">{data.description1}</p>

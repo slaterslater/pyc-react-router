@@ -6,6 +6,7 @@ export const STUDIO_WORKSHOP_QUERY = gql`
   query ($studio: String) {
     Studios(where: { slug: { equals: $studio } }, limit: 1) {
       docs {
+        name
         amenities {
           name
           image {

@@ -6,6 +6,7 @@ import { useRef, useState, type RefObject } from "react";
 import { FadeIn } from "~/components/FadeIn";
 import { useOnClickOutside } from "usehooks-ts";
 import { motion } from "motion/react";
+import SEO from "~/components/SEO";
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const { studio } = params;
@@ -21,6 +22,7 @@ export default function StudioTeachingTeam() {
 
   return (
     <>
+      <SEO title={`Meet the ${name} Teaching Team`} />
       <h2 className="heading uppercase py-5 text-center">meet the {name} teaching team</h2>
       <section className={`grid ${gridCols} gap-4 px-4`}>
         {teachers.docs.map((teacher: Teacher, i: number) => (
