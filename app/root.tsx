@@ -93,6 +93,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
   let message = "Oops!";
   let details = "An unexpected error occurred.";
   let stack: string | undefined;
+  const isDev = import.meta.env.DEV;
 
   if (isRouteErrorResponse(error)) {
     message = error.status === 404 ? "404" : "Error";
@@ -100,7 +101,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
       error.status === 404
         ? "The requested page could not be found."
         : error.statusText || details;
-  } else if (import.meta.env.DEV && error && error instanceof Error) {
+  } else if (isDev && error && error instanceof Error) {
     details = error.message;
     stack = error.stack;
   }
@@ -113,14 +114,14 @@ export function ErrorBoundary({ error }: { error: Error }) {
     setCount(count - 1)
   }
 
-  useInterval(countdown, !stack ? 1000 : null)
+  useInterval(countdown, !isDev ? 1000 : null)
 
   return (
     <PageLayout>
       <main className="pt-16 p-4 container mx-auto flex flex-col items-center justify-center gap-4">
-        {!stack && (
+        <h1 className="heading">{message}</h1>
+        {!isDev && (
           <>
-            <h1 className="heading">{message}</h1>
             <p className="subtitle">{details}</p>
             <p className="text-center">
               You will be redirected to the <Link to="/" className="underline">Homepage</Link> in&nbsp;
@@ -134,7 +135,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
             </p>
           </>
         )}
-        {stack && (
+        {isDev && (
           <pre className="w-full p-4 overflow-x-auto">
             <code>{stack}</code>
           </pre>
