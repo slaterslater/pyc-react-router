@@ -34,6 +34,7 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
     studioNav: getStudioNav(studio, studioData),
     amenities: studioData.amenities.sort((a: any, b: any) => a.name.localeCompare(b.name)),
     offerings: studioData?.offerings?.docs[0]?.offerings,
+    introOffer: studioData?.offerings?.docs[0]?.introOffer,
     fullAddress: addressParts.join(" "),
     siteName,
   }

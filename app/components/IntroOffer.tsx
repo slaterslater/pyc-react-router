@@ -10,10 +10,10 @@ export default function IntroOffer() {
     name : `Power Yoga ${name}`;
 
   return (
-    <div className="flex flex-col gap-4 p-4">
+    <div className="flex flex-col gap-8 p-4 items-center">
       <h2 className="heading text-center capitalize">New to {studioName}?</h2>
       <p className="subtitle">Get started with our 30 Days Unlimited Yoga Intro Special available at every studio. Find the flexible class passes or membership to power your practice</p>
-      <MindbodyLink html="" className="btn-red">View Intro Offer</MindbodyLink>
+      <MindbodyLink html={introOffer} className="btn-red w-fit px-4 py-2 uppercase">View Intro Offer</MindbodyLink>
     </div>
   )
 }
