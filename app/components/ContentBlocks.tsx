@@ -48,7 +48,7 @@ export function ContentBlocks({ block }: { block: any }) {
       return <RichText data={block.richText} className={className} />
 
     case 'banner':
-      return <Hero hero={{ title: block.title, media: block.media }} parallax={false} />
+      return <Hero hero={block} parallax={false} />
 
     case 'reviews':
       const cols = Math.min(block.reviews.length, 3)
