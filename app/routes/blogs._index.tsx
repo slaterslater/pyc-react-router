@@ -35,9 +35,13 @@ export default function AllBlogs() {
 }
 
 function Blog({ blog }: { blog: any }) {
+  const media = blog.banner.media;
   return (
     <Link to={`/blogs/${blog.slug}`} className="flex flex-col p-4 pb-8 bg-cream rounded-md">
-      <img src={blog.banner.media.thumbnailURL} alt={blog.title} className="w-full h-full object-cover rounded-md" />
+      {media && <img src={media.thumbnailURL} alt={blog.title} className="w-full h-[300px] object-cover rounded-md" />}
+      {!media && (
+        <div className="w-full h-[300px] bg-charcoal rounded-md" />
+      )}
       <h2 className="text-lg uppercase font-semibold mt-2">{blog.title}</h2>
       <p>{dayjs(blog.date).format('MMMM D, YYYY')}</p>
     </Link>

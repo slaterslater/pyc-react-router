@@ -7,7 +7,7 @@ export default function IntroOffer() {
   if (!introOffer) return null;
 
   const studioName = name.toUpperCase().startsWith('PYC') ?
-    name : `Power Yoga ${name}`;
+    name : `PYC ${name}`;
 
   return (
     <div className="flex flex-col gap-8 p-4 items-center">

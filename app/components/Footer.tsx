@@ -21,7 +21,7 @@ export function Footer() {
         )}
         {studioData && (
           <div>
-            <h3 className="uppercase font-bold mb-3">Power Yoga {studioData.name}</h3>
+            <h3 className="uppercase font-bold mb-3">PYC {studioData.name}</h3>
             <Contact studio={studioData} />
           </div>
         )}
