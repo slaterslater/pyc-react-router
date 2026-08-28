@@ -19,7 +19,7 @@ export default function IndividualStudioRoute() {
       <SEO title={studio.name} />
       <p className="subtitle">{studio.description}</p>
       <MindBodyWidget html={studio.schedule} key={studio.id} />
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 rounded-md w-full mx-auto bg-cream p-8 mb-4">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 rounded-md w-full mx-auto bg-cream py-8 lg:pr-8 mb-4">
         <LocationMap fullAddress={studio.fullAddress} />
         <div className="flex flex-col sm:flex-row gap-4 lg:flex-col sm:w-full justify-around gap-4 mx-auto px-4">
           <div className="flex flex-col">
