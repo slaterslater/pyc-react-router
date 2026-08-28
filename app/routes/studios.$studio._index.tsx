@@ -9,6 +9,7 @@ import { FadeIn } from "~/components/FadeIn";
 import SEO from "~/components/SEO";
 import Contact from "~/components/Contact";
 import StudioHours from "~/components/StudioHours";
+import LocationMap from "~/components/LocationMap";
 
 export default function IndividualStudioRoute() {
   const studio = useRouteLoaderData("routes/studios.$studio")
@@ -18,8 +19,18 @@ export default function IndividualStudioRoute() {
       <SEO title={studio.name} />
       <p className="subtitle">{studio.description}</p>
       <MindBodyWidget html={studio.schedule} key={studio.id} />
-      <div className="w-full bg-cream px-8 py-10 lg:px-16 rounded-md max-w-[1200px] mx-auto mb-4">
+      {/* <div className="w-full bg-cream px-8 py-10 lg:px-16 rounded-md max-w-[1200px] mx-auto mb-4">
         <div className="flex flex-col sm:flex-row gap-8 justify-between lg:px-8 w-fit sm:w-full mx-auto">
+          <div className="flex flex-col">
+            <span className="uppercase font-medium block pb-2">Power Yoga {studio.name}</span>
+            <Contact studio={studio} />
+          </div>
+          <StudioHours days={studio.hoursOfOperation} />
+        </div>
+      </div> */}
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 rounded-md w-full mx-auto bg-cream p-8 mb-4">
+        <LocationMap fullAddress={studio.fullAddress} />
+        <div className="flex flex-col sm:flex-row gap-4 lg:flex-col sm:w-full justify-around gap-4 mx-auto px-4">
           <div className="flex flex-col">
             <span className="uppercase font-medium block pb-2">Power Yoga {studio.name}</span>
             <Contact studio={studio} />

@@ -12,17 +12,17 @@ export default function StudioHours({ days }: { days: HoursOfOperationType[] }) 
 function HoursOfOperation({ hoursOfOperation }: { hoursOfOperation: HoursOfOperationType }) {
   const { day, isClosed, openTime, openMeridiem, closeTime, closeMeridiem } = hoursOfOperation;
   return (
-    <p className="flex justify-end items-center">
-      <span className="capitalize mr-auto pr-5">{day}:</span>
-      {isClosed && 'Closed'}
+    <div className="grid grid-cols-2 gap-8">
+      <span className="capitalize">{day}:</span>
+      {isClosed && <span className="text-center">Closed</span>}
       {!isClosed && (
-        <>
+        <span>
           <Time time={openTime} meridiem={openMeridiem} />
           <span className="mx-3 text-xs">-</span>
           <Time time={closeTime} meridiem={closeMeridiem} />
-        </>
+        </span>
       )}
-    </p>
+    </div>
   )
 }
 

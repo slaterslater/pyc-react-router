@@ -7,6 +7,7 @@ import Offering, { type OfferingType } from "~/components/Offering";
 import SEO from "~/components/SEO";
 import { SweatDiscoverTransform } from "~/components/SweatDiscoverTransform";
 import { STUDIO_WORKSHOP_QUERY } from "~/graphql/queries/studioWorkshopQuery";
+import { useStudio } from "~/hooks/useStudio";
 import { payload } from "~/lib/payloadClient.server";
 
 export async function loader({ params }: LoaderFunctionArgs) {
@@ -16,28 +17,16 @@ export async function loader({ params }: LoaderFunctionArgs) {
   const workshops = studioData.workshops.docs[0]?.workshops;
   const offerings = studioData.offerings.docs[0]?.offerings;
 
-  const addressParts = [
-    studioData.address1,
-    studioData.address2,
-    studioData.city,
-    studioData.province,
-    studioData.state,
-    studioData.zip,
-    studioData.postalCode,
-  ].filter(Boolean);
-
-  const fullAddress = addressParts.join(" ");
-
   return {
     ...studioData,
     workshops,
     offerings,
-    fullAddress,
   }
 }
 
 export default function StudioWorkshops() {
-  const { amenities, name, fullAddress } = useLoaderData<typeof loader>();
+  const { amenities, name } = useLoaderData<typeof loader>();
+  const { fullAddress } = useStudio();
 
   return (
     <>
