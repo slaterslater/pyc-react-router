@@ -15,7 +15,7 @@ export function NavAside() {
     <Aside>
       <nav className="relative overflow-hidden flex flex-col h-full">
         <NavHeader />
-        <div className="relative overflow-y-scroll">
+        <div className="relative overflow-y-scroll overflow-x-hidden">
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={group?.id || 'root'}
