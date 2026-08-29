@@ -32,7 +32,7 @@ export default function PageRoute() {
   return (
     <PageLayout>
       <SEO title={title} />
-      <Hero hero={{ title, ...banner }} />
+      <Hero hero={{ title, ...banner }} parallax />
       <section className="w-full flex flex-col gap-4">
         {content.map((block: any) => (
           <ContentBlocks key={block.id} block={block} />

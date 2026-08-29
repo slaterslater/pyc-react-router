@@ -22,6 +22,15 @@ export const STUDIO_QUERY = gql`
             ${LINK_FIELDS}
           }  
         }
+        banner2 {
+          title
+          media {
+            ...MediaFragment
+          }
+          button {
+            ${LINK_FIELDS}
+          }  
+        }  
         description
         site {
           id
@@ -56,6 +65,24 @@ export const STUDIO_QUERY = gql`
           name
           description
         }
+        feature1 {
+          title
+          media {
+            ...MediaFragment
+          }
+          button {
+            ${LINK_FIELDS}
+          }  
+        }
+        feature2 {
+          title
+          media {
+            ...MediaFragment
+          }
+          button {
+            ${LINK_FIELDS}
+          }  
+        }
         instagram
         facebook
         tiktok  
@@ -71,13 +98,13 @@ export const STUDIO_QUERY = gql`
         phone
         email
         hoursOfOperation {
-        id
-        day
-        isClosed
-        openTime
-        openMeridiem
-        closeTime
-        closeMeridiem
+          id
+          day
+          isClosed
+          openTime
+          openMeridiem
+          closeTime
+          closeMeridiem
         }
       }
     }

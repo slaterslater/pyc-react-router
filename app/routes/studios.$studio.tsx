@@ -44,7 +44,7 @@ export default function IndividualStudioOutlet() {
   const { banner, studioNav } = useLoaderData<typeof loader>()
   return (
     <>
-      <Hero hero={banner} />
+      <Hero hero={banner} parallax />
       <ButtonRow buttons={studioNav} />
       <Outlet />
     </>

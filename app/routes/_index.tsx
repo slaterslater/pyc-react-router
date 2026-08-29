@@ -27,11 +27,11 @@ export default function Home() {
   return (
     <PageLayout>
       <SEO title="Home" />
-      <Hero hero={data.banner1} />
+      <Hero hero={data.banner1} parallax />
       <SweatDiscoverTransform />
       <p className="subtitle">{data.description1}</p>
       <Cards cards={data.cards} />
-      <Hero hero={data.banner2} parallax={false} />
+      <Hero hero={data.banner2} />
       <p className="subtitle max-w-5xl mx-auto py-3">{data.description2}</p>
       <ButtonRow buttons={data.homepageNav} />
       <h2 className="heading text-center uppercase pt-8">see what our members say</h2>
@@ -42,7 +42,7 @@ export default function Home() {
         <HomepageFeature feature={data.feature1} />
         <HomepageFeature feature={data.feature2} />
       </div>
-      <Hero hero={data.banner3} parallax={false} />
+      <Hero hero={data.banner3} />
       <div className="flex flex-col gap-4 p-4 justify-center items-center">
         <h2 className="heading text-center capitalize">New to Power Yoga {site.name}?</h2>
         <p className="subtitle">Get started with our 30 Days Unlimited Yoga Intro Special available at every studio. Find the flexible class passes or membership to power your practice</p>

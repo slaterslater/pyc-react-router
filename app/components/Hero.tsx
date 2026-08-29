@@ -4,12 +4,15 @@ import { type MenuLink } from "./navigation/NavLink";
 import { PYCButton } from "./PYCbutton";
 import { getMimeType } from "~/lib/getMimeType";
 
-export function Hero({ hero, parallax = true }: HeroProps) {
+export function Hero({ hero, parallax = false }: HeroProps) {
+  const { title, media, button } = hero
+  if (!title && !media) return null
+
   return (
     <div className="w-full relative">
-      <HeroMedia media={hero.media} parallax={parallax} />
-      <HeroTitle title={hero.title} />
-      <HeroButton button={hero.button} />
+      <HeroMedia media={media} parallax={parallax} />
+      <HeroTitle title={title} />
+      <HeroButton button={button} />
     </div>
   );
 }

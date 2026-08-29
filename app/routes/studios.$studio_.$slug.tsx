@@ -38,7 +38,7 @@ export default function StudioSubpage() {
   return (
     <>
       <SEO title={`${title} | ${name} Studio`} />
-      <Hero hero={{ title, ...banner }} />
+      <Hero hero={{ title, ...banner }} parallax />
       <ButtonRow buttons={studioNav} />
       <section className="w-full flex flex-col gap-4">
         {content.map((block: any) => (
