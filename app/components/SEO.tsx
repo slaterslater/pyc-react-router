@@ -1,15 +1,15 @@
+import { useLocation } from "react-router";
 import { useSite } from "~/hooks/useSite"
 import { getMimeType } from "~/lib/getMimeType";
 
-export default function SEO({ title, description, path, media }: SEOProps) {
+export default function SEO({ title, description }: SEOProps) {
   const { site } = useSite()
+  const { pathname } = useLocation()
 
-  const url = `https://${site.hostname}${path}`
+  const url = `https://${site.hostname}${pathname}`
   const fullTitle = `${title} | Power Yoga ${site.name}`
 
-  const defaultImage = `https://${site.hostname}/pyc-icon.png`
-  const mimeType = getMimeType(media?.mimeType);
-  const image = mimeType === 'image' ? media?.sizes?.desktop?.url ?? media?.url ?? defaultImage : defaultImage;
+  const image = `https://${site.hostname}/pyc-icon.png`
 
   return (
     <>
@@ -38,15 +38,15 @@ export default function SEO({ title, description, path, media }: SEOProps) {
 
 type SEOProps = {
   title: string;
-  description: string;
-  path: string;
-  media?: {
-    mimeType: string;
-    url: string;
-    sizes:
-    {
-      desktop: { url: string },
-      tablet: { url: string }
-    }
-  };
+  description?: string;
+  // path: string;
+  // media?: {
+  //   mimeType: string;
+  //   url: string;
+  //   sizes:
+  //   {
+  //     desktop: { url: string },
+  //     tablet: { url: string }
+  //   }
+  // };
 }

@@ -30,7 +30,7 @@ export default function StudioWorkshops() {
 
   return (
     <>
-      <SEO title={`Workshops | ${name} Studio`} />
+      <SEO title={`Workshops | ${name} Studio`} description="Check out your local PYC studio for their workshop schedule. Studios run different workshops at different times throughout the year. To reserve your spot, you must pre-register and pay for the workshop. You can do this either online or in person. There is a no refund policy for all workshops and programs. ENROLL NOW CHOOSE" />
       <Amenities amenities={amenities} />
       <Workshops />
       <SweatDiscoverTransform />

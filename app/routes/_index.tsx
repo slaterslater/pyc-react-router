@@ -26,12 +26,7 @@ export default function Home() {
 
   return (
     <PageLayout>
-      <SEO
-        title={data.seoTitle}
-        description={data.seoDescription}
-        path="/"
-        media={data.banner1.media}
-      />
+      <SEO title={data.seoTitle} description={data.seoDescription} />
       <Hero hero={data.banner1} parallax />
       <SweatDiscoverTransform />
       <p className="subtitle">{data.description1}</p>

@@ -11,6 +11,7 @@ export const STUDIO_QUERY = gql`
       docs {
         id
         name
+        seoDescription
         slug
         loginLink
         banner {

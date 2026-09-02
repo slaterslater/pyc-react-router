@@ -20,7 +20,7 @@ export default function AllBlogs() {
 
   return (
     <PageLayout>
-      <SEO title="Blog" />
+      <SEO title="Blog" description="Stay up to date with all things Power Yoga." />
       <div className="w-full">
         <div className="flex flex-col items-center justify-center gap-4 px-4 bg-charcoal text-white w-full h-[390px] md:h-[500px] rounded-md text-center">
           <h1 className="heading text-white uppercase">Power Yoga {name} blog</h1>

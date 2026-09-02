@@ -33,11 +33,11 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 }
 
 export default function StudioSubpage() {
-  const { title, banner, content, name, studioNav } = useLoaderData<typeof loader>()
+  const { title, banner, content, name, studioNav, metaDescription } = useLoaderData<typeof loader>()
 
   return (
     <>
-      <SEO title={`${title} | ${name} Studio`} />
+      <SEO title={`${title} | ${name} Studio`} description={metaDescription} />
       <Hero hero={{ title, ...banner }} parallax />
       <ButtonRow buttons={studioNav} />
       <section className="w-full flex flex-col gap-4">

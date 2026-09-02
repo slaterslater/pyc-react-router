@@ -27,11 +27,11 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 }
 
 export default function PageRoute() {
-  const { title, banner, content } = useLoaderData<typeof loader>()
+  const { title, banner, content, metaDescription } = useLoaderData<typeof loader>()
 
   return (
     <PageLayout>
-      <SEO title={title} />
+      <SEO title={title} description={metaDescription} />
       <Hero hero={{ title, ...banner }} parallax />
       <section className="w-full flex flex-col gap-4">
         {content.map((block: any) => (

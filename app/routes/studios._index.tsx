@@ -2,6 +2,7 @@ import { Link, useLoaderData, useRouteLoaderData, type LoaderFunctionArgs } from
 import Contact from "~/components/Contact";
 import SEO from "~/components/SEO";
 import { ALL_STUDIOS_QUERY } from "~/graphql/queries/allStudiosQuery";
+import { useSite } from "~/hooks/useSite";
 import { getSite } from "~/lib/getSite.server";
 import { payload } from "~/lib/payloadClient.server";
 
@@ -16,16 +17,15 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
 export default function StudiosIndexRoute() {
   const data = useLoaderData<typeof loader>()
+  const { site } = useSite()
+
+
   const hasStudios = data.studios.length > 0;
 
-  const { sites, port } = useRouteLoaderData('root')
-  const portString = port ? `:${port}` : '';
-
-  const anchorClass = 'flex items-center gap-5 text-2xl px-6 md:justify-center py-4 md:py-16 [&_span]:underline';
 
   return (
     <>
-      <SEO title="Studios" />
+      <SEO title={`Power Yoga ${site.name} | Find a Studio`} description="Find Power Yoga Canada studios in Canada. Get addresses, phone numbers, and email contacts to connect, book classes, or join our vibrant yoga community." />
       <div className="w-full">
         <div className="flex flex-col items-center justify-center gap-4 px-4 bg-charcoal text-white w-full h-[390px] md:h-[500px] rounded-md text-center">
           <h1 className="heading text-white uppercase">contact us</h1>
@@ -34,12 +34,7 @@ export default function StudiosIndexRoute() {
       </div>
       <section className={`grid grid-cols-1 sm:grid-cols-2 gap-4`}>
         {hasStudios && data.studios.map((studio: Studio) => <Studio key={studio.id} studio={studio} />)}
-        {!hasStudios && (
-          <>
-            <a href={`//${sites.canada}${portString}/studios`} className={anchorClass}><img src="/flags/CA.svg" alt="power yoga Canada" width={64} className="rounded-xs" /><span>Power Yoga Canada</span></a>
-            <a href={`//${sites.usa}${portString}/studios`} className={anchorClass}><img src="/flags/US.svg" alt="power yoga USA" width={64} className="rounded-xs" /><span>Power Yoga USA</span></a>
-          </>
-        )}
+        {!hasStudios && <NoStudios />}
       </section>
     </>
   )
@@ -71,6 +66,19 @@ function Studio({ studio }: { studio: Studio }) {
       </Link>
 
     </div>
+  )
+}
+
+function NoStudios() {
+  const { sites, port } = useRouteLoaderData('root')
+  const portString = port ? `:${port}` : '';
+  const anchorClass = 'flex items-center gap-5 text-2xl px-6 md:justify-center py-4 md:py-16 [&_span]:underline';
+
+  return (
+    <>
+      <a href={`//${sites.canada}${portString}/studios`} className={anchorClass}><img src="/flags/CA.svg" alt="power yoga Canada" width={64} className="rounded-xs" /><span>Power Yoga Canada</span></a>
+      <a href={`//${sites.usa}${portString}/studios`} className={anchorClass}><img src="/flags/US.svg" alt="power yoga USA" width={64} className="rounded-xs" /><span>Power Yoga USA</span></a>
+    </>
   )
 }
 

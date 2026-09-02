@@ -18,7 +18,7 @@ export default function IndividualStudioRoute() {
 
   return (
     <>
-      <SEO title={studio.name} />
+      <SEO title={studio.name} description={studio.seoDescription} />
       <p className="subtitle">{studio.description}</p>
       <MindBodyWidget html={studio.schedule} key={studio.id} />
       <StudioLocation />
