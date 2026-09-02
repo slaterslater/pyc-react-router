@@ -32,7 +32,7 @@ export default function Home() {
         path="/"
         media={data.banner1.media}
       />
-      {/* <Hero hero={data.banner1} parallax /> */}
+      <Hero hero={data.banner1} parallax />
       <SweatDiscoverTransform />
       <p className="subtitle">{data.description1}</p>
       <Cards cards={data.cards} />
