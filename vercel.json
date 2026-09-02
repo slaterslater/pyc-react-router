@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/toronto-west",
+      "destination": "/studios/toronto-west",
+      "permanent": true
+    }
+  ]
+}
