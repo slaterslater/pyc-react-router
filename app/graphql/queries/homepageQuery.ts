@@ -80,9 +80,6 @@ export const HOMEPAGE_QUERY = gql`
         }
         seoTitle
         seoDescription
-        analytics {
-          ga4MeasurementId
-        }
       }
     }
   }

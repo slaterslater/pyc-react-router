@@ -4,6 +4,7 @@ import { Hero } from "~/components/Hero";
 import { PageLayout } from "~/components/PageLayout";
 import SEO from "~/components/SEO";
 import { PAGE_QUERY } from "~/graphql/queries/pageQuery";
+import { useAnalytics } from "~/hooks/useAnalytics";
 import { getSite } from "~/lib/getSite.server";
 import { payload } from "~/lib/payloadClient.server";
 
@@ -27,7 +28,12 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 }
 
 export default function PageRoute() {
-  const { title, banner, content, metaDescription } = useLoaderData<typeof loader>()
+  const { title, banner, content, metaDescription, slug } = useLoaderData<typeof loader>()
+
+  useAnalytics({
+    pageType: 'page',
+    pageSlug: slug,
+  });
 
   return (
     <PageLayout>

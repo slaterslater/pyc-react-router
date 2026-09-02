@@ -4,6 +4,7 @@ import { Hero } from "~/components/Hero";
 import { PageLayout } from "~/components/PageLayout";
 import SEO from "~/components/SEO";
 import { BLOG_QUERY } from "~/graphql/queries/blogQuery";
+import { useAnalytics } from "~/hooks/useAnalytics";
 import { getSite } from "~/lib/getSite.server";
 import { payload } from "~/lib/payloadClient.server";
 
@@ -27,7 +28,12 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 }
 
 export default function BlogRoute() {
-  const { title, banner, content, metaDescription } = useLoaderData<typeof loader>()
+  const { title, banner, content, metaDescription, slug } = useLoaderData<typeof loader>()
+
+  useAnalytics({
+    pageType: 'blog_post',
+    pageSlug: slug,
+  });
 
   return (
     <PageLayout>

@@ -1,5 +1,5 @@
 import type { LoaderFunctionArgs } from "react-router";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useRouteLoaderData } from "react-router";
 import { STUDIO_TEACHERS_QUERY } from "~/graphql/queries/studioTeacherQuery";
 import { payload } from "~/lib/payloadClient.server";
 import { useRef, useState, type RefObject } from "react";
@@ -7,6 +7,7 @@ import { FadeIn } from "~/components/FadeIn";
 import { useOnClickOutside } from "usehooks-ts";
 import { motion } from "motion/react";
 import SEO from "~/components/SEO";
+import { useAnalytics } from "~/hooks/useAnalytics";
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const { studio } = params;
@@ -18,7 +19,16 @@ export async function loader({ params }: LoaderFunctionArgs) {
 
 export default function StudioTeachingTeam() {
   const { name, teachers } = useLoaderData<typeof loader>();
-  const gridCols = teachers.docs.length > 3 ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3" : "grid-cols-1 md:grid-cols-2";
+  const studio = useRouteLoaderData("routes/studios.$studio")
+
+  useAnalytics({
+    pageType: 'studio_teaching_team',
+    studioSlug: studio.slug,
+    studioGa4Id: studio.analytics?.ga4MeasurementId ?? undefined,
+  });
+
+  let gridCols = "grid-cols-1 md:grid-cols-2"
+  if (teachers.docs.length > 3) gridCols += " lg:grid-cols-3";
 
   return (
     <>
@@ -64,7 +74,6 @@ function Teacher({ teacher }: { teacher: Teacher }) {
         className="aspect-square object-cover w-full bg-cream rounded-sm"
         aria-hidden="true"
       />
-
       <motion.div
         variants={nameVariants}
         transition={{ duration: 0.3, ease: "easeInOut" }}
@@ -73,12 +82,10 @@ function Teacher({ teacher }: { teacher: Teacher }) {
         <h3
           className="heading text-red text-4xl uppercase px-2 pb-22 rounded text-center"
           style={{ textShadow: "0 1px 1px #b8aa92, 0 1px 2px #b8aa92" }}
-
         >
           {teacher.name}
         </h3>
       </motion.div>
-
       <motion.div
         variants={descVariants}
         transition={{ duration: 0.3, ease: "easeInOut" }}

@@ -18,6 +18,7 @@ import { useSuppressMindbodyCartModal } from "./hooks/useSuppressMindbodyCartMod
 import { PageLayout } from "./components/PageLayout";
 import { useState } from "react";
 import { useInterval } from "usehooks-ts";
+import GoogleTagManager from "./components/GoogleTagManager";
 
 export const links = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -61,7 +62,8 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
       canada: process.env.HOSTNAME_CANADA!,
       usa: process.env.HOSTNAME_USA!,
     },
-    port: new URL(request.url).port
+    port: new URL(request.url).port,
+    analytics: siteData.Sites.docs[0].analytics,
   };
 }
 
@@ -75,11 +77,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+        {/* <GoogleTagManager /> */}
       </head>
       <body>
         {children}
         <ScrollRestoration />
         <Scripts />
+
       </body>
     </html>
   );

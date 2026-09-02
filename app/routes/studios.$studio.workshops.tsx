@@ -1,4 +1,4 @@
-import { useLoaderData, type LoaderFunctionArgs } from "react-router";
+import { useLoaderData, useRouteLoaderData, type LoaderFunctionArgs } from "react-router";
 import { Amenities } from "~/components/Amenities";
 import { FadeIn } from "~/components/FadeIn";
 import { Hero } from "~/components/Hero";
@@ -7,6 +7,7 @@ import Offering, { type OfferingType } from "~/components/Offering";
 import SEO from "~/components/SEO";
 import { SweatDiscoverTransform } from "~/components/SweatDiscoverTransform";
 import { STUDIO_WORKSHOP_QUERY } from "~/graphql/queries/studioWorkshopQuery";
+import { useAnalytics } from "~/hooks/useAnalytics";
 import { useStudio } from "~/hooks/useStudio";
 import { payload } from "~/lib/payloadClient.server";
 
@@ -26,7 +27,13 @@ export async function loader({ params }: LoaderFunctionArgs) {
 
 export default function StudioWorkshops() {
   const { amenities, name } = useLoaderData<typeof loader>();
-  const { fullAddress } = useStudio();
+  const studio = useRouteLoaderData("routes/studios.$studio")
+
+  useAnalytics({
+    pageType: 'studio_workshops',
+    studioSlug: studio.slug,
+    studioGa4Id: studio.analytics?.ga4MeasurementId ?? undefined,
+  });
 
   return (
     <>
@@ -34,7 +41,7 @@ export default function StudioWorkshops() {
       <Amenities amenities={amenities} />
       <Workshops />
       <SweatDiscoverTransform />
-      <LocationMap fullAddress={`power yoga ${fullAddress}`} />
+      <LocationMap fullAddress={`power yoga ${studio.fullAddress}`} />
       <Offerings />
     </>
   )
@@ -48,7 +55,7 @@ function Workshops() {
       <h2 className="heading text-center uppercase py-4">Workshops</h2>
       <section className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4">
         {workshops?.map((workshop: OfferingType, i: number) => (
-          <FadeIn key={workshop.id} delay={i * 0.08} className="h-full grid">
+          <FadeIn key={i} delay={i * 0.08} className="h-full grid">
             <Offering key={workshop.id} offering={workshop} />
           </FadeIn>
         ))}
@@ -65,7 +72,7 @@ function Offerings() {
       <h2 className="heading text-center">Classes</h2>
       <section className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4">
         {offerings?.map((offering: OfferingType, i: number) => (
-          <FadeIn key={offering.id} delay={i * 0.08} className="h-full grid">
+          <FadeIn key={i} delay={i * 0.08} className="h-full grid">
             <Offering key={offering.id} offering={offering} />
           </FadeIn>
         ))}

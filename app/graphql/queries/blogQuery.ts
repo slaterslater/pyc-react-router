@@ -9,6 +9,7 @@ export const BLOG_QUERY = gql`
     Blogs(where: { slug: { equals: $slug } }) {
       docs {
         title
+        slug
         metaDescription
         site {
           name

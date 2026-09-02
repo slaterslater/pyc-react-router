@@ -34,6 +34,9 @@ export const SITE_QUERY = gql`
             ${LINK_FIELDS}
           }
         }
+        analytics {
+          ga4MeasurementId
+        }  
       }
     }
     Studios(

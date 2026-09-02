@@ -8,6 +8,7 @@ import { Reviews } from "~/components/Reviews";
 import SEO from "~/components/SEO";
 import { SweatDiscoverTransform } from "~/components/SweatDiscoverTransform";
 import { HOMEPAGE_QUERY } from "~/graphql/queries/homepageQuery";
+import { useAnalytics } from "~/hooks/useAnalytics";
 import { useSite } from "~/hooks/useSite";
 import { getSite } from "~/lib/getSite.server";
 import { payload } from "~/lib/payloadClient.server";
@@ -23,6 +24,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 export default function Home() {
   const data = useLoaderData<typeof loader>()
   const { site } = useSite()
+  useAnalytics({ pageType: 'home', siteName: site.name })
 
   return (
     <PageLayout>

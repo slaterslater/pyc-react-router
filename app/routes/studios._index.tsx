@@ -2,6 +2,7 @@ import { Link, useLoaderData, useRouteLoaderData, type LoaderFunctionArgs } from
 import Contact from "~/components/Contact";
 import SEO from "~/components/SEO";
 import { ALL_STUDIOS_QUERY } from "~/graphql/queries/allStudiosQuery";
+import { useAnalytics } from "~/hooks/useAnalytics";
 import { useSite } from "~/hooks/useSite";
 import { getSite } from "~/lib/getSite.server";
 import { payload } from "~/lib/payloadClient.server";
@@ -19,9 +20,12 @@ export default function StudiosIndexRoute() {
   const data = useLoaderData<typeof loader>()
   const { site } = useSite()
 
+  useAnalytics({
+    pageType: 'find_a_studio',
+    siteName: site.name,
+  });
 
   const hasStudios = data.studios.length > 0;
-
 
   return (
     <>

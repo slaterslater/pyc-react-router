@@ -4,6 +4,7 @@ import { ContentBlocks } from "~/components/ContentBlocks";
 import { Hero } from "~/components/Hero";
 import SEO from "~/components/SEO";
 import { PAGE_QUERY } from "~/graphql/queries/pageQuery";
+import { useAnalytics } from "~/hooks/useAnalytics";
 import { getSite } from "~/lib/getSite.server";
 import { getStudioNav } from "~/lib/getStudioNav.server";
 import { payload } from "~/lib/payloadClient.server";
@@ -33,7 +34,15 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 }
 
 export default function StudioSubpage() {
-  const { title, banner, content, name, studioNav, metaDescription } = useLoaderData<typeof loader>()
+  const { title, banner, content, name, studioNav, metaDescription, slug } = useLoaderData<typeof loader>()
+  const studio = useRouteLoaderData("routes/studios.$studio")
+
+  useAnalytics({
+    pageType: 'studio_page',
+    studioSlug: studio.slug,
+    pageSlug: slug,
+    studioGa4Id: studio.analytics?.ga4MeasurementId ?? undefined,
+  });
 
   return (
     <>

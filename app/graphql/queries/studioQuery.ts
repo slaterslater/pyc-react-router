@@ -107,6 +107,9 @@ export const STUDIO_QUERY = gql`
           closeTime
           closeMeridiem
         }
+        analytics {
+          ga4MeasurementId
+        }    
       }
     }
   }

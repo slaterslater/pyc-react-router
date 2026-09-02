@@ -9,6 +9,7 @@ export const PAGE_QUERY = gql`
     Pages(where: { slug: { equals: $slug } }) {
       docs {
         title
+        slug
         metaDescription
         site {
           name

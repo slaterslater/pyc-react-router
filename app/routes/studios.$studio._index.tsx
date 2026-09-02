@@ -12,9 +12,12 @@ import StudioHours from "~/components/StudioHours";
 import LocationMap from "~/components/LocationMap";
 import { Hero } from "~/components/Hero";
 import { isNavLink } from "~/lib/isNavLink";
+import { useAnalytics } from "~/hooks/useAnalytics";
 
 export default function IndividualStudioRoute() {
   const studio = useRouteLoaderData("routes/studios.$studio")
+
+  useAnalytics({ pageType: 'studio', studioSlug: studio.slug, studioGa4Id: studio.analytics?.ga4MeasurementId ?? undefined })
 
   return (
     <>
