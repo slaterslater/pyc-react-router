@@ -4,9 +4,9 @@ export function getSite(request: Request): SiteConfig {
 
   // Very important that the IDs match payload
   const SITES = {
-    [process.env.HOSTNAME_COLLECTIVE!]: { id: 1, name: "Collective" },
-    [process.env.HOSTNAME_CANADA!]: { id: 2, name: "Canada" },
-    [process.env.HOSTNAME_USA!]: { id: 3, name: "USA" },
+    [process.env.HOSTNAME_COLLECTIVE!]: { id: 1, name: "Collective", hostname: process.env.HOSTNAME_COLLECTIVE! },
+    [process.env.HOSTNAME_CANADA!]: { id: 2, name: "Canada", hostname: process.env.HOSTNAME_CANADA! },
+    [process.env.HOSTNAME_USA!]: { id: 3, name: "USA", hostname: process.env.HOSTNAME_USA! },
   } as const;
 
   const site = SITES[url.hostname];

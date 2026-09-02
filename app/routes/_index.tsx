@@ -26,8 +26,13 @@ export default function Home() {
 
   return (
     <PageLayout>
-      <SEO title="Home" />
-      <Hero hero={data.banner1} parallax />
+      <SEO
+        title={data.seoTitle}
+        description={data.seoDescription}
+        path="/"
+        media={data.banner1.media}
+      />
+      {/* <Hero hero={data.banner1} parallax /> */}
       <SweatDiscoverTransform />
       <p className="subtitle">{data.description1}</p>
       <Cards cards={data.cards} />

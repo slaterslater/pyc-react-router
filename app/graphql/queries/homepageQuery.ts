@@ -77,7 +77,12 @@ export const HOMEPAGE_QUERY = gql`
           media {
             ...MediaFragment
           }
-        }    
+        }
+        seoTitle
+        seoDescription
+        analytics {
+          ga4MeasurementId
+        }
       }
     }
   }
