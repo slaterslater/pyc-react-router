@@ -40,6 +40,7 @@ export const STUDIO_QUERY = gql`
         schedule
         amenities {
           name
+          _order
           image {
             url
           }

@@ -19,6 +19,10 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
     throw new Error("Studio not found")
   }
 
+  const amenities = studioData.amenities.sort((a: any, b: any) => (
+    a._order < b._order ? -1 : a._order > b._order ? 1 : 0)
+  )
+
   const addressParts = [
     studioData.address1,
     studioData.address2,
@@ -32,10 +36,10 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
   return {
     ...studioData,
     studioNav: getStudioNav(studio, studioData),
-    amenities: studioData.amenities.sort((a: any, b: any) => a.name.localeCompare(b.name)),
     offerings: studioData?.offerings?.docs[0]?.offerings,
     introOffer: studioData?.offerings?.docs[0]?.introOffer,
     fullAddress: addressParts.join(" "),
+    amenities,
     siteName,
   }
 }
