@@ -41,6 +41,7 @@ function IntensityBadge({ intensity }: { intensity: string }) {
 }
 
 export type OfferingType = {
+  isActive: boolean;
   title: string
   subtitle: string
   dates: string

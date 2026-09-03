@@ -9,19 +9,18 @@ import { SweatDiscoverTransform } from "~/components/SweatDiscoverTransform";
 import { STUDIO_WORKSHOP_QUERY } from "~/graphql/queries/studioWorkshopQuery";
 import { useAnalytics } from "~/hooks/useAnalytics";
 import { useStudio } from "~/hooks/useStudio";
+import { getActiveOfferings } from "~/lib/getActiveOfferings";
 import { payload } from "~/lib/payloadClient.server";
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const { studio } = params;
   const data = await payload.request(STUDIO_WORKSHOP_QUERY, { studio })
   const studioData = data.Studios.docs[0];
-  const workshops = studioData.workshops.docs[0]?.workshops;
-  const offerings = studioData.offerings.docs[0]?.offerings;
 
   return {
     ...studioData,
-    workshops,
-    offerings,
+    workshops: getActiveOfferings(studioData.workshops.docs[0]?.workshops),
+    offerings: getActiveOfferings(studioData.offerings.docs[0]?.offerings),
   }
 }
 

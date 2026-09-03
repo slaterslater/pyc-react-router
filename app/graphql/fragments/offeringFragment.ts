@@ -16,6 +16,7 @@ const BUTTON_FRAGMENT = gql`
 export const OFFERING_FRAGMENT = gql`
   ${BUTTON_FRAGMENT}
   fragment OfferingFragment on OfferingItem {
+    isActive
     title
     subtitle
     dates

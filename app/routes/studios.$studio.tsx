@@ -2,6 +2,7 @@ import { Outlet, useLoaderData, type LoaderFunctionArgs } from "react-router";
 import { ButtonRow } from "~/components/ButtonRow";
 import { Hero } from "~/components/Hero";
 import { STUDIO_QUERY } from "~/graphql/queries/studioQuery";
+import { getActiveOfferings } from "~/lib/getActiveOfferings";
 import { getSite } from "~/lib/getSite.server";
 import { getStudioNav } from "~/lib/getStudioNav.server";
 import { payload } from "~/lib/payloadClient.server";
@@ -36,7 +37,7 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
   return {
     ...studioData,
     studioNav: getStudioNav(studio, studioData),
-    offerings: studioData?.offerings?.docs[0]?.offerings,
+    offerings: getActiveOfferings(studioData?.offerings?.docs[0]?.offerings),
     introOffer: studioData?.offerings?.docs[0]?.introOffer,
     fullAddress: addressParts.join(" "),
     amenities,
