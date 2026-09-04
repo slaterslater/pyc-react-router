@@ -1,72 +1,72 @@
 {
   "redirects": [
     {
-      "source": "/barrie",
+      "source": "/barrie/?",
       "destination": "/studios/barrie",
       "permanent": true
     },
     {
-      "source": "/burlington",
+      "source": "/burlington/?",
       "destination": "/studios/burlington",
       "permanent": true
     },
     {
-      "source": "/collingwood",
+      "source": "/collingwood/?",
       "destination": "/studios/collingwood",
       "permanent": true
     },
     {
-      "source": "/oshawa",
+      "source": "/oshawa/?",
       "destination": "/studios/oshawa",
       "permanent": true
     },
     {
-      "source": "/etobicoke",
+      "source": "/etobicoke/?",
       "destination": "/studios/etobicoke",
       "permanent": true
     },
     {
-      "source": "/georgetown",
+      "source": "/georgetown/?",
       "destination": "/studios/georgetown",
       "permanent": true
     },
     {
-      "source": "/guelph",
+      "source": "/guelph/?",
       "destination": "/studios/guelph",
       "permanent": true
     },
     {
-      "source": "/kitchener-waterloo",
+      "source": "/kitchener-waterloo/?",
       "destination": "/studios/kitchener-waterloo",
       "permanent": true
     },
     {
-      "source": "/mississauga",
+      "source": "/mississauga/?",
       "destination": "/studios/mississauga",
       "permanent": true
     },
     {
-      "source": "/niagara",
+      "source": "/niagara/?",
       "destination": "/studios/niagara",
       "permanent": true
     },
     {
-      "source": "/oakville",
+      "source": "/oakville/?",
       "destination": "/studios/oakville",
       "permanent": true
     },
     {
-      "source": "/peterborough-yoga-studio",
+      "source": "/peterborough-yoga-studio/?",
       "destination": "/studios/peterborough",
       "permanent": true
     },
     {
-      "source": "/yoga-sudbury",
-      "destination": "/studios/yoga-sudbury",
+      "source": "/yoga-sudbury/?",
+      "destination": "/studios/sudbury",
       "permanent": true
     },
     {
-      "source": "/toronto-west",
+      "source": "/toronto-west/?",
       "destination": "/studios/toronto-west",
       "permanent": true
     }
