@@ -55,9 +55,5 @@ function MindBodyWidgetHealcode({ html = '' }: { html: string }) {
     return () => { container.innerHTML = '' }
   }, [status, attrs])
 
-  return <span ref={containerRef} />
+  return <span ref={containerRef} className="px-6" />
 }
-
-
-
-
