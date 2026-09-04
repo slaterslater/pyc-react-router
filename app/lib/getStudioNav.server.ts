@@ -10,14 +10,16 @@ export function getStudioNav(studio: string | undefined, studioData: any) {
         slug: `studios/${studio}`,
       },
     },
-    ...(hasWorkshops ? [{
+    // ...(hasWorkshops ? [{
+    {
       id: 'workshops',
       text: 'Workshops',
       type: 'internal',
       page: {
         slug: `studios/${studio}/workshops`,
       },
-    }] : []),
+    },
+    // }] : []),
     {
       id: 'teaching-team',
       text: 'Teaching\u00A0Team',

@@ -51,6 +51,7 @@ export const STUDIO_QUERY = gql`
         workshops(limit: 1) {
           docs {
             id
+            mboWorkshopWidget
           }
         }
         offerings(limit: 0) {

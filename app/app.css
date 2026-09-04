@@ -99,7 +99,7 @@ body {
   }
 
   .btn-black {
-    @apply bg-charcoal text-white;
+    @apply bg-charcoal text-white hover:bg-charcoal/90;
   }
 
   .subtitle {

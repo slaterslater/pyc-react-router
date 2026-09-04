@@ -3,6 +3,7 @@ import { Amenities } from "~/components/Amenities";
 import { FadeIn } from "~/components/FadeIn";
 import { Hero } from "~/components/Hero";
 import LocationMap from "~/components/LocationMap";
+import { MindBodyWidget } from "~/components/MindbodyWidget";
 import Offering, { type OfferingType } from "~/components/Offering";
 import SEO from "~/components/SEO";
 import { SweatDiscoverTransform } from "~/components/SweatDiscoverTransform";
@@ -38,6 +39,7 @@ export default function StudioWorkshops() {
     <>
       <SEO title={`Workshops | ${name} Studio`} description="Check out your local PYC studio for their workshop schedule. Studios run different workshops at different times throughout the year. To reserve your spot, you must pre-register and pay for the workshop. You can do this either online or in person. There is a no refund policy for all workshops and programs. ENROLL NOW CHOOSE" />
       <Amenities amenities={amenities} />
+      <MindBodyWidget html={studio.workshops.docs[0]?.mboWorkshopWidget} key={studio.id} />
       <Workshops />
       <SweatDiscoverTransform />
       <LocationMap fullAddress={`power yoga ${studio.fullAddress}`} />
