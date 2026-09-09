@@ -1,7 +1,6 @@
 import { useLoaderData, useRouteLoaderData, type LoaderFunctionArgs } from "react-router";
 import { Amenities } from "~/components/Amenities";
 import { FadeIn } from "~/components/FadeIn";
-import { Hero } from "~/components/Hero";
 import LocationMap from "~/components/LocationMap";
 import { MindBodyWidget } from "~/components/MindbodyWidget";
 import Offering, { type OfferingType } from "~/components/Offering";
@@ -9,7 +8,6 @@ import SEO from "~/components/SEO";
 import { SweatDiscoverTransform } from "~/components/SweatDiscoverTransform";
 import { STUDIO_WORKSHOP_QUERY } from "~/graphql/queries/studioWorkshopQuery";
 import { useAnalytics } from "~/hooks/useAnalytics";
-import { useStudio } from "~/hooks/useStudio";
 import { getActiveOfferings } from "~/lib/getActiveOfferings";
 import { payload } from "~/lib/payloadClient.server";
 
@@ -37,7 +35,7 @@ export default function StudioWorkshops() {
 
   return (
     <>
-      <SEO title={`Workshops | ${name} Studio`} description="Check out your local PYC studio for their workshop schedule. Studios run different workshops at different times throughout the year. To reserve your spot, you must pre-register and pay for the workshop. You can do this either online or in person. There is a no refund policy for all workshops and programs. ENROLL NOW CHOOSE" />
+      <SEO title={`Workshops | ${name} Studio`} description="To reserve your spot, you must pre-register and pay for the workshop. You can do this either online or in person. There is a no refund policy for all workshops and programs. ENROLL NOW CHOOSE" />
       <Amenities amenities={amenities} />
       <MindBodyWidget html={studio.workshops.docs[0]?.mboWorkshopWidget} key={studio.id} />
       <Workshops />
@@ -50,7 +48,7 @@ export default function StudioWorkshops() {
 
 function Workshops() {
   const { workshops } = useLoaderData<typeof loader>();
-  if (!workshops.length) return null;
+  if (!workshops?.length) return null;
   return (
     <>
       <h2 className="heading text-center uppercase py-4">Workshops</h2>

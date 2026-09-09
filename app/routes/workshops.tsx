@@ -1,12 +1,12 @@
 import { Link, useLoaderData, useRouteLoaderData, type LoaderFunctionArgs } from "react-router";
 import { BlankHero } from "~/components/BlankHero";
-import Contact from "~/components/Contact";
+import { PageLayout } from "~/components/PageLayout";
 import SEO from "~/components/SEO";
 import { ALL_STUDIOS_QUERY } from "~/graphql/queries/allStudiosQuery";
-import { useAnalytics } from "~/hooks/useAnalytics";
-import { useSite } from "~/hooks/useSite";
 import { getSite } from "~/lib/getSite.server";
 import { payload } from "~/lib/payloadClient.server";
+import type { Studio } from "./studios._index";
+import Contact from "~/components/Contact";
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const site = getSite(request);
@@ -17,30 +17,22 @@ export async function loader({ request }: LoaderFunctionArgs) {
   }
 }
 
-export default function StudiosIndexRoute() {
-  const data = useLoaderData<typeof loader>()
-  const { site } = useSite()
-
-  useAnalytics({
-    pageType: 'find_a_studio',
-    siteName: site.name,
-  });
-
-  const hasStudios = data.studios.length > 0;
+export default function AllStudiosWorkshopsRoute() {
+  const { studios } = useLoaderData<typeof loader>();
+  const hasStudios = studios.length > 0;
 
   return (
-    <>
-      <SEO title={`Power Yoga ${site.name} | Find a Studio`} description="Find Power Yoga Canada studios in Canada. Get addresses, phone numbers, and email contacts to connect, book classes, or join our vibrant yoga community." />
+    <PageLayout>
+      <SEO title="Workshops" description="Check out your local PYC studio for their workshop schedule. Studios run different workshops at different times throughout the year. To reserve your spot, you must pre-register and pay for the workshop. You can do this either online or in person. There is a no refund policy for all workshops and programs. ENROLL NOW CHOOSE" />
       <BlankHero>
-        <h1 className="heading text-white uppercase">contact us</h1>
-        <p>For general questions about PYC please email us at <a className="underline" href="mailto:info@poweryogacanada.com">info@poweryogacanada.com</a></p>
+        <h1 className="heading text-white uppercase">Workshops</h1>
       </BlankHero>
       <section className={`grid grid-cols-1 sm:grid-cols-2 gap-4`}>
-        {hasStudios && data.studios.map((studio: Studio) => <Studio key={studio.id} studio={studio} />)}
+        {hasStudios && studios.map((studio: Studio) => <Studio key={studio.id} studio={studio} />)}
         {!hasStudios && <NoStudios />}
       </section>
-    </>
-  )
+    </PageLayout>
+  );
 }
 
 function Studio({ studio }: { studio: Studio }) {
@@ -50,12 +42,12 @@ function Studio({ studio }: { studio: Studio }) {
 
   return (
     <div key={studio.id} className="bg-cream rounded-md p-8 md:p-10 lg:p-12 flex flex-col gap-6">
-      <Link to={`/studios/${studio.slug}`} className="underline">
+      <Link to={`/studios/${studio.slug}/workshops`} className="underline">
         <h3 className="text-xl uppercase">{studioName}</h3>
       </Link>
       <Contact studio={studio} />
       <Link
-        to={`/studios/${studio.slug}`}
+        to={`/studios/${studio.slug}/workshops`}
         className="border border-black rounded-md px-2 py-1 flex items-center gap-2 w-fit uppercase"
         style={{
           backgroundImage: 'url(/pyc-icon.png)',
@@ -79,23 +71,8 @@ function NoStudios() {
 
   return (
     <>
-      <a href={`//${sites.canada}${portString}/studios`} className={anchorClass}><img src="/flags/CA.svg" alt="power yoga Canada" width={64} className="rounded-xs" /><span>Power Yoga Canada</span></a>
-      <a href={`//${sites.usa}${portString}/studios`} className={anchorClass}><img src="/flags/US.svg" alt="power yoga USA" width={64} className="rounded-xs" /><span>Power Yoga USA</span></a>
+      <a href={`//${sites.canada}${portString}/workshops`} className={anchorClass}><img src="/flags/CA.svg" alt="power yoga Canada" width={64} className="rounded-xs" /><span>Power Yoga Canada</span></a>
+      <a href={`//${sites.usa}${portString}/workshops`} className={anchorClass}><img src="/flags/US.svg" alt="power yoga USA" width={64} className="rounded-xs" /><span>Power Yoga USA</span></a>
     </>
   )
-}
-
-export type Studio = {
-  id: string;
-  name: string;
-  slug: string;
-  address1: string;
-  address2: string;
-  city: string;
-  province: string;
-  state: string;
-  zip: string;
-  postalCode: string;
-  phone: string;
-  email: string;
 }
