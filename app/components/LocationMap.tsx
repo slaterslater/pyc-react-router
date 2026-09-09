@@ -4,7 +4,7 @@ export default function LocationMap({ fullAddress }: { fullAddress: string }) {
   if (!fullAddress) return null;
 
   return (
-    <div className="relative text-right w-full px-4">
+    <div className="relative text-right w-full">
       <div className="gmap_canvas overflow-hidden bg-none w-full h-[400px]">
         <iframe
           className="rounded-md h-[400px] w-full"

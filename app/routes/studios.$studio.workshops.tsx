@@ -50,7 +50,7 @@ export default function StudioWorkshops() {
 
 function Workshops() {
   const { workshops } = useLoaderData<typeof loader>();
-  if (!workshops) return null;
+  if (!workshops.length) return null;
   return (
     <>
       <h2 className="heading text-center uppercase py-4">Workshops</h2>
@@ -71,7 +71,7 @@ function Offerings() {
   return (
     <>
       <h2 className="heading text-center">Classes</h2>
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4">
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {offerings?.map((offering: OfferingType, i: number) => (
           <FadeIn key={i} delay={i * 0.08} className="h-full grid">
             <Offering key={offering.id} offering={offering} />
