@@ -16,7 +16,7 @@ export function Review({ review }: { review: ReviewType }) {
     <article className="bg-cream rounded-md p-4 flex flex-col gap-4 flex-1 p-8">
       <p className="text-md">"{review.text}"</p>
       <div
-        className="flex flex-col items-start justify-center mt-auto"
+        className="flex flex-col items-start justify-center mt-auto min-h-[35px]"
         style={{
           backgroundImage: 'url(/pyc-icon.png)',
           backgroundRepeat: 'no-repeat',
