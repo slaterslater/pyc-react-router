@@ -26,6 +26,7 @@ export default function AllStudiosWorkshopsRoute() {
       <SEO title="Workshops" description="Check out your local PYC studio for their workshop schedule. Studios run different workshops at different times throughout the year. To reserve your spot, you must pre-register and pay for the workshop. You can do this either online or in person. There is a no refund policy for all workshops and programs. ENROLL NOW CHOOSE" />
       <BlankHero>
         <h1 className="heading text-white uppercase">Workshops</h1>
+        <p>Find your local PYC studio for their workshop schedule.</p>
       </BlankHero>
       <section className={`grid grid-cols-1 sm:grid-cols-2 gap-4`}>
         {hasStudios && studios.map((studio: Studio) => <Studio key={studio.id} studio={studio} />)}
