@@ -4,6 +4,7 @@ import { HEALCODE_SRC, MB_WIDGET_SRC } from "~/lib/mindBodyScriptSrc";
 import { escapeAttr, parseHealcodeTag } from "~/lib/parseHealcodeTag";
 
 export function MindBodyWidget({ html = '' }: { html: string }) {
+  if (!html) return null;
   if (html.startsWith('<healcode-widget')) return <MindBodyWidgetHealcode html={html} />
   return <MindBodyWidgetDiv html={html} />
 }
