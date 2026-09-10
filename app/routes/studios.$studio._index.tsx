@@ -13,6 +13,7 @@ import LocationMap from "~/components/LocationMap";
 import { Hero } from "~/components/Hero";
 import { isNavLink } from "~/lib/isNavLink";
 import { useAnalytics } from "~/hooks/useAnalytics";
+import { useStudio } from "~/hooks/useStudio";
 
 export default function IndividualStudioRoute() {
   const studio = useRouteLoaderData("routes/studios.$studio")
@@ -43,12 +44,14 @@ export default function IndividualStudioRoute() {
 
 function StudioLocation() {
   const studio = useRouteLoaderData("routes/studios.$studio")
+  const { pycStudioName } = useStudio();
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 rounded-md w-full mx-auto bg-cream py-8 px-4 lg:pr-8 mb-4">
       <LocationMap fullAddress={studio.fullAddress} />
       <div className="flex flex-col sm:flex-row gap-4 lg:flex-col sm:w-full justify-around gap-4 mx-auto px-4">
         <div className="flex flex-col">
-          <span className="uppercase font-medium block pb-2">PYC {studio.name}</span>
+          <span className="uppercase font-medium block pb-2">{pycStudioName}</span>
           <Contact studio={studio} />
         </div>
         <StudioHours days={studio.hoursOfOperation} />

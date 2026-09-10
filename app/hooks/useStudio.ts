@@ -11,6 +11,7 @@ export function useStudio() {
     isStudioPage: Boolean(studioData),
     name: studioData?.name,
     studioName: studioData?.name,
+    pycStudioName: `PYC ${studioData?.name.replace(/^PYC /i, '')}`,
     loginLink: studioData?.loginLink,
     studioLink: studio ? `/studios/${studio}` : "/studios",
     fullAddress: studioData?.fullAddress,

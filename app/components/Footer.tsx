@@ -9,7 +9,7 @@ import Contact from "./Contact";
 export function Footer() {
   const { footer } = useRouteLoaderData('root')
   const { site, logoSrc } = useSite();
-  const { studioData } = useStudio();
+  const { studioData, pycStudioName } = useStudio();
 
   return (
     <footer className="w-full min-w-xs max-w-[1450px] mx-auto px-4 flex flex-col sm:flex-row flex-wrap py-8 gap-8 bg-white">
@@ -21,7 +21,7 @@ export function Footer() {
         )}
         {studioData && (
           <div>
-            <h3 className="uppercase font-bold mb-3">PYC {studioData.name}</h3>
+            <h3 className="uppercase font-bold mb-3">{pycStudioName}</h3>
             <Contact studio={studioData} />
           </div>
         )}
