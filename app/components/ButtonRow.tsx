@@ -7,7 +7,7 @@ export function ButtonRow({ buttons, className }: { buttons: MenuLink[], classNa
         <NavLink
           key={button.id}
           link={button}
-          className="button btn-black min-w-[140px] sm:max-w-[220px] flex-1"
+          className="button btn-black min-w-[140px] sm:max-w-[220px] sm:basis-[180px] sm:grow-0 sm:shrink-0"
         />
       ))}
     </div>
