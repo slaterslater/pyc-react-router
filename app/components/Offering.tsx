@@ -19,7 +19,7 @@ export default function Offering({ offering }: { offering: OfferingType }) {
       </div>
       <p className="text-md py-5 whitespace-pre-line">{description}</p>
       {isNavLink(button) && (
-        <div className="flex justify-center items-center gap-2 mt-4 border border-black w-fit px-4 py-2 rounded-md">
+        <div className="flex justify-center items-center gap-2 mt-auto border border-black w-fit px-4 py-2 rounded-md">
           <img src="/pyc-icon.png" alt="" className="w-3 h-3" />
           <NavLink link={button} className="underline uppercase font-medium" />
         </div>
