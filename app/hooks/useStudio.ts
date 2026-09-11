@@ -5,7 +5,7 @@ export function useStudio() {
 
   const studioLayout = useRouteLoaderData("routes/studios.$studio")
   const studioSlugPage = useRouteLoaderData("routes/studios.$studio_.$slug")
-  const studioData = studioLayout ?? studioSlugPage.studio
+  const studioData = studioLayout ?? studioSlugPage?.studio
 
   return {
     isStudioPage: Boolean(studioData),

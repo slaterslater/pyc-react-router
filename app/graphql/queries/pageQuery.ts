@@ -14,6 +14,10 @@ export const PAGE_QUERY = gql`
         site {
           name
         }
+        studio {
+          name
+          slug
+        }
         banner {
           media {
             ...MediaFragment
@@ -106,7 +110,7 @@ export const PAGE_QUERY = gql`
         }
       }
     }
-    Studios(where: { slug: { equals: $studio } }) {
+    Studios(limit: 1, where: { slug: { equals: $studio }}) {
       docs {
         id
         name

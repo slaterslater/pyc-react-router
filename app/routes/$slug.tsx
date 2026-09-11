@@ -1,4 +1,4 @@
-import { useLoaderData, type LoaderFunctionArgs } from "react-router";
+import { redirect, useLoaderData, type LoaderFunctionArgs } from "react-router";
 import { ContentBlocks } from "~/components/ContentBlocks";
 import { Hero } from "~/components/Hero";
 import { PageLayout } from "~/components/PageLayout";
@@ -11,8 +11,14 @@ import { payload } from "~/lib/payloadClient.server";
 export async function loader({ request, params }: LoaderFunctionArgs) {
   const { slug } = params
 
-  const payloadData = await payload.request(PAGE_QUERY, { slug })
+  const payloadData = await payload.request(PAGE_QUERY, { slug, studio: null })
   const pageData = payloadData.Pages?.docs[0]
+
+  // if the page is associated with a studio, redirect to the studio page
+  const studioSlug = pageData?.studio?.slug
+  if (studioSlug) {
+    return redirect(`/studios/${studioSlug}/${slug}`)
+  }
 
   const site = getSite(request);
   const siteName = pageData?.site?.name;
