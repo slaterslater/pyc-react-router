@@ -110,6 +110,7 @@ export const PAGE_QUERY = gql`
       docs {
         id
         name
+        slug
         studioNav {
           ${LINK_FIELDS}
         }
@@ -123,7 +124,10 @@ export const PAGE_QUERY = gql`
           image {
             url
           }
-        }  
+        }
+        analytics {
+          ga4MeasurementId
+        }
       }
     }
   }

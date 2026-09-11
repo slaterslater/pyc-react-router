@@ -1,4 +1,4 @@
-import { useLoaderData, useRouteLoaderData, type LoaderFunctionArgs } from "react-router";
+import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 import { ButtonRow } from "~/components/ButtonRow";
 import { ContentBlocks } from "~/components/ContentBlocks";
 import { Hero } from "~/components/Hero";
@@ -28,14 +28,13 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 
   return {
     ...pageData,
-    ...studioData,
+    studio: studioData,
     studioNav,
   }
 }
 
 export default function StudioSubpage() {
-  const { title, banner, content, name, studioNav, metaDescription, slug } = useLoaderData<typeof loader>()
-  const studio = useRouteLoaderData("routes/studios.$studio")
+  const { title, banner, content, name, studioNav, metaDescription, slug, studio } = useLoaderData<typeof loader>()
 
   useAnalytics({
     pageType: 'studio_page',
