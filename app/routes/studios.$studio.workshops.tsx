@@ -65,7 +65,7 @@ function Workshops() {
 
 function Offerings() {
   const { offerings } = useLoaderData<typeof loader>();
-  if (!offerings) return null;
+  if (!offerings || offerings.length === 0) return null;
   return (
     <>
       <h2 className="heading text-center">Classes</h2>
