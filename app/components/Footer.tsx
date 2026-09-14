@@ -8,7 +8,7 @@ import Contact from "./Contact";
 
 export function Footer() {
   const { footer } = useRouteLoaderData('root')
-  const { site, logoSrc } = useSite();
+  const { site, logoSrc, pycSiteName } = useSite();
   const { studioData, pycStudioName } = useStudio();
 
   return (
@@ -39,7 +39,7 @@ export function Footer() {
           </div>
         ))}
       </nav>
-      <Link to="/" className="w-full basis-full mt-4 text-center text-sm uppercase order-3">{`© ${dayjs().year()} Power Yoga ${site.name}`}</Link>
+      <Link to="/" className="w-full basis-full mt-4 text-center text-sm uppercase order-3">{`© ${dayjs().year()} ${pycSiteName}`}</Link>
     </footer>
   )
 }

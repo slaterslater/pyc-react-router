@@ -80,7 +80,7 @@ function NoStudios() {
   return (
     <>
       <a href={`//${sites.canada}${portString}/studios`} className={anchorClass}><img src="/flags/CA.svg" alt="power yoga Canada" width={64} className="rounded-xs" /><span>Power Yoga Canada</span></a>
-      <a href={`//${sites.usa}${portString}/studios`} className={anchorClass}><img src="/flags/US.svg" alt="power yoga USA" width={64} className="rounded-xs" /><span>Power Yoga USA</span></a>
+      <a href={`//${sites.usa}${portString}/studios`} className={anchorClass}><img src="/flags/US.svg" alt="power yoga USA" width={64} className="rounded-xs" /><span>Power Yoga Collective</span></a>
     </>
   )
 }

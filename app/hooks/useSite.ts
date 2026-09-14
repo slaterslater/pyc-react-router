@@ -9,6 +9,7 @@ export function useSite() {
     studios,
     hasStudios: studios.length > 0,
     logoSrc: logos[site.name as keyof typeof logos],
+    pycSiteName: site.name === 'Canada' ? 'Power Yoga Canada' : 'Power Yoga Collective',
   }
 }
 

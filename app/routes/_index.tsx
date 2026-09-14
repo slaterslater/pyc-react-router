@@ -23,7 +23,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
 export default function Home() {
   const data = useLoaderData<typeof loader>()
-  const { site } = useSite()
+  const { site, pycSiteName } = useSite()
   useAnalytics({ pageType: 'home', siteName: site.name })
 
   return (
@@ -46,8 +46,8 @@ export default function Home() {
       </div>
       <Hero hero={data.banner3} />
       <div className="flex flex-col gap-4 p-4 justify-center items-center">
-        <h2 className="heading text-center capitalize">New to Power Yoga {site.name}?</h2>
-        <p className="subtitle">Get started with our 30 Days Unlimited Yoga Intro Special available at every studio. Find the flexible class passes or membership to power your practice</p>
+        <h2 className="heading text-center capitalize">New to {pycSiteName}?</h2>
+        <p className="subtitle">Get started with our 30 Days Unlimited Yoga Intro Special available at every studio.<br /> Find the flexible class passes or membership to power your practice</p>
         <Link to="/studios" className="btn-red w-fit rounded-md px-5 py-3 uppercase text-sm">View Intro Offers</Link>
       </div>
     </PageLayout>
