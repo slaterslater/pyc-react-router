@@ -23,4 +23,5 @@ export type SiteName = "Collective" | "Canada" | "USA";
 interface SiteConfig {
   id: number;
   name: SiteName;
+  hostname: string;
 }

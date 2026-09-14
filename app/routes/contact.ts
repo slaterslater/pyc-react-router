@@ -28,7 +28,8 @@ export async function action({ request }: ActionFunctionArgs) {
   // console.log(to, html);
 
   // await resend.emails.send({
-  //   from: 'PYC Contact Form <no-reply@contact.poweryogacollective.com>',
+  //   from: 'onboarding@resend.dev',
+  //   // from: 'PYC Contact Form <no-reply@contact.poweryogacollective.com>',
   //   // to,
   //   to: 'slaterslater@gmail.com',
   //   subject,
@@ -37,17 +38,3 @@ export async function action({ request }: ActionFunctionArgs) {
 
   return { success: true, url };
 }
-
-/*
-
-{
-  status: 403,
-  error: {
-    statusCode: 403,
-    message: 'The contact.poweryogacollective.com domain is not verified. Please, add and verify your domain on https://resend.com/domains',
-    name: 'validation_error'
-  },
-  path: '/emails'
-}
-
-*/
