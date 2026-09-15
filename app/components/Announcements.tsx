@@ -5,7 +5,8 @@ import { useCyclicCounter } from "~/hooks/useCyclicCounter";
 import { NavLink, type MenuLink } from "./navigation/NavLink";
 
 export function Announcements() {
-  const { announcements } = useRouteLoaderData('root')
+  const data = useRouteLoaderData('root')
+  const announcements = data?.announcements;
   const { count, increment } = useCyclicCounter(announcements?.length ?? 0);
   const [isPaused, setIsPaused] = useState(false);
   useInterval(increment, isPaused ? null : 5000);

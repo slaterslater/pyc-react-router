@@ -9,6 +9,7 @@ import { RichText } from "./RichText";
 import { Amenities } from "./Amenities";
 import { ButtonRow } from "./ButtonRow";
 import { ContactForm } from "./ContactForm";
+import { supabaseImage } from "~/lib/supabaseImage";
 
 export function ContentBlocks({ block }: { block: any }) {
   switch (block.blockType) {
@@ -26,13 +27,26 @@ export function ContentBlocks({ block }: { block: any }) {
       return <Offering offering={block} />
 
     case 'image':
+      const sizes = block.media.sizes;
+
+      const srcSet = [
+        sizes.mobile && `${supabaseImage(sizes.mobile.filename)} ${sizes.mobile.width}w`,
+        sizes.tablet && `${supabaseImage(sizes.tablet.filename)} ${sizes.tablet.width}w`,
+        sizes.desktop && `${supabaseImage(sizes.desktop.filename)} ${sizes.desktop.width}w`,
+      ]
+        .filter(Boolean)
+        .join(', ');
+
       return (
         <img
-          src={block.media.sizes.tablet.url ?? block.media.url}
-          alt=""
+          src={supabaseImage(block.media.filename)}
+          srcSet={srcSet || undefined}
+          sizes="(max-width: 768px) 100vw, 50vw" // adjust to actual layout
+          alt={block.media.alt ?? ''}
           className="w-full h-full object-cover bg-charcoal rounded-md"
+          loading="lazy"
         />
-      )
+      );
 
     case "headline":
       const { heading, subtitle } = block;

@@ -5,15 +5,19 @@ export const MEDIA_FRAGMENT = gql`
       mimeType    
       alt 
       url
+      filename
       sizes {
         thumbnail {
           url
+          filename
         }
         tablet {
           url
+          filename
         }
         desktop {
           url
+          filename
         }
       }
     }
