@@ -6,6 +6,8 @@ export default function IntroOffer() {
   const { introOffer } = useRouteLoaderData("routes/studios.$studio")
   const { pycStudioName } = useStudio();
 
+  if (!introOffer) return null;
+
   return (
     <div className="flex flex-col gap-8 p-4 items-center">
       <h2 className="heading text-center capitalize">New to {pycStudioName}?</h2>
