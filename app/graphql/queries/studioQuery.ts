@@ -43,6 +43,7 @@ export const STUDIO_QUERY = gql`
           _order
           image {
             url
+            filename
           }
         }
         studioNav {

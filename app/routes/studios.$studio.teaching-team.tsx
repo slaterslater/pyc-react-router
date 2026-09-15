@@ -8,6 +8,7 @@ import { useOnClickOutside } from "usehooks-ts";
 import { motion } from "motion/react";
 import SEO from "~/components/SEO";
 import { useAnalytics } from "~/hooks/useAnalytics";
+import { SupabaseImage } from "~/components/SupabaseImage";
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const { studio } = params;
@@ -68,11 +69,10 @@ function Teacher({ teacher }: { teacher: Teacher }) {
       className="relative flex flex-col items-center justify-center outline-none"
       style={{ cursor: "pointer" }}
     >
-      <img
-        src={teacher.image.thumbnailURL}
-        alt={teacher.name}
+      <SupabaseImage
+        media={teacher.image}
+        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
         className="aspect-square object-cover w-full bg-cream rounded-sm"
-        aria-hidden="true"
       />
       <motion.div
         variants={nameVariants}
@@ -104,5 +104,12 @@ type Teacher = {
   description: string;
   image: {
     thumbnailURL: string;
+    filename: string;
+    alt: string;
+    sizes: {
+      thumbnail: {
+        filename: string;
+      }
+    }
   };
 }

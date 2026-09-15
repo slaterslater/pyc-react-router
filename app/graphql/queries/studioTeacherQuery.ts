@@ -11,7 +11,13 @@ export const STUDIO_TEACHERS_QUERY = gql`
             name
             description
             image {
-              thumbnailURL
+              alt
+              filename
+              sizes {
+                thumbnail {
+                  filename
+                }
+              }
             }
           }
         }

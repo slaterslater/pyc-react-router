@@ -1,14 +1,13 @@
 
 import { supabase } from "~/lib/supabaseClient";
 
-// use supbase client to transform the image png/jpg into webp
-export function SupabaseImage({ media, className }: { media: Media, className?: string }) {
+export function SupabaseImage({ media, sizes, className }: { media: Media, sizes?: string, className?: string }) {
   const srcSet = getSupabaseSrcSet(media);
   return (
     <img
       src={supabaseImageSrc(media.filename)}
       srcSet={srcSet || undefined}
-      sizes="(max-width: 768px) 100vw, 50vw" // adjust to actual layout
+      sizes={sizes || "(max-width: 768px) 100vw, 50vw"}
       alt={media.alt ?? ''}
       className={className}
       loading="lazy"
@@ -30,12 +29,17 @@ export function supabaseImageSrc(path: string, { quality = 75, format }: Supabas
 }
 
 function getSupabaseSrcSet(media: Media) {
-  const sizes = media.sizes;
-  if (!sizes) return null;
+  if (!media.sizes) return null;
+
   return [
-    media.sizes.mobile && `${supabaseImageSrc(media.sizes.mobile.filename)}`,
-    media.sizes.tablet && `${supabaseImageSrc(media.sizes.tablet.filename)}`,
-    media.sizes.desktop && `${supabaseImageSrc(media.sizes.desktop.filename)}`,
+    media.sizes.thumbnail?.filename &&
+    `${supabaseImageSrc(media.sizes.thumbnail.filename)} 400w`,
+    media.sizes.tablet?.filename &&
+    `${supabaseImageSrc(media.sizes.tablet.filename)} 768w`,
+    media.sizes.desktop?.filename &&
+    `${supabaseImageSrc(media.sizes.desktop.filename)} 1440w`,
+    media.filename &&
+    `${supabaseImageSrc(media.filename)} 2000w`,
   ]
     .filter(Boolean)
     .join(', ');
@@ -44,8 +48,8 @@ function getSupabaseSrcSet(media: Media) {
 interface Media {
   filename: string;
   alt: string;
-  sizes: {
-    mobile?: {
+  sizes?: {
+    thumbnail?: {
       filename: string;
     };
     tablet?: {

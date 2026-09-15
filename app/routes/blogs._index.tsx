@@ -3,6 +3,7 @@ import { Link, useLoaderData, type LoaderFunctionArgs } from "react-router";
 import { BlankHero } from "~/components/BlankHero";
 import { PageLayout } from "~/components/PageLayout";
 import SEO from "~/components/SEO";
+import { SupabaseImage } from "~/components/SupabaseImage";
 import { ALL_BLOGS_QUERY } from "~/graphql/queries/allBlogsQuery";
 import { useAnalytics } from "~/hooks/useAnalytics";
 import { getSite } from "~/lib/getSite.server";
@@ -43,7 +44,7 @@ function Blog({ blog }: { blog: any }) {
   const media = blog.banner.media;
   return (
     <Link to={`/blogs/${blog.slug}`} className="flex flex-col p-4 pb-8 bg-cream rounded-md">
-      {media && <img src={media.thumbnailURL} alt={blog.title} className="w-full h-[300px] object-cover rounded-md" />}
+      {media && <SupabaseImage media={media} className="w-full h-[300px] object-cover rounded-md" />}
       {!media && (
         <div className="w-full h-[300px] bg-charcoal rounded-md" />
       )}

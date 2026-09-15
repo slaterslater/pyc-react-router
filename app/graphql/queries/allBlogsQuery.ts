@@ -14,7 +14,16 @@ export const ALL_BLOGS_QUERY = gql`
         slug
         banner {
           media {
-            thumbnailURL
+            filename
+            alt
+            sizes {
+              thumbnail {
+                filename
+              }
+              tablet {
+                filename
+              }
+            }
           }
         }
       }
