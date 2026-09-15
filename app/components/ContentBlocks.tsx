@@ -46,9 +46,8 @@ export function ContentBlocks({ block }: { block: any }) {
       return <Hero hero={block} />
 
     case 'reviews':
-      const cols = Math.min(block.reviews.length, 3)
       return (
-        <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}>
+        <div className="grid gap-4 grid-cols-1 lg:grid-cols-3">
           {block.reviews.map((review: ReviewType) => <Review key={review.id} review={review} />)}
         </div>
       )
