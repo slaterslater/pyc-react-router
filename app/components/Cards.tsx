@@ -1,6 +1,7 @@
 import { getMimeType } from "~/lib/getMimeType";
 import { type MenuLink } from "./navigation/NavLink";
 import { PYCButton } from "./PYCbutton";
+import { supabaseImageSrc } from "./SupabaseImage";
 
 export function Cards({ cards }: { cards: CardType[] }) {
   return (
@@ -14,7 +15,10 @@ export function Cards({ cards }: { cards: CardType[] }) {
 
 function Card({ card }: { card: CardType }) {
   const mimeType = getMimeType(card.media?.mimeType);
-  const backgroundImage = mimeType === 'image' ? card.media?.sizes.tablet.url ?? card.media?.url : '';
+  const tabletSrc = supabaseImageSrc(card.media?.sizes.tablet.filename ?? '');
+  const originalSrc = supabaseImageSrc(card.media?.filename ?? '');
+  const backgroundImage = mimeType === 'image' ? tabletSrc || originalSrc : '';
+
   return (
     <div
       className="w-full h-[350px] md:h-[450px] rounded-md flex flex-col items-center justify-end p-4 bg-charcoal"
@@ -35,9 +39,10 @@ type CardType = {
   media?: {
     mimeType: string;
     url: string;
+    filename: string;
     sizes:
     {
-      tablet: { url: string }
+      tablet: { url: string, filename: string }
     }
   };
   button: MenuLink

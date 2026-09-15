@@ -1,4 +1,5 @@
 import { getMimeType } from "~/lib/getMimeType";
+import { SupabaseImage } from "./SupabaseImage";
 
 export function HomepageFeature({ feature }: { feature: HomepageFeatureType }) {
   return (
@@ -18,7 +19,7 @@ function FeatureMedia({ media }: { media: HomepageFeatureType['media'] }) {
         <video src={media?.url} autoPlay muted loop className="w-full h-[350px] object-cover rounded-md" />
       );
     case 'image':
-      return <img src={media?.sizes.tablet.url ?? media?.url} alt={media?.alt} className="w-full h-[350px] object-cover rounded-md" />;
+      return <SupabaseImage media={media} className="w-full h-[350px] object-cover rounded-md" />
     default:
       return <div className="w-full h-[350px] bg-charcoal rounded-md" />;
   }
@@ -31,9 +32,11 @@ type HomepageFeatureType = {
     mimeType: string;
     url: string;
     alt: string;
+    filename: string;
     sizes: {
       tablet: {
         url: string;
+        filename: string;
       };
     };
   };
